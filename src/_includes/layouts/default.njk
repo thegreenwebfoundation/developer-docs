@@ -1,0 +1,51 @@
+---
+title: My Blog
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% set css %}
+    {% include "src/styles/index.css" %}
+    {% endset %}
+    <style>
+      {{css | postcss | safe}}</style>
+  </head>
+  <body>
+    <div class="drawer drawer-mobile">
+      <input id="my-drawer-2" type="checkbox" class="drawer-toggle"/>
+      <div class="drawer-content">
+        <!-- Page content here -->
+        {# <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> #}
+          <div class="p-6 pb-16"> <div class="flex flex-col-reverse justify-between gap-6 xl:flex-row">
+            <div class="prose w-full max-w-4xl flex-grow">{{ content | safe }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer-2" class="drawer-overlay"></label>
+        <ul class="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content">
+          <li>
+            <a href="/" aria-label="Homepage">
+                <img src="/public/logo_dark_text.svg" alt="The Green Web Foundation typographic logo" class="max-h-full" height="210px" width="372px" />
+            </a>
+          </li>
+          <li class="menu-title">
+            <p class="prose prose-lg">Libraries</p>
+          </li>
+          <!-- Sidebar content here -->
+          {%- for main in collections.main -%}
+            <li>
+              <a class="prose prose-lg" href="{{ main.url }}">{{ main.data.libraryName }}
+                
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
