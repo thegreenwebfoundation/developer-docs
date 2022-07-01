@@ -5,4 +5,4 @@ tasks:
 # Ports to expose on workspace startup
 ports:
   - port: 8080
-    onOpen: open-preview
+    onOpen: open-browser
