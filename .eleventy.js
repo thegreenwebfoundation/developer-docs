@@ -1,5 +1,6 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const metagen = require('eleventy-plugin-metagen');
+const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 
 const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
@@ -11,6 +12,12 @@ module.exports = (eleventyConfig) => {
   // Plugins
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(metagen);
+  eleventyConfig.addPlugin(sitemap, {
+    lastModifiedProperty: "modified",
+    sitemap: {
+      hostname: "https://developers.thegreenwebfoundation.org",
+    },
+  });
 
   // Filters
   eleventyConfig.addNunjucksAsyncFilter('postcss', (cssCode, done) => {

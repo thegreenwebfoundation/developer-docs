@@ -21,6 +21,7 @@
     "vite": "^2.9.12"
   },
   "dependencies": {
+    "@quasibit/eleventy-plugin-sitemap": "^2.1.5",
     "eleventy-plugin-metagen": "^1.7.11"
   }
 }
