@@ -12,7 +12,9 @@ title: My Blog
     {% include "src/styles/index.css" %}
     {% endset %}
     <style>
-      {{css | postcss | safe}}</style>
+      {{css | postcss | safe}}
+      </style>
+      <meta name="generator" content="{{ eleventy.generator }}">
   </head>
   <body>
     <div class="drawer drawer-mobile">
