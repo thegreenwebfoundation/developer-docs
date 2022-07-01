@@ -1,4 +1,5 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const metagen = require('eleventy-plugin-metagen');
 
 const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
@@ -7,8 +8,11 @@ const autoprefixer = require('autoprefixer');
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("public");
 
+  // Plugins
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  eleventyConfig.addPlugin(metagen);
 
+  // Filters
   eleventyConfig.addNunjucksAsyncFilter('postcss', (cssCode, done) => {
     postcss([tailwindcss(require('./tailwind.config.js')), autoprefixer()])
       .process(cssCode)
@@ -23,6 +27,7 @@ module.exports = (eleventyConfig) => {
     return docs
   });
 
+  // Shortcodes
   eleventyConfig.addNunjucksShortcode("languageBadge", function (language) {
     if (language === "javascript") {
       return `<span class="self-center badge badge-large bg-yellow-300 text-slate-900 border-current">JavaScript</span>`

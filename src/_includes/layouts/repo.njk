@@ -1,5 +1,4 @@
 ---
-title: My Blog
 ---
 
 <!doctype html>
@@ -7,14 +6,13 @@ title: My Blog
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
     {% set css %}
     {% include "src/styles/index.css" %}
     {% endset %}
     <style>
       {{css | postcss | safe}}
       </style>
-      <meta name="generator" content="{{ eleventy.generator }}">
+      {% include 'partials/metadata.njk' %}
   </head>
   <body>
     <div class="drawer drawer-mobile">
