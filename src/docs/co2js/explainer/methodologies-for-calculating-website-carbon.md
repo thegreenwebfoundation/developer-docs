@@ -1,5 +1,6 @@
 ---
 title: Methodologies for calculating website carbon
+description: CO2.js offers two models for understanding the environmental impact of compute - the 1byte model, and the Sustainable Web Design model."
 eleventyNavigation:
   key: website-carbon-methodologies
   # parent: overview
