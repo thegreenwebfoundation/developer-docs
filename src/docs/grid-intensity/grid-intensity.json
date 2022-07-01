@@ -1,9 +1,0 @@
-{
-	"tags": ["grid-intensity"],
-	"permalink": "{% if not overridePermalink %}{% generateDocsPath page.filePathStem %}/index.html{% else %}{{ overridePermalink }}{% endif %}",
-	"layout": "layouts/repo.njk",
-	"repo": "Grid Intensity CLI",
-	"languages": ["go"],
-	"repository": "https://github.com/thegreenwebfoundation/grid-intensity-go",
-	"repoVersion": "0.1.0"
-}
