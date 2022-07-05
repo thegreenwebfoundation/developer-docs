@@ -47,10 +47,33 @@
           </li>
           <!-- Sidebar content here -->
           {%- for main in collections.main -%}
-            <li>
-              <a class="prose prose-lg" href="{{ main.url }}">{{ main.data.libraryName }}
-              </a>
+          <ul tabindex="0" class="collapse collapse-arrow">
+            <input type="checkbox" class="peer" />
+              <div class="collapse-title peer-checked:bg-secondary peer-checked:text-secondary-content">
+                {{ main.data.libraryName }}
+              </div>
+              <span class="collapse-content p-0"> 
+                {% set navPages = collections.all | getDocumentsFromCollection(main.data.repo) | eleventyNavigation %}
+          {%- for entry in navPages %}
+            {% if sectionTitle != entry.sectionTitle %}
+              {% set sectionTitle = entry.sectionTitle %}
+              <li class="menu-title">
+                <p class="divider text-sm font-bold font-mono">{{ sectionTitle }}</p>
+              </li>
+            {% endif %}
+            <li {% if entry.url == page.url %} class="my-active-class" {% endif %}>
+              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+              {%- if entry.children.length -%}
+                {%- for child in entry.children %}
+                  <li {% if child.url == page.url %} class="my-active-class" {% endif %}>
+                    <a href="{{ child.url | url }}">{{ child.title }}</a>
+                  {% endfor -%}
+                </li>
+              {%- endif -%}
             </li>
+          {%- endfor %}
+              </span>
+            </ul>
           {%- endfor -%}
         </ul>
       </div>

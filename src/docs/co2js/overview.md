@@ -5,7 +5,7 @@ title: Overview
 description: "One day, there internet will be powered by renewable energy. Until that day comes, there’ll be a CO2 cost that comes with every byte of data that’s uploaded or downloaded."
 eleventyNavigation:
   key: overview
-  title: CO2.js - Overview
+  title: Overview
   order: 1
 ---
 
