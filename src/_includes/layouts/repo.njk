@@ -13,8 +13,16 @@
     <div class="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle"/>
       <div class="drawer-content">
+        <div class="w-full navbar bg-base lg:hidden">
+          <div class="flex-none lg:hidden">
+            <label for="my-drawer-2" class="btn btn-square btn-ghost">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </label>
+          </div>
+        </div>
         <!-- Page content here -->
-        {# <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> #}
           <div class="p-6 pb-16"> <div class="flex flex-col-reverse justify-between gap-6 xl:flex-row">
             <div class="prose w-full max-w-4xl flex-grow">
               {% if relatedPR or pageVersion %}
