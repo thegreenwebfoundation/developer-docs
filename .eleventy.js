@@ -5,6 +5,14 @@ const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
 const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano')
+
+const postCssPlugins = [tailwindcss(require('./tailwind.config.js')), autoprefixer()]
+
+const dev = process.env.NODE_ENV !== 'production'
+console.log({dev})
+
+if (!dev) { postCssPlugins.push(cssnano())}
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("public");
@@ -21,7 +29,7 @@ module.exports = (eleventyConfig) => {
 
   // Filters
   eleventyConfig.addNunjucksAsyncFilter('postcss', (cssCode, done) => {
-    postcss([tailwindcss(require('./tailwind.config.js')), autoprefixer()])
+    postcss(postCssPlugins)
       .process(cssCode)
       .then(
         (r) => done(null, r.css),
