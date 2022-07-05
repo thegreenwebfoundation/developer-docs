@@ -20,6 +20,17 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </label>
+        <ul class="menu menu-horizontal">
+          <!-- Navbar menu content here -->
+          <li> <a href="/" aria-label="Homepage">
+              <img
+                src="/public/logo_horizontal.svg"
+                alt="The Green Web Foundation typographic logo"
+                class="max-h-full"
+                height="210px"
+                width="372px"/>
+            </a></li>
+        </ul>
           </div>
         </div>
         <!-- Page content here -->
@@ -44,7 +55,7 @@
       <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
         <ul class="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content">
-          <li>
+          <li class=" lg:block sm:hidden">
             <a href="/" aria-label="Homepage">
               <img
                 src="/public/logo_dark_text.svg"
@@ -54,6 +65,7 @@
                 width="372px"/>
             </a>
           </li>
+          <li><a href="/" aria-label="Homepage">Home</a></li>
           <li class="menu-title">
             <p class="prose prose-lg">Libraries</p>
           </li>
