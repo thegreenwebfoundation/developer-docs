@@ -1,7 +1,7 @@
 {
 	"tags": ["co2js"],
 	"permalink": "{% if not overridePermalink %}{% generateDocsPath page.filePathStem %}/index.html{% else %}{{ overridePermalink }}{% endif %}",
-	"layout": "layouts/repo.njk",
+	"layout": "layouts/default.njk",
 	"repo": "co2js",
 	"languages": ["javascript"],
 	"repository": "https://github.com/thegreenwebfoundation/co2.js",

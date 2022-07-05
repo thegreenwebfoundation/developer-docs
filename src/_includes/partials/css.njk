@@ -1,0 +1,6 @@
+ {% set css %}
+    {% include "src/styles/index.css" %}
+    {% endset %}
+    <style>
+      {{css | postcss | safe}}
+      </style>

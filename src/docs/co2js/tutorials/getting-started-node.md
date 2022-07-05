@@ -1,32 +1,34 @@
 ---
-title: Getting started (server)
+title: "Getting started: NodeJS"
+description: "In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) or data."
 eleventyNavigation:
-  key: getting-started-server
-  title: Getting started (server)
+  key: getting-started-node
+  title: "Getting started: NodeJS"
   # parent: overview
   sectionTitle: Tutorials
   order: 10
 ---
-# Getting started with CO2.js on the server
-
-## Before starting
-
-You can follow along with this tutorial in your local development environment, or by using the button below to launch the project in Gitpod.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fershad/gitpod-node-base)
-
-### Local development
-
-If you are following along this tutorial locally, you will need to have the following setup on your machine:
-
-- Node version 12 or later
-- NPM version 6 or later
+# {{ title }}
 
 ## Overview
 
 At its core, CO2.js takes an input of bytes and returns in carbon estimate in grams. In doing so, it provides a way for developers to estimate the carbon cost of data transfer.
 
 In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) or data.
+
+## Before starting
+
+You can follow along with this tutorial in your local development environment, or by using the button below to launch the project in Gitpod.
+
+<!-- TODO: Update this link! -->
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fershad/gitpod-node-starter)
+
+### Local development
+
+If you are following along this tutorial locally, you will need to have the following setup on your machine:
+
+- Node version 14 or later
+- NPM version 6 or later
 
 ### Learning goals
 
@@ -60,7 +62,7 @@ npm install @tgwf/co2
 
 In your project’s `index.js` file, add the following code to initialise CO2.js.
 
-```jsx
+```js
 const { co2 } = require('@tgwf/co2')
 const co2Emission = new co2();
 ```
@@ -74,12 +76,11 @@ CO2.js includes a `perByte()` function. This function accepts two variables:
 
 <aside>
 💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they *are not.*
-
 </aside>
 
 Adding the code below to the `index.js` file allows us to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host.
 
-```jsx
+```js
 const bytesSent = (1000 * 1000 * 1000) // 1GB expressed in bytes
 const greenHost = false // Is the data transferred from a green host?
 
@@ -103,7 +104,7 @@ To find out how much carbon 1GB of data produces, run the code in node.
 node index.js
 
 # Output:
-# Sending a gigabyte, had a carbon footprint of 312.258 grams of CO2
+# Sending a gigabyte, had a carbon footprint of 290.813 grams of CO2
 ```
 
 ## Wrapping up
