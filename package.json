@@ -17,8 +17,7 @@
     "autoprefixer": "^10.4.7",
     "daisyui": "^2.15.3",
     "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.2",
-    "vite": "^2.9.12"
+    "tailwindcss": "^3.1.2"
   },
   "dependencies": {
     "@quasibit/eleventy-plugin-sitemap": "^2.1.5",
