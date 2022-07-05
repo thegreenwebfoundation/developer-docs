@@ -6,12 +6,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% set css %}
-    {% include "src/styles/index.css" %}
-    {% endset %}
-    <style>
-      {{css | postcss | safe}}
-      </style>
+      {% include 'partials/css.njk' %}
       {% include 'partials/metadata.njk' %}
   </head>
   <body>
