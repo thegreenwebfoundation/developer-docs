@@ -2,7 +2,7 @@
 tags: main
 libraryName: CO2.js
 title: Overview
-description: "One day, there internet will be powered by renewable energy. Until that day comes, there’ll be a CO2 cost that comes with every byte of data that’s uploaded or downloaded."
+description: CO2.js is a JavaScript library that enables developers a way to estimate the emissions related to use of their apps, websites, and software.
 eleventyNavigation:
   key: overview
   title: Overview
