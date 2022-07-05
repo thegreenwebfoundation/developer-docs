@@ -10,7 +10,6 @@ const cssnano = require('cssnano')
 const postCssPlugins = [tailwindcss(require('./tailwind.config.js')), autoprefixer()]
 
 const dev = process.env.NODE_ENV !== 'production'
-console.log({dev})
 
 if (!dev) { postCssPlugins.push(cssnano())}
 
