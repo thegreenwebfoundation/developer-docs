@@ -14,7 +14,9 @@ const dev = process.env.NODE_ENV !== 'production'
 if (!dev) { postCssPlugins.push(cssnano())}
 
 module.exports = (eleventyConfig) => {
-  eleventyConfig.addPassthroughCopy("public");
+  eleventyConfig.addPassthroughCopy({
+    public: './'
+  })
 
   // Plugins
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
