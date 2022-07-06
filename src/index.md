@@ -19,7 +19,7 @@ Currently, the libraries below have some documentation you can reference:
 
 <ul class="list-disc px-0 prose-lg">
 {%- for main in collections.main -%}
-            <li class="card w-96 bg-base-100 shadow-xl">
+            <li class="card w-full md:w-96 bg-base-100 shadow-xl">
              <div class="card-body">
     <h3 class="card-title">{{ main.data.libraryName }}
                 {%- for language in main.data.languages -%}
