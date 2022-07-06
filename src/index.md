@@ -28,7 +28,7 @@ Currently, the libraries below have some documentation you can reference:
     </h3>
     <p>{{ main.data.description }}</p>
     <div class="card-actions justify-end">
-      <a href="{{ main.url}}" class="btn btn-primary text-white no-underline">Get started</a>
+      <a href="{{ main.url}}" class="btn btn-secondary text-secondary-content no-underline">Get started</a>
       <a href="{{ main.data.repository }}" class="btn bg-neutral text-white hover:bg-neutral-focus no-underline gap-2">
   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
