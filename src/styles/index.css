@@ -5,3 +5,7 @@
 .menu .menu-title > * {
     @apply text-zinc-800;
   }
+
+  .collapse:focus-within:not(.collapse-close) .collapse-content {
+    max-height: 9000px;
+}
