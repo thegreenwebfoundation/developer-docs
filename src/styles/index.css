@@ -9,3 +9,11 @@
   .collapse:focus-within:not(.collapse-close) .collapse-content {
     max-height: 9000px;
 }
+
+.collapse-arrow:focus-within:not(.collapse-close) .collapse-title:after {
+  transform: rotate(225deg);
+}
+
+.collapse:focus:not(.collapse-close) .collapse-title .collapse-title-text, .collapse:focus-within:not(.collapse-close) .collapse-title .collapse-title-text {
+  font-weight: 700;
+}
