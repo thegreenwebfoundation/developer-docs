@@ -73,7 +73,7 @@ CO2.js includes a `perByte()` function. This function accepts two variables:
 - bytes:  `number` - The bytes you want to calculate CO2 for.
 - green: `boolean` - Whether the bytes are transferred from a green host. By default, this value is `false`.
 
-<aside>
+<aside class="alert alert-info">
 💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they *are not.*
 </aside>
 

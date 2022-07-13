@@ -57,7 +57,7 @@ Here's some boilerplate code to get started with. Copy this into the `index.html
 
 So that we can get to writing code sooner, we will use [Skypack](https://www.skypack.dev/) in this tutorial to download the CO2.js library.
 
-<aside class="alert alert-info">You can also install CO2.js using NPM, or build it yourself. See the [installation guide](https://developers.thegreenwebfoundation.org/co2js/installation/) for details.</aside>
+<aside class="alert alert-info">You can also install CO2.js using NPM, or build it yourself. See the <a href="https://developers.thegreenwebfoundation.org/co2js/installation/">installation guide</a> for details.</aside>
 
 In the `index.html` file you just created, add the following line inside the `<script>` block in the head of the page. 
 
