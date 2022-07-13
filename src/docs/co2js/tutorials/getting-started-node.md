@@ -20,8 +20,7 @@ In this tutorial, you will install CO2.js in a Node environment. Then, you will 
 
 You can follow along with this tutorial in your local development environment, or by using the button below to launch the project in Gitpod.
 
-<!-- TODO: Update this link! -->
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fershad/gitpod-node-starter)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thegreenwebfoundation/gitpod-node-starter)
 
 ### Local development
 
