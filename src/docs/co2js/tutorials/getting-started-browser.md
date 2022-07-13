@@ -57,7 +57,7 @@ Here's some boilerplate code to get started with. Copy this into the `index.html
 
 So that we can get to writing code sooner, we will use [Skypack](https://www.skypack.dev/) in this tutorial to download the CO2.js library.
 
-<aside class="alert alert-info">You can also install CO2.js using NPM, or build it yourself. See the <a href="https://developers.thegreenwebfoundation.org/co2js/installation/">installation guide</a> for details.</aside>
+<aside class="alert bg-base-200 text-base-content"><p>You can also install CO2.js using NPM, or build it yourself. See the <a href="https://developers.thegreenwebfoundation.org/co2js/installation/" class="link">installation guide</a> for details.</p></aside>
 
 In the `index.html` file you just created, add the following line inside the `<script>` block in the head of the page. 
 
@@ -72,8 +72,8 @@ CO2.js includes a `perByte()` function. This function accepts two variables:
 - bytes:  `number` - The bytes you want to calculate CO2 for.
 - green: `boolean` - Whether the bytes are transferred from a green host. By default, this value is `false`.
 
-<aside class="alert alert-info">
-💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they *are not.*
+<aside class="alert bg-base-200 text-base-content">
+<p>💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they *are not.*</p>
 </aside>
 
 Adding the code below to the `<script>` block allows us to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host. Be sure to add this code _after_ the import statement.
