@@ -1,6 +1,6 @@
 ---
 title: "Getting started: NodeJS"
-description: "In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) or data."
+description: "In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) of data."
 eleventyNavigation:
   key: getting-started-node
   title: "Getting started: NodeJS"
@@ -14,7 +14,7 @@ eleventyNavigation:
 
 At its core, CO2.js takes an input of bytes and returns in carbon estimate in grams. In doing so, it provides a way for developers to estimate the carbon cost of data transfer.
 
-In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) or data.
+In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) of data.
 
 ## Before starting
 
