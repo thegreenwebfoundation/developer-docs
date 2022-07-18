@@ -29,6 +29,10 @@ If you are following along this tutorial locally, you will need to have the foll
 - Node version 14 or later
 - NPM version 6 or later
 
+### Methodologies
+
+It is also worth noting that currently CO2.js uses the 1byte model as the default when calculating carbon emissions. There is currently an [open issue](https://github.com/thegreenwebfoundation/co2.js/issues/94) to update this to the more recent Sustainable Web Design methodology. Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about both models.
+
 ### Learning goals
 
 - How to install CO2.js using NPM
