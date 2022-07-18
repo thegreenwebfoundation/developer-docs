@@ -1,6 +1,6 @@
 ---
 title: "Getting started: NodeJS"
-description: "In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) or data."
+description: "In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) of data."
 eleventyNavigation:
   key: getting-started-node
   title: "Getting started: NodeJS"
@@ -14,14 +14,13 @@ eleventyNavigation:
 
 At its core, CO2.js takes an input of bytes and returns in carbon estimate in grams. In doing so, it provides a way for developers to estimate the carbon cost of data transfer.
 
-In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) or data.
+In this tutorial, you will install CO2.js in a Node environment. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) of data.
 
 ## Before starting
 
 You can follow along with this tutorial in your local development environment, or by using the button below to launch the project in Gitpod.
 
-<!-- TODO: Update this link! -->
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fershad/gitpod-node-starter)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thegreenwebfoundation/gitpod-node-starter)
 
 ### Local development
 
@@ -30,7 +29,11 @@ If you are following along this tutorial locally, you will need to have the foll
 - Node version 14 or later
 - NPM version 6 or later
 
-### Learning goals
+### Methodologies
+
+It is also worth noting that currently CO2.js uses the 1byte model as the default when calculating carbon emissions. There is currently an [open issue](https://github.com/thegreenwebfoundation/co2.js/issues/94) to update this to the more recent Sustainable Web Design methodology. Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about both models.
+
+## Learning goals
 
 - How to install CO2.js using NPM
 - How to initiate CO2.js in your code
@@ -74,8 +77,8 @@ CO2.js includes a `perByte()` function. This function accepts two variables:
 - bytes:  `number` - The bytes you want to calculate CO2 for.
 - green: `boolean` - Whether the bytes are transferred from a green host. By default, this value is `false`.
 
-<aside>
-💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they *are not.*
+<aside class="alert bg-base-200 text-base-content">
+<p>💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they *are not.*</p>
 </aside>
 
 Adding the code below to the `index.js` file allows us to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host.
