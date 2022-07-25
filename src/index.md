@@ -17,7 +17,7 @@ Currently, the libraries below have some documentation you can reference:
  
 </div>
 
-<ul class="list-disc px-0 prose-lg">
+<ul class="list-disc px-0 prose-lg flex gap-6 flex-wrap">
 {%- for main in collections.main -%}
             <li class="card w-full md:w-96 bg-base-100 shadow-xl">
              <div class="card-body">
