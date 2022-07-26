@@ -29,4 +29,4 @@ curl -fsSL https://raw.githubusercontent.com/thegreenwebfoundation/grid-intensit
 
 ## Build it yourself
 
-YOu can also manually install the CLI using the latest binary release [available on GitHub](https://github.com/thegreenwebfoundation/grid-intensity-go/releases).
+You can also manually install the CLI using the latest binary release [available on GitHub](https://github.com/thegreenwebfoundation/grid-intensity-go/releases).
