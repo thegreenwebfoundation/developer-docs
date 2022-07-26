@@ -7,11 +7,11 @@ eleventyNavigation:
   order: 2
 ---
 
-## Installation
+# Installation
 
 This guide will show you how to quickly get started with CO2.js in a variety of ways.
 
-### Using NPM
+## Using NPM
 
 You can install CO2.js as a dependency for your projects using NPM.
 
@@ -19,7 +19,7 @@ You can install CO2.js as a dependency for your projects using NPM.
 npm install @tgwf/co2
 ```
 
-### Using Skypack
+## Using Skypack
 
 You can import the CO2.js library into projects using Skypack.
 
@@ -28,7 +28,7 @@ import tgwf from 'https://cdn.skypack.dev/@tgwf/co2';
 ```
 
 
-### Build it yourself
+## Build it yourself
 
 {% betaCodeWarning 'https://github.com/thegreenwebfoundation/co2.js/pull/92' %}
 
