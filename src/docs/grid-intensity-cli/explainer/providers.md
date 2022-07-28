@@ -1,6 +1,6 @@
 ---
 title: Providers
-description: CO2.js offers two models for understanding the environmental impact of compute - the 1byte model, and the Sustainable Web Design model."
+description: The Grid Intensity CLI allows data to be sourced from several providers.
 eleventyNavigation:
   key: providers
   # parent: overview
@@ -10,7 +10,7 @@ eleventyNavigation:
 ---
 # {{ title }}
 
-The Grid Intensity CLI allows data to be sourced from several providers. Currently there are integrations available for the following providers:
+The Grid Intensity CLI allows data to be sourced from several providers. Currently the following integrations are available:
 
 - [WattTime](https://www.watttime.org/)
 - [Ember](https://ember-climate.org/)
@@ -23,9 +23,12 @@ If you would like us to integrate more providers please [open an issue](https://
 
 When running the Grid Intensity CLI, you can change providers by passing the `--provider` flag, along with the name of the provider you want to use. Alternately, you can set `GRID_INTENSITY_PROVIDER` as an environment variable.
 
-<aside class="alert bg-base-200 text-base-content"><p>Please note that some providers require user account and/or API tokens to be set as well. Details for these are listed below with each provider.</p></aside>
-
 When no provider is set, the CLI will use Ember as the default.
+
+<aside class="alert  alert-warning"><div>
+<svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+	<p>Please note that some providers require user account and/or API tokens to be set as well.</p>
+</div></aside>
 
 ## Ember <span class="badge align-middle badge-secondary badge-lg">Default</span>
 
@@ -64,7 +67,6 @@ WattTime is a nonprofit that offers technology solutions that make it easy for a
 
 `--provider=watttime.org`
 
-
 ### Registration
 
 Before using the WattTime integration, you must first create a user account with WattTime. This will allow you to access and use their API. Details on registering an account are available on the [WattTime website](https://www.watttime.org/api-documentation/#register-new-user).
@@ -83,9 +85,9 @@ When using WattTime, you will need to pass a region that is supported by the Wat
 For example, running the command below returns data for California Independent System Operator (North). 
 
 ```bash
-grid-intensity --provider=watttime.org --region=CAISO_NORTH                                                                                                            ─╯
+grid-intensity --provider=watttime.org --region=CAISO_NORTH
 
-## Returns
+# Returns
 
 {
 	"ba": "CAISO_NORTH",
@@ -98,9 +100,9 @@ grid-intensity --provider=watttime.org --region=CAISO_NORTH                     
 
 ### Limitations
 
-Each region will return a `percent` value. This value represents the relative realtime marginal emissions intensity for the _past month_.
+Each region will return a `percent` field. This value represents the relative realtime marginal emissions intensity for the _past month_.
 
-If you require Marginal Operating Emissions Rate (MOER) data, this is available for free when querying the `CAISO_NORTH` region but will require a _WattTime Pro subscription_ for other regions.
+If you require Marginal Operating Emissions Rate (MOER) data, this is available for free when querying the `CAISO_NORTH` region but will require a [_WattTime Pro subscription_](https://www.watttime.org/get-the-data/data-plans/) for other regions.
 
 
 ***
@@ -115,7 +117,7 @@ The Electricity Maps API provides worldwide access to 24/7 grid carbon intensity
 
 Before using the Electricy Map integration, you must first [obtain an API key](https://static.electricitymap.org/api/docs/index.html#authentication). This will allow you to access and use their API.
 
-Once you have created a WattTime account, you must set the `WATT_TIME_USER` and `WATT_TIME_PASSWORD` environment variables. This allows the Grid Intensity CLI to access the WattTime API.
+Once you have an Electricity Map API key, you must set the `ELECTRICITY_MAP_API_TOKEN` environment variable. This allows the Grid Intensity CLI to access the Electricity Map API.
 
 ```bash
 export ELECTRICITY_MAP_API_TOKEN=your-token
@@ -123,7 +125,7 @@ export ELECTRICITY_MAP_API_TOKEN=your-token
 
 ### Required parameters
 
-When using Electricity Map, you will need to pass a region that is supported by the Electricity Map API. You can get a [list of all supported regions](https://static.electricitymap.org/api/docs/index.html#zones) using the Electricity Map API.
+When using Electricity Map, you will need to pass a supported region. You can get a [list of all supported regions](https://static.electricitymap.org/api/docs/index.html#zones) using the Electricity Map API.
 
 For example, running the command below will return data for Portugal.
 
@@ -145,7 +147,7 @@ National Grid ESO have developed a Regional Carbon Intensity forecast for the Gr
 
 ### Required parameters
 
-The UK Carbon Intensity API integration supports only one region, `UK`. This can be passed to the CLI as an optional parameter.
+The UK Carbon Intensity API integration supports only one region, `--region=UK`. This can be passed to the CLI as an optional parameter.
 
 For example, the code below returns data for the UK.
 
