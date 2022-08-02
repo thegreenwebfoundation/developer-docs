@@ -26,11 +26,7 @@ You can import the CO2.js library into projects using Skypack.
 ```js
 import tgwf from 'https://cdn.skypack.dev/@tgwf/co2';
 ```
-
-
 ## Build it yourself
-
-{% betaCodeWarning 'https://github.com/thegreenwebfoundation/co2.js/pull/92' %}
 
 You can also build the CO2.js library from the source code. To do this:
 

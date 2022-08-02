@@ -1,7 +1,7 @@
 ---
 title: "Getting started: In the browser"
 description: "In this tutorial, you will use CO2.js in the browser to calculate the CO2 emissions of transferring 1 gigabyte (GB) of data."
-relatedPR: https://github.com/thegreenwebfoundation/co2.js/pull/92
+relatedPR: 
 eleventyNavigation:
   key: getting-started-browser
   title: "Getting started: In the browser"
@@ -47,7 +47,8 @@ Here's some boilerplate code to get started with. Copy this into the `index.html
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My CO2.js calculator</title>
 
-    <script>
+    <script type="module">
+      <!-- Our code will go here -->
     </script>
 </head>
 <body>
@@ -66,7 +67,7 @@ So that we can get to writing code sooner, we will use [Skypack](https://www.sky
 In the `index.html` file you just created, add the following line inside the `<script>` block in the head of the page. 
 
 ```js
-import tgwf from 'https://cdn.skypack.dev/@tgwf/co2@beta';
+import tgwf from 'https://cdn.skypack.dev/@tgwf/co2';
 ```
 
 ## Calculating emissions per byte
@@ -104,7 +105,7 @@ When you're done, the `<script>` block should look like this:
 
 ```html
 <script type="module">
-  import tgwf from 'https://cdn.skypack.dev/@tgwf/co2@beta';
+  import tgwf from 'https://cdn.skypack.dev/@tgwf/co2';
   const emissions = new tgwf.co2()
   const bytesSent = (1000 * 1000 * 1000) // 1GB expressed in bytes
   const greenHost = false // Is the data transferred from a green host?
