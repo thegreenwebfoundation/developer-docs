@@ -47,7 +47,8 @@ Here's some boilerplate code to get started with. Copy this into the `index.html
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My CO2.js calculator</title>
 
-    <script>
+    <script type="module">
+      <!-- Our code will go here -->
     </script>
 </head>
 <body>
