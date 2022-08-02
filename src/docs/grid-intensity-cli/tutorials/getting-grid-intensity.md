@@ -18,7 +18,7 @@ In this tutorial, you will use the Grid Intensity CLI to:
 
 1. Get historical intensity data for a region.
 1. Change data providers, and
-1. Get near 0real-time grid intensity data for a region.
+1. Get near real-time grid intensity data for a region.
 
 ## Before starting
 
