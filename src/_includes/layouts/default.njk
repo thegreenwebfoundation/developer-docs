@@ -98,11 +98,11 @@
                     <p class="divider text-sm font-bold font-mono">{{ sectionTitle }}</p>
                   </li>
                 {% endif %}
-                <li {% if entry.url == page.url %} class="bg-secondary text-white" {% endif %}>
+                <li {% if entry.url == page.url %} class="bg-secondary text-white pl-4" {%else%} class="pl-4" {% endif %}>
                   <a href="{{ entry.url | url }}">{{ entry.title }}</a>
                   {%- if entry.children.length -%}
                     {%- for child in entry.children %}
-                      <li {% if child.url == page.url %} class="bg-secondary text-white" {% endif %}>
+                      <li {% if child.url == page.url %} class="bg-secondary text-white pl-4" {%else%} class="pl-4" {% endif %}>
                         <a href="{{ child.url | url }}">{{ child.title }}</a>
                       {% endfor -%}
                     </li>
