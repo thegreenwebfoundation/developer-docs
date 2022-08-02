@@ -122,10 +122,6 @@ For example, running the command below will return data for Portugal.
 
 ```bash
 grid-intensity --provider=electricitymap.org --region=PT
-
-# Returns
-
-
 ```
 
 ***
