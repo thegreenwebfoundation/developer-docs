@@ -40,7 +40,7 @@ Ember is the default provider for the Grid Intensity CLI. The Ember integration 
 
 ### Required parameters
 
-When using Ember, you will need to pass either an [Alpha-2 or Alpha-3 ISO country code](https://www.iso.org/obp/ui/#search) for the region you want data for. You can do this using the `--region` flag.
+When using Ember, you will need to pass either an [Alpha-2 or Alpha-3 ISO country code](https://www.iso.org/obp/ui/#search). You can do this using the `--region` flag.
 
 For example, the code below returns data for Taiwan.
 
@@ -91,22 +91,22 @@ grid-intensity --provider=watttime.org --region=CAISO_NORTH
 
 ### Limitations
 
-Each region will return a `percent` field. This value represents the relative realtime marginal emissions intensity for the _past month_.
+Each region will return a `percent` field. This value represents the relative real-time marginal emissions intensity for the _past month_.
 
 If you require Marginal Operating Emissions Rate (MOER) data, this is available for free when querying the `CAISO_NORTH` region but will require a [_WattTime Pro subscription_](https://www.watttime.org/get-the-data/data-plans/) for other regions.
 
 
 ***
 
-## Electrity Map <div class="badge badge-warning gap-2 align-middle">API token required</div>
+## Electricity Map <div class="badge badge-warning gap-2 align-middle">API token required</div>
 
-The Electricity Maps API provides worldwide access to 24/7 grid carbon intensity historically, in real time, and as a forecast for the next 24 hours.
+The Electricity Map API provides worldwide access to 24/7 grid carbon intensity historically, in real time, and as a forecast for the next 24 hours.
 
 `--provider=electricitymap.org`
 
 ### Registration
 
-Before using the Electricy Map integration, you must first [obtain an API key](https://static.electricitymap.org/api/docs/index.html#authentication). This will allow you to access and use their API.
+Before using the Electricity Map integration, you must first [obtain an API key](https://static.electricitymap.org/api/docs/index.html#authentication). This will allow you to access and use their API.
 
 Once you have an Electricity Map API key, you must set the `ELECTRICITY_MAP_API_TOKEN` environment variable. This allows the Grid Intensity CLI to access the Electricity Map API.
 
