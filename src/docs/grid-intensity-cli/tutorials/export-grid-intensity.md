@@ -52,7 +52,9 @@ Now, if we visit `localhost:8000/metrics` in our browser we will be presented wi
 
 The Prometheus exporter which we have running on `localhost:8000/metrics` exposes a lot of data. For our purposes, we are interested in the grid intensity data that has been returned from the UK Carbon Intensity API.
 
-In this tutorial we'll use the `curl` command in our terminal to fetch this data. Ensure that your Prometheus server is still running at `localhost:8000/metrics`, then run the following command.
+In this tutorial we'll use the `curl` command in our terminal to fetch this data. In reality, you would add the Prometheus server as a data source to a tool like Grafana.
+
+Ensure that your Prometheus server is still running at `localhost:8000/metrics`, then run the following command.
 
 ```bash
 curl -s http://localhost:8000/metrics | grep grid
@@ -65,14 +67,13 @@ grid_intensity_carbon_average{provider="carbonintensity.org.uk",region="UK",unit
 
 Here we can see that the current average grid intensity data in the UK is 100. 
 
-Data from the UK Carbon Intensity API is updated every 30 minutes. So, if you were to leave the server running, and rerun the above command at a later time then you should see a different grid intensity value.
-
 <div class="alert alert-info">
-  <p>In reality you would add the Prometheus server as a data source to a tool like Grafana.</p>
+  <p>Data from the UK Carbon Intensity API is updated every 30 minutes. So, if you were to leave the server running, and rerun the above command at a later time then you should see a different grid intensity value.</p>
 </div>
 
 ## Wrapping up
 
 Now you know how to use the `exporter` command to expose grid intensity on a local server. From here you can:
 
-- 
+- Use Docker to [deploy the exporter](https://github.com/thegreenwebfoundation/grid-intensity-go#docker-image) to a [Kubernetes](https://github.com/thegreenwebfoundation/grid-intensity-go#kubernetes) or [Nomad](https://github.com/thegreenwebfoundation/grid-intensity-go#nomad) cluster.
+- Use the Prometheus exporter as a data source for a [Grafana visualisation](https://prometheus.io/docs/visualization/grafana/).
