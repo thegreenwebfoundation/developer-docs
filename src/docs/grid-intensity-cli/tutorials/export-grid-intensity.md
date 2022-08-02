@@ -1,6 +1,6 @@
 ---
 title: Exporting grid intensity data
-description: In this tutorial you will use the Grid Intensity CLI exporter to start a Prometheus exporter with carbon intensity metrics.
+description: In this tutorial you will use the Grid Intensity CLI exporter to start a Prometheus server exporting carbon intensity metrics.
 eleventyNavigation:
   key: export-grid-intensity
   title: Exporting grid intensity data
@@ -12,9 +12,9 @@ eleventyNavigation:
 
 ## Overview
 
-Exporting grid intensity data allows you and your code to respond to changes in grid intensity over time. It also allows developers to create dashboards and monitor tools to visualise grid intensity data, making it easier for non-technical teams to consume.
+Exporting grid intensity data allows you and your code to respond to changes in grid intensity over time. It also allows developers to create dashboards and monitoring tools that visualise grid intensity data, making it easier for non-technical teams to consume.
 
-In this tutorial, you will use the Grid Intensity CLI `exporter` command to start a Prometheus exporter with carbon intensity metrics.
+In this tutorial, you will use the Grid Intensity CLI `exporter` command to start a Prometheus server exporting carbon intensity metrics.
 
 ## Before starting
 
@@ -29,7 +29,7 @@ In this tutorial we will be using the [UK Carbon Intensity API](https://carbonin
 
 ## Using the `exporter` command
 
-Let's use the `exporter` command to start a [Prometheus](https://prometheus.io/) exporter on localhost port 8000. There is no need to be familiar with Prometheus for the purposes of this tutorial.
+Let's use the `exporter` command to start a [Prometheus](https://prometheus.io/) server on localhost port 8000. There is no need to be familiar with Prometheus for the purposes of this tutorial.
 
 Running the command below will start the exporter.
 
@@ -46,15 +46,15 @@ Using provider "carbonintensity.org.uk" with region "UK"
 Metrics available at :8000/metrics
 ```
 
-Now, if we visit `localhost:8000/metrics` in our browser we will be presented with a page full of data and stats.
+Now, if you visit `localhost:8000/metrics` in our browser we will be presented with a page full of data and stats.
 
 ## Extracting the relevant data
 
-The Prometheus exporter which we have running on `localhost:8000/metrics` exposes a lot of data. For our purposes, we are interested in the grid intensity data that has been returned from the UK Carbon Intensity API.
+The Prometheus exporter which we have running on `localhost:8000/metrics` exposes _a lot_ of data. For our purposes, we are interested in the grid intensity data that has been returned from the UK Carbon Intensity API.
 
 In this tutorial we'll use the `curl` command in our terminal to fetch this data. In reality, you would add the Prometheus server as a data source to a tool like Grafana.
 
-Ensure that your Prometheus server is still running at `localhost:8000/metrics`, then run the following command.
+Ensure that your Prometheus server is still running at `localhost:8000/metrics`, then run the following command in your terminal.
 
 ```bash
 curl -s http://localhost:8000/metrics | grep grid
@@ -65,10 +65,10 @@ curl -s http://localhost:8000/metrics | grep grid
 grid_intensity_carbon_average{provider="carbonintensity.org.uk",region="UK",units="gCO2 per kWh"} 100
 ```
 
-Here we can see that the current average grid intensity data in the UK is 100. 
+Here we can see that the current average grid intensity data in the UK is `100`. 
 
 <div class="alert alert-info">
-  <p>Data from the UK Carbon Intensity API is updated every 30 minutes. So, if you were to leave the server running, and rerun the above command at a later time then you should see a different grid intensity value.</p>
+  <p>Data from the UK Carbon Intensity API is updated every 30 minutes. So, if you were to leave the server running, and rerun the above command at a later time then you should see a different grid intensity value returned.</p>
 </div>
 
 ## Wrapping up
