@@ -98,7 +98,7 @@ If you require Marginal Operating Emissions Rate (MOER) data, this is available 
 
 ***
 
-## Electricity Map <div class="badge badge-warning gap-2 align-middle">API token required</div>
+## Electricity Maps <div class="badge badge-warning gap-2 align-middle">API token required</div>
 
 The Electricity Map API provides worldwide access to 24/7 grid carbon intensity historically, in real time, and as a forecast for the next 24 hours.
 
@@ -106,7 +106,7 @@ The Electricity Map API provides worldwide access to 24/7 grid carbon intensity 
 
 ### Registration
 
-Before using the Electricity Map integration, you must first [obtain an API key](https://static.electricitymap.org/api/docs/index.html#authentication). This will allow you to access and use their API.
+Before using the Electricity Maps integration, you must first [obtain an API key](https://static.electricitymap.org/api/docs/index.html#authentication). This will allow you to access and use their API.
 
 Once you have an Electricity Map API key, you must set the `ELECTRICITY_MAP_API_TOKEN` environment variable. This allows the Grid Intensity CLI to access the Electricity Map API.
 
@@ -116,7 +116,7 @@ export ELECTRICITY_MAP_API_TOKEN=your-token
 
 ### Required parameters
 
-When using Electricity Map, you will need to pass a supported region. You can get a [list of all supported regions](https://static.electricitymap.org/api/docs/index.html#zones) using the Electricity Map API.
+When using Electricity Maps, you will need to pass a supported region. You can get a [list of all supported regions](https://static.electricitymap.org/api/docs/index.html#zones) using the Electricity Map API.
 
 For example, running the command below will return data for Portugal.
 
