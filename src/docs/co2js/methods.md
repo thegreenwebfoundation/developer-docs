@@ -32,7 +32,7 @@ The `perByte()` function accepts the following parameters:
 - **bytes** <div class="badge gap-2 align-middle">Required</div> <div class="badge badge-ghost gap-2 align-middle">Number</div>: The value of bytes to estimate emissions for.
 - **green hosting** <div class="badge badge-ghost gap-2 align-middle">Boolean</div>: `true` if the data being measured is served from a green web host.
 
-## perVisit <div class="badge badge-warning gap-2 align-middle">Sustainable Web Design model only</div>
+## perVisit <div class="badge badge-warning gap-2 align-middle">Sustainable Web Design only</div>
 
 The `perVisit()` function can only be used with the Sustainable Web Design models. This function includes assumptions the model authors have made [about website visitors and caching](https://sustainablewebdesign.org/calculating-digital-emissions/#:~:text=Returning%20visitors%20are%20assumed%20to%20be%2025%25%2C%20loading%202%25%20of%20data.) as part its calculation. For that reason, we recommend only using it if you are comfortable with those assumptions. The `perVisit()` function is best used for calculating website carbon emissions.
 
