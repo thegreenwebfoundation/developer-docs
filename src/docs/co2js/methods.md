@@ -44,7 +44,7 @@ const swd = new co2()
 const emissions = swd.perVisit(1000000);
 ```
 
-Here we are using the Sustainable Web Desing model, and using the `perVisit()` function to check the carbon emissions for transferring 1 million bytes.
+Here we are using the Sustainable Web Design model, and using the `perVisit()` function to check the carbon emissions for transferring 1 million bytes.
 
 ### Accepted parameters
 
