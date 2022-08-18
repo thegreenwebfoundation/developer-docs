@@ -4,7 +4,7 @@ description: This guide will show you how to use the different methods to calcul
 eleventyNavigation:
   key: methods
   title: Methods
-  order: 2
+  order: 4
 ---
 
 # Methods
