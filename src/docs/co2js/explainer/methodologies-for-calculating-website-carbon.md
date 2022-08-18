@@ -57,6 +57,20 @@ On the other hand, the Sustainable Web Design model has a broader system boundar
 
 As a result, the `perByte` carbon estimates returned when using the 1byte model will be lower than those from Sustainable Web Design for the same amount of data transfer.
 
+## Switching between models
+
+To use the Sustainable Web Design model in CO2.js, pass in the `{ model: 'swd' }` parameter when initiating a new CO2.js object.
+
+```js
+import { co2 } from '@tgwf/co2'
+
+// Use the default OneByte model
+const oneByte = new co2()
+
+// Use the Sustainable Web Design model
+const swd = new co2({ model: 'swd')}
+```
+
 [ember-methodology]: https://ember-climate.org/app/uploads/2022/03/GER22-Methodology.pdf
 [Ember-annual-global-electricity-review]: https://ember-climate.org/insights/research/european-electricity-review-2022/
 [soberDigital]: https://theshiftproject.org/en/lean-ict-2/
