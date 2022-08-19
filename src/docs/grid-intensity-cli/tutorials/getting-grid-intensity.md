@@ -54,14 +54,18 @@ The command above uses the Ember dataset - the default integration for the Grid 
 Running the command above will return data that looks similar to the snippet below.
 
 ```json
-{
-	"country_code_iso_2": "PT",
-	"country_code_iso_3": "PRT",
-	"country_or_region": "Portugal",
-	"year": 2021,
-	"latest_year": 2021,
-	"emissions_intensity_gco2_per_kwh": 222.632
-}
+[
+        {
+                "emissions_type": "average",
+                "metric_type": "absolute",
+                "provider": "Ember",
+                "region": "PT",
+                "units": "gCO2e per kWh",
+                "valid_from": "2021-01-01T00:00:00Z",
+                "valid_to": "2021-12-31T23:59:00Z",
+                "value": 222.632
+        }
+]
 ```
 
 Here, we are interested in the value of the `emissions_intensity_gco2_per_kwh` field. This shows us how many grams of CO2 were emitted per kilowatt-hour of electricity generated in Portugal during 2021. The closer this number is to zero, the cleaner a region's grid is.
@@ -84,7 +88,7 @@ To do this, we will use the WattTime API integration.
 Once you have setup your WattTime account, you can run the command below in your terminal.
 
 ```bash
-grid-intensity --provider=watttime.org --region=PT
+grid-intensity --provider=WattTime --region=PT
 ```
 
 Here, we use the `--provider` flag to let the CLI know to fetch data from the WattTime API. As before, we have set the `--region` flag to return data for Portugal (`PT`).
@@ -92,13 +96,18 @@ Here, we use the `--provider` flag to let the CLI know to fetch data from the Wa
 Running the command above will return data that looks similar to the snippet below.
 
 ```json
-{
-	"ba": "PT",
-	"freq": "300",
-	"moer": "",
-	"percent": "81",
-	"point_time": "2022-07-28T06:00:00Z"
-}
+[
+        {
+                "emissions_type": "marginal",
+                "metric_type": "relative",
+                "provider": "WattTime",
+                "region": "PT",
+                "units": "percent",
+                "valid_from": "2022-08-19T05:00:00Z",
+                "valid_to": "2022-08-19T05:05:00Z",
+                "value": 71
+        }
+]
 ```
 
 Here, we are interested in the value of the `percent` field. This value represents the relative real-time marginal emissions intensity for the _past month_. A lower value here represents a cleaner electricity grid.

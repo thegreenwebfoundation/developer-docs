@@ -34,7 +34,7 @@ Let's use the `exporter` command to start a [Prometheus](https://prometheus.io/)
 Running the command below will start the exporter.
 
 ```bash
-grid-intensity exporter --provider=carbonintensity.org.uk --region=UK
+grid-intensity exporter --provider=CarbonIntensityOrgUK --region=UK
 ```
 
 Here, we have used the `--provider` flag to set the UK Carbon Intensity API as our data source. We also use the `--region` flag to tell the exporter what region we want to get data for.
@@ -42,7 +42,7 @@ Here, we have used the `--provider` flag to set the UK Carbon Intensity API as o
 When the `exporter` command runs successfully, you will see the following message:
 
 ```bash
-Using provider "carbonintensity.org.uk" with region "UK"
+Using provider "CarbonIntensityOrgUK" with region "UK"
 Metrics available at :8000/metrics
 ```
 
@@ -62,10 +62,10 @@ curl -s http://localhost:8000/metrics | grep grid
 # Returns
 # HELP grid_intensity_carbon_average Average carbon intensity for the electricity grid in this region.
 # TYPE grid_intensity_carbon_average gauge
-grid_intensity_carbon_average{provider="carbonintensity.org.uk",region="UK",units="gCO2 per kWh"} 100
+grid_intensity_carbon_average{provider="CarbonIntensityOrgUK",region="UK",units="gCO2e per kWh"} 201
 ```
 
-Here we can see that the current average grid intensity data in the UK is `100`. 
+Here we can see that the current average grid intensity data in the UK is `201`. 
 
 <div class="alert alert-info">
   <p>Data from the UK Carbon Intensity API is updated every 30 minutes. So, if you were to leave the server running, and rerun the above command at a later time then you should see a different grid intensity value returned.</p>
