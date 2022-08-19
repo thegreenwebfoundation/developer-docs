@@ -4,7 +4,7 @@ description: This guide will show you how to run different commands using the Gr
 eleventyNavigation:
   key: commands
   title: Commands
-  order: 2
+  order: 3
 ---
 
 # Commands
