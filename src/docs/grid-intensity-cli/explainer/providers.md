@@ -21,7 +21,8 @@ If you would like us to integrate more providers please [open an issue](https://
 
 ## Listing providers
 
-You can generate a list of all available providers in 
+{% include 'snippets/grid-cli/list-providers.md' %}
+
 ## Changing providers
 
 When running the Grid Intensity CLI, you can change providers by passing the `--provider` flag, along with the name of the provider you want to use. Alternately, you can set `GRID_INTENSITY_PROVIDER` as an environment variable.
