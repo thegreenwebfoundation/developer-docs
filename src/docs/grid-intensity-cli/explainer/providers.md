@@ -19,6 +19,9 @@ The Grid Intensity CLI allows data to be sourced from several providers. Current
 
 If you would like us to integrate more providers please [open an issue](https://github.com/thegreenwebfoundation/grid-intensity-go/issues).
 
+## Listing providers
+
+You can generate a list of all available providers in 
 ## Changing providers
 
 When running the Grid Intensity CLI, you can change providers by passing the `--provider` flag, along with the name of the provider you want to use. Alternately, you can set `GRID_INTENSITY_PROVIDER` as an environment variable.
@@ -67,7 +70,7 @@ WattTime is a nonprofit that offers technology solutions that make it easy for a
 
 `--provider=watttime.org`
 
-{% include 'snippets/watttime-registration.md' %}
+{% include 'snippets/grid-cli/watttime-registration.md' %}
 
 ### Required parameters
 

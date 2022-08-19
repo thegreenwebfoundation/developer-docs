@@ -77,7 +77,7 @@ To do this, we will use the WattTime API integration.
 	<p>Please note that you will first need to create a free WattTime user account to use their API.</p>
 </div></aside>
 
-{% include 'snippets/watttime-registration.md' %}
+{% include 'snippets/grid-cli/watttime-registration.md' %}
 
 ### Using WattTime with the Grid Intensity CLI
 
