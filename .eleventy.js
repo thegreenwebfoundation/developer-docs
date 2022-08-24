@@ -43,6 +43,16 @@ module.exports = (eleventyConfig) => {
     return docs
   });
 
+  eleventyConfig.addNunjucksFilter("nextPage", function (pages, pageUrl) {
+    const thisPage = pages.findIndex(page => page.url === pageUrl)
+    return pages[thisPage + 1]
+  });
+
+  eleventyConfig.addNunjucksFilter("previousPage", function (pages, pageUrl) {
+    const thisPage = pages.findIndex(page => page.url === pageUrl)
+    return pages[thisPage -1]
+  });
+
   // Shortcodes
   eleventyConfig.addNunjucksShortcode("analytics", function() {
     if (dev) {
