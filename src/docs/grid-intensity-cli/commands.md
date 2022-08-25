@@ -41,7 +41,7 @@ You will use the Grid Intensity CLI `exporter` command to start a Prometheus exp
 grid-intensity exporter --region=PT
 ```
 
-The command above will start a Prometheus server that exposes grid intensity data at `localhost:8000/metrics`. In this example we use the default Ember dataset, and return data for Portugal (`PT`).
+The command above will start a Prometheus exporter that exposes grid intensity data at `localhost:8000/metrics`. In this example we use the default Ember dataset, and return data for Portugal (`PT`).
 
 ### See also
 
