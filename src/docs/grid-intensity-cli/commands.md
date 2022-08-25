@@ -35,7 +35,7 @@ For more details on getting grid intensity data using the CLI, including how to 
 
 ## Exporting grid intensity data
 
-You will use the Grid Intensity CLI `exporter` command to start a Prometheus server exporting carbon intensity metrics.
+You will use the Grid Intensity CLI `exporter` command to start a Prometheus exporter serving carbon intensity metrics.
 
 ```bash
 grid-intensity exporter --region=PT
