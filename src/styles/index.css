@@ -23,3 +23,23 @@
 .collapse:focus:not(.collapse-close) .collapse-title .collapse-title-text, .collapse:focus-within:not(.collapse-close) .collapse-title .collapse-title-text {
   font-weight: 700;
 }
+
+h2[id], h3[id], h4[id], h5[id], h6[id] {
+  display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-anchor {
+  display: grid;
+  place-items: center;
+}
+
+h2[id] > .header-anchor > span, h3[id] > .header-anchor > span, h4[id] > .header-anchor > span, h5[id] > .header-anchor > span, h6[id] > .header-anchor > span {
+  opacity: 0.25;
+  display: inline-block;
+}
+
+h2[id]:hover span, h3[id]:hover span, h4[id]:hover span, h5[id]:hover span, h6[id]:hover span {
+  opacity: 1;
+}
