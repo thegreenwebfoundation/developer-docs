@@ -22,8 +22,7 @@
     "@quasibit/eleventy-plugin-sitemap": "^2.1.5",
     "eleventy-plugin-metagen": "^1.7.11",
     "markdown-it": "^13.0.1",
-    "markdown-it-anchor": "^8.6.4",
-    "markdown-it-attrs": "^4.1.4"
+    "markdown-it-anchor": "^8.6.4"
   },
   "dependencies": {
   }
