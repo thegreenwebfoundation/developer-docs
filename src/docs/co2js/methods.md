@@ -39,7 +39,7 @@ The `perVisit()` function can only be used with the Sustainable Web Design model
 ```js
 import { co2 } from '@tgwf/co2'
 
-const swd = new co2()
+const swd = new co2({ model: "swd" })
 
 const emissions = swd.perVisit(1000000);
 ```
