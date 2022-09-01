@@ -18,9 +18,9 @@ The `perByte()` function can be used with both the [OneByte and Sustainable Web 
 ```js
 import { co2 } from '@tgwf/co2'
 
-const oneByte = new co2()
+const oneByte = new co2({ model: "1byte" }}
 
-const emissions = oneByte.perByte(1000000);
+const emissions = oneByte.perByte(1000000)
 ```
 
 Here we are using the OneByte model, and using the `perByte()` function to check the carbon emissions for transferring 1 million bytes.
@@ -41,7 +41,7 @@ import { co2 } from '@tgwf/co2'
 
 const swd = new co2({ model: "swd" })
 
-const emissions = swd.perVisit(1000000);
+const emissions = swd.perVisit(1000000)
 ```
 
 Here we are using the Sustainable Web Design model, and using the `perVisit()` function to check the carbon emissions for transferring 1 million bytes.
