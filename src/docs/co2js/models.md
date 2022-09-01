@@ -20,6 +20,8 @@ CO2.js uses the OneByte model by default. So once you have loaded the CO2.js lib
 import { co2 } from '@tgwf/co2'
 
 const oneByte = new co2()
+// You can also explicitly declare the model
+const explictOneByte = new co2({ model: "1byte" })
 ```
 
 ## Using the Sustainable Web Design model
