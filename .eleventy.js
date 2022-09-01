@@ -3,7 +3,6 @@ const metagen = require('eleventy-plugin-metagen');
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
-const markdownItAttrs = require('markdown-it-attrs');
 
 const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
