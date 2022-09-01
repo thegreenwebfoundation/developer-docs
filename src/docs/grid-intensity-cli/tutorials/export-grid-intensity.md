@@ -1,6 +1,6 @@
 ---
 title: Exporting grid intensity data
-description: In this tutorial you will use the Grid Intensity CLI exporter to start a Prometheus server exporting carbon intensity metrics.
+description: In this tutorial you will use the Grid Intensity CLI exporter to start a Prometheus exporter.
 eleventyNavigation:
   key: export-grid-intensity
   title: Exporting grid intensity data
@@ -14,7 +14,7 @@ eleventyNavigation:
 
 Exporting grid intensity data allows you and your code to respond to changes in grid intensity over time. It also allows developers to create dashboards and monitoring tools that visualise grid intensity data, making it easier for non-technical teams to consume.
 
-In this tutorial, you will use the Grid Intensity CLI `exporter` command to start a Prometheus server exporting carbon intensity metrics.
+In this tutorial, you will use the Grid Intensity CLI `exporter` command to start a Prometheus exporter.
 
 ## Before starting
 
@@ -29,20 +29,25 @@ In this tutorial we will be using the [UK Carbon Intensity API](https://carbonin
 
 ## Using the `exporter` command
 
-Let's use the `exporter` command to start a [Prometheus](https://prometheus.io/) server on localhost port 8000. There is no need to be familiar with Prometheus for the purposes of this tutorial.
+Let's use the `exporter` command to start a [Prometheus](https://prometheus.io/) exporter on localhost port 8000. There is no need to be familiar with Prometheus for the purposes of this tutorial.
 
 Running the command below will start the exporter.
 
 ```bash
-grid-intensity exporter --provider=carbonintensity.org.uk --region=UK
+grid-intensity exporter --provider CarbonIntensityOrgUK --location UK --region eu-west-1 --node worker-1
 ```
 
-Here, we have used the `--provider` flag to set the UK Carbon Intensity API as our data source. We also use the `--region` flag to tell the exporter what region we want to get data for.
+Here, we have used the following flags:
+
+- `--provider` to set the UK Carbon Intensity API as our data source. 
+- `--location` to tell the exporter what country/location we want to get data for.
+- `--region` sets the cloud/data center region in which the exporter is running.
+- `--node` sets the node on which the exporter is running.
 
 When the `exporter` command runs successfully, you will see the following message:
 
 ```bash
-Using provider "carbonintensity.org.uk" with region "UK"
+Using provider "CarbonIntensityOrgUK" with location "UK"
 Metrics available at :8000/metrics
 ```
 
@@ -52,20 +57,20 @@ Now, if you visit `localhost:8000/metrics` in our browser we will be presented w
 
 The Prometheus exporter which we have running on `localhost:8000/metrics` exposes _a lot_ of data. For our purposes, we are interested in the grid intensity data that has been returned from the UK Carbon Intensity API.
 
-In this tutorial we'll use the `curl` command in our terminal to fetch this data. In reality, you would add the Prometheus server as a data source to a tool like Grafana.
+In this tutorial we'll use the `curl` command in our terminal to fetch this data. In reality, you would add the Prometheus exporter as a data source to a tool like Grafana.
 
-Ensure that your Prometheus server is still running at `localhost:8000/metrics`, then run the following command in your terminal.
+Ensure that your Prometheus exporter is still running at `localhost:8000/metrics`, then run the following command in your terminal.
 
 ```bash
 curl -s http://localhost:8000/metrics | grep grid
 
 # Returns
-# HELP grid_intensity_carbon_average Average carbon intensity for the electricity grid in this region.
+# HELP grid_intensity_carbon_average Average carbon intensity for the electricity grid in this location.
 # TYPE grid_intensity_carbon_average gauge
-grid_intensity_carbon_average{provider="carbonintensity.org.uk",region="UK",units="gCO2 per kWh"} 100
+grid_intensity_carbon_average{location="UK",node="worker-1",provider="CarbonIntensityOrgUK",region="eu-west-1",units="gCO2e per kWh"} 201
 ```
 
-Here we can see that the current average grid intensity data in the UK is `100`. 
+Here we can see that the current average grid intensity data in the UK is `201`. 
 
 <div class="alert alert-info">
   <p>Data from the UK Carbon Intensity API is updated every 30 minutes. So, if you were to leave the server running, and rerun the above command at a later time then you should see a different grid intensity value returned.</p>

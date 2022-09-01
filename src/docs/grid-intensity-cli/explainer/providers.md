@@ -19,6 +19,10 @@ The Grid Intensity CLI allows data to be sourced from several providers. Current
 
 If you would like us to integrate more providers please [open an issue](https://github.com/thegreenwebfoundation/grid-intensity-go/issues).
 
+## Listing providers
+
+{% include 'snippets/grid-cli/list-providers.md' %}
+
 ## Changing providers
 
 When running the Grid Intensity CLI, you can change providers by passing the `--provider` flag, along with the name of the provider you want to use. Alternately, you can set `GRID_INTENSITY_PROVIDER` as an environment variable.
@@ -34,29 +38,33 @@ When no provider is set, the CLI will use Ember as the default.
 
 Ember is an energy think tank that uses data-driven insights to shift the world from coal to clean electricity.
 
-`--provider=ember-climate.org`
+`--provider Ember`
 
 Ember is the default provider for the Grid Intensity CLI. The Ember integration returns regional data by country, for the last calendar year.
 
 ### Required parameters
 
-When using Ember, you will need to pass either an [Alpha-2 or Alpha-3 ISO country code](https://www.iso.org/obp/ui/#search). You can do this using the `--region` flag.
+When using Ember, you will need to pass either an [Alpha-2 or Alpha-3 ISO country code](https://www.iso.org/obp/ui/#search). You can do this using the `--location` flag.
 
 For example, the code below returns data for Taiwan.
 
 ```bash
-grid-intensity --provider=ember-climate.org --region=TW
+grid-intensity --provider Ember --location TW
 
 # Returns
 
-{
-	"country_code_iso_2": "TW",
-	"country_code_iso_3": "TWN",
-	"country_or_region": "Taiwan (Province of China)",
-	"year": 2021,
-	"latest_year": 2021,
-	"emissions_intensity_gco2_per_kwh": 565.629
-}
+[
+        {
+                "emissions_type": "average",
+                "metric_type": "absolute",
+                "provider": "Ember",
+                "location": "TW",
+                "units": "gCO2e per kWh",
+                "valid_from": "2021-01-01T00:00:00Z",
+                "valid_to": "2021-12-31T23:59:00Z",
+                "value": 565.629
+        }
+]
 ```
 
 ***
@@ -65,35 +73,50 @@ grid-intensity --provider=ember-climate.org --region=TW
 
 WattTime is a nonprofit that offers technology solutions that make it easy for anyone to achieve emissions reductions without compromising cost, comfort, and function.
 
-`--provider=watttime.org`
+`--provider WattTime`
 
-{% include 'snippets/watttime-registration.md' %}
+{% include 'snippets/grid-cli/watttime-registration.md' %}
 
 ### Required parameters
 
-When using WattTime, you will need to pass a region that is supported by the WattTime API. WattTime's API documentation details how you can [get a list of regions](https://www.watttime.org/api-documentation/#list-of-grid-regions), or [use latitude & longitude](https://www.watttime.org/api-documentation/#determine-grid-region) to find a specific region.
+When using WattTime, you will need to pass a location that is supported by the WattTime API. WattTime's API documentation details how you can [get a list of locations](https://www.watttime.org/api-documentation/#list-of-grid-regions), or [use latitude & longitude](https://www.watttime.org/api-documentation/#determine-grid-region) to find a specific location.
 
-For example, running the command below returns data for California Independent System Operator (North). 
+For example, running the command below returns an array data for California Independent System Operator (North). 
 
 ```bash
-grid-intensity --provider=watttime.org --region=CAISO_NORTH
+grid-intensity --provider WattTime --location CAISO_NORTH
 
 # Returns
 
-{
-	"ba": "CAISO_NORTH",
-	"freq": "300",
-	"moer": "887",
-	"percent": "38",
-	"point_time": "2022-07-28T01:40:00Z"
-}
+[
+        {
+                "emissions_type": "marginal",
+                "metric_type": "relative",
+                "provider": "WattTime",
+                "location": "CAISO_NORTH",
+                "units": "percent",
+                "valid_from": "2022-08-19T07:40:00Z",
+                "valid_to": "2022-08-19T07:45:00Z",
+                "value": 32
+        },
+        {
+                "emissions_type": "marginal",
+                "metric_type": "absolute",
+                "provider": "WattTime",
+                "location": "CAISO_NORTH",
+                "units": "lbCO2e per MWh",
+                "valid_from": "2022-08-19T07:40:00Z",
+                "valid_to": "2022-08-19T07:45:00Z",
+                "value": 918
+        }
+]
 ```
 
 ### Limitations
 
-Each region will return a `percent` field. This value represents the relative real-time marginal emissions intensity for the _past month_.
+Each location will return a `percent` field. This value represents the relative real-time marginal emissions intensity for the _past month_.
 
-If you require Marginal Operating Emissions Rate (MOER) data, this is available for free when querying the `CAISO_NORTH` region but will require a [_WattTime Pro subscription_](https://www.watttime.org/get-the-data/data-plans/) for other regions.
+If you require absolute Marginal Operating Emissions Rate (MOER) data, this is available for free when querying the `CAISO_NORTH` location as shown above. However, you will require a [_WattTime Pro subscription_](https://www.watttime.org/get-the-data/data-plans/) to obtain this data for other locations.
 
 
 ***
@@ -102,7 +125,7 @@ If you require Marginal Operating Emissions Rate (MOER) data, this is available 
 
 The Electricity Map API provides worldwide access to 24/7 grid carbon intensity historically, in real time, and as a forecast for the next 24 hours.
 
-`--provider=electricitymap.org`
+`--provider ElectricityMap.org`
 
 ### Registration
 
@@ -116,12 +139,12 @@ export ELECTRICITY_MAP_API_TOKEN=your-token
 
 ### Required parameters
 
-When using Electricity Maps, you will need to pass a supported region. You can get a [list of all supported regions](https://static.electricitymap.org/api/docs/index.html#zones) using the Electricity Map API.
+When using Electricity Maps, you will need to pass a supported location. You can get a [list of all supported locations](https://static.electricitymap.org/api/docs/index.html#zones) using the Electricity Map API.
 
 For example, running the command below will return data for Portugal.
 
 ```bash
-grid-intensity --provider=electricitymap.org --region=PT
+grid-intensity --provider ElectricityMap --location PT
 ```
 
 ***
@@ -130,27 +153,30 @@ grid-intensity --provider=electricitymap.org --region=PT
 
 National Grid ESO have developed a Regional Carbon Intensity forecast for the Great Britain electricity grid.
 
-`--provider=carbonintensity.org.uk`
+`--provider CarbonIntensityOrgUK`
 
 ### Required parameters
 
-The UK Carbon Intensity API integration supports only one region, `--region=UK`. This can be passed to the CLI as an optional parameter.
+The UK Carbon Intensity API integration supports only one area, `--location=UK`. This can be passed to the CLI as an optional parameter.
 
 For example, the code below returns data for the UK.
 
 ```bash
-grid-intensity --provider=carbonintensity.org.uk
+grid-intensity --provider CarbonIntensityOrgUK  --location UK
 
 # Returns
 
-{
-	"from": "2022-07-28T02:00Z",
-	"to": "2022-07-28T02:30Z",
-	"intensity": {
-		"forecast": 272,
-		"actual": 0,
-		"index": "high"
-	}
-}
+[
+        {
+                "emissions_type": "average",
+                "metric_type": "absolute",
+                "provider": "CarbonIntensityOrgUK",
+                "location": "UK",
+                "units": "gCO2e per kWh",
+                "valid_from": "2022-08-19T07:00:00Z",
+                "valid_to": "2022-08-19T07:30:00Z",
+                "value": 201
+        }
+]
 
 ```
