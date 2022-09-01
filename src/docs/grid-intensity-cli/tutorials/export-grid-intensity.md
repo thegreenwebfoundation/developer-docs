@@ -34,15 +34,20 @@ Let's use the `exporter` command to start a [Prometheus](https://prometheus.io/)
 Running the command below will start the exporter.
 
 ```bash
-grid-intensity exporter --provider=CarbonIntensityOrgUK --region=UK
+grid-intensity exporter --provider CarbonIntensityOrgUK --location UK --region eu-west-1 --node worker-1
 ```
 
-Here, we have used the `--provider` flag to set the UK Carbon Intensity API as our data source. We also use the `--region` flag to tell the exporter what region we want to get data for.
+Here, we have used the following flags:
+
+- `--provider` to set the UK Carbon Intensity API as our data source. 
+- `--location` to tell the exporter what country/location we want to get data for.
+- `--region` sets the cloud/data center region in which the exporter is running.
+- `--node` sets the node on which the exporter is running.
 
 When the `exporter` command runs successfully, you will see the following message:
 
 ```bash
-Using provider "CarbonIntensityOrgUK" with region "UK"
+Using provider "CarbonIntensityOrgUK" with location "UK"
 Metrics available at :8000/metrics
 ```
 
@@ -60,9 +65,9 @@ Ensure that your Prometheus server is still running at `localhost:8000/metrics`,
 curl -s http://localhost:8000/metrics | grep grid
 
 # Returns
-# HELP grid_intensity_carbon_average Average carbon intensity for the electricity grid in this region.
+# HELP grid_intensity_carbon_average Average carbon intensity for the electricity grid in this location.
 # TYPE grid_intensity_carbon_average gauge
-grid_intensity_carbon_average{provider="CarbonIntensityOrgUK",region="UK",units="gCO2e per kWh"} 201
+grid_intensity_carbon_average{location="UK",node="worker-1",provider="CarbonIntensityOrgUK",region="eu-west-1",units="gCO2e per kWh"} 201
 ```
 
 Here we can see that the current average grid intensity data in the UK is `201`. 
