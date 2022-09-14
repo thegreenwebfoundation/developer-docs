@@ -3,6 +3,7 @@ const metagen = require('eleventy-plugin-metagen');
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
@@ -41,6 +42,7 @@ let markdownItAnchorOptions = {
 
   // Plugins
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(metagen);
   eleventyConfig.addPlugin(sitemap, {
     lastModifiedProperty: "modified",
