@@ -78,7 +78,7 @@ CO2.js includes a `perByte()` function. This function accepts two variables:
 - green: `boolean` - Whether the bytes are transferred from a green host. By default, this value is `false`.
 
 <aside class="alert bg-base-200 text-base-content">
-<p>💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they *are not.*</p>
+<p>💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they <strong>are not</strong>.</p>
 </aside>
 
 Adding the code below to the `index.js` file allows us to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host.
