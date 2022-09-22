@@ -52,7 +52,7 @@ h2[id]:hover span, h3[id]:hover span, h4[id]:hover span, h5[id]:hover span, h6[i
  */
 
  code[class*="language-"],
- pre[class*="language-"],  code:not([class]) {
+ pre[class*="language-"], code:not([class]) {
    color: #f8f8f2;
    background: none;
    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -83,15 +83,23 @@ h2[id]:hover span, h3[id]:hover span, h4[id]:hover span, h5[id]:hover span, h6[i
  }
  
  :not(pre) > code[class*="language-"],
- pre[class*="language-"], code:not([class]) {
+ pre[class*="language-"] {
    background: #2b2b2b;
  }
  
  /* Inline code */
- :not(pre) > code[class*="language-"], code:not([class]) {
+ :not(pre) > code[class*="language-"] {
    padding: 0.3em 0.4em;
    border-radius: 0.3em;
    white-space: normal;
+ }
+
+ code:not([class]) {
+  padding: 0.15rem;
+  border-radius: 0.1em;
+  white-space: normal;
+  @apply bg-zinc-200;
+  color: #2b2b2b;
  }
  
  .token.comment,
