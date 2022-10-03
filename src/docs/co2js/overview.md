@@ -36,3 +36,8 @@ The data from CO2.js can also be used as part of internal monitoring tools and d
 ***
 
 The above a just a few examples of the many and varied ways CO2.js can be applied to provide carbon estimates for data transfer. If you’re using CO2.js in production we’d love to hear how! [Contact us](https://www.thegreenwebfoundation.org/support-form/) via our website.
+
+## Licenses
+The code for CO2.js is licensed Apache 2.0.
+
+The carbon intensity data from Ember is published under the Creative Commons ShareAlike Attribution Licence (CC BY-SA 4.0).
