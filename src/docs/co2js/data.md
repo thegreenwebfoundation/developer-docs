@@ -27,7 +27,7 @@ You can also import annual, country-level marginal or average grid intensity dat
 
 ```js
 import { averageIntensity } from '@tgwf/co2';
-const { data, type, source, year } = averageIntensity;
+const { data, type, year } = averageIntensity;
 
 const { AUS } = data;
 console.log({ AUS })
@@ -37,7 +37,7 @@ Likewise, if you want to use annual marginal intensity for Australia:
 
 ```js
 import { marginalIntensity } from '@tgwf/co2';
-const { data, type, source, year } = marginalIntensity;
+const { data, type, year } = marginalIntensity;
 
 const { AUS } = data;
 console.log({ AUS })
