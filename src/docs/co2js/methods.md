@@ -18,7 +18,7 @@ The `perByte()` function can be used with both the [OneByte and Sustainable Web 
 ```js
 import { co2 } from '@tgwf/co2'
 
-const oneByte = new co2({ model: "1byte" }}
+const oneByte = new co2({ model: "1byte" })
 
 const emissions = oneByte.perByte(1000000)
 ```
