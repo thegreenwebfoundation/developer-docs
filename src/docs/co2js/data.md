@@ -11,7 +11,7 @@ eleventyNavigation:
 
 Sourcing carbon intensity data shouldn’t be the remit of developers. For that reason, CO2.js now includes yearly average grid intensity data from [Ember](https://ember-climate.org/data/data-explorer/), as well as marginal intensity data from the [UNFCCC](https://unfccc.int/) (United Nations Framework Convention on Climate Change).
 
-## Average and mariginal intensity explained
+## Average and marginal intensity explained
 
 Average emissions intensity uses the fuel mix of the entire electricity grid and can be used to derive estimates for the carbon footprint of a digital product or service. You’ll see average intensity used in the majority of carbon reporting standards and tooling. This makes it useful if you were to use CO2.js to feed in data to other carbon reporting tools.
 
