@@ -31,7 +31,7 @@ If you are following along this tutorial locally, you will need to have the foll
 
 ### Methodologies
 
-It is also worth noting that currently CO2.js uses the 1byte model as the default when calculating carbon emissions. There is currently an [open issue](https://github.com/thegreenwebfoundation/co2.js/issues/94) to update this to the more recent Sustainable Web Design methodology. Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about both models.
+It is also worth noting that currently CO2.js uses the Sustainable Web Design model as the default when calculating carbon emissions. Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about both models.
 
 ## Learning goals
 
@@ -78,7 +78,7 @@ CO2.js includes a `perByte()` function. This function accepts two variables:
 - green: `boolean` - Whether the bytes are transferred from a green host. By default, this value is `false`.
 
 <aside class="alert bg-base-200 text-base-content">
-<p>💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they *are not.*</p>
+<p>💡 If you are unsure about whether bytes are transferred from a green host, it is best to assume they <strong>are not</strong>.</p>
 </aside>
 
 Adding the code below to the `index.js` file allows us to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host.

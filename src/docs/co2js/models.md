@@ -12,34 +12,28 @@ eleventyNavigation:
 There are a few different models that can be used to measure digital carbon emissions. CO2.js includes two of these - the [OneByte][soberDigital] model, and the [Sustainable Web Design][swd] model.  This guide will show you how use the different carbon estimation models available in CO2.js.
 
 This guide will not go into the details of each model. If you'd like to learn more about the OneByte or Sustainable Web Design models then take a look at [Methodologies for calculating website carbon](/co2js/explainer/methodologies-for-calculating-website-carbon/).
-## Using the OneByte model <span class="badge align-middle badge-secondary badge-lg">Default</span>
 
-CO2.js uses the OneByte model by default. So once you have loaded the CO2.js library into you'll be ready to use this model.
+## Using the Sustainable Web Design model <span class="badge align-middle badge-secondary badge-lg">Default - v0.11.0</span>
+
+Since v0.11.0, CO2.js uses the Sustainable Web Design model by default. After importing CO2.js into your project, you can start using this model right away by initiating a `co2()` object. Alternately, you can pass in the `model: "swd"` option.
 
 ```js
 import { co2 } from '@tgwf/co2'
 
-const oneByte = new co2()
+const swd = new co2()
 // You can also explicitly declare the model
-const explictOneByte = new co2({ model: "1byte" })
+const declaredSwd = new co2({ model: "swd" })
 ```
 
-## Using the Sustainable Web Design model
+## Using the OneByte model
 
-If you want to use the Sustainable Web Design model, then you'll need to let CO2.js know. This can be done by passing in a `model` parameter with a value of `"swd"` when you initiate a new `co2()` object.
+If you want to use the OneByte model, then you'll need to let CO2.js know. This can be done by passing in a `model` parameter with a value of `"1byte"` when you initiate a new `co2()` object.
 
 ```js
 import { co2 } from '@tgwf/co2'
 
-const swd = new co2({ model: "swd" })
+const oneByte = new co2({ model: "1byte" })
 ```
-
-<aside class="alert  alert-warning">
-  <div>
-  <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-    <p>Note: The model parameter is <b>case sensitive</b>, meaning that using <code>{ model: "SWD" }</code> will not work. In this event, the OneByte model will be used instead.</p>
-  </div>
-</aside>
 
 [soberDigital]: https://theshiftproject.org/en/lean-ict-2/
 [swd]: https://sustainablewebdesign.org/calculating-digital-emissions

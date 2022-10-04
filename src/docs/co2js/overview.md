@@ -29,10 +29,18 @@ It can be used in user-facing applications to give visibility to the carbon impa
 
 Behind the scenes, developers could look to use CO2.js as part of their deployment workflow. In the same way that web developers might set a *performance budget* for their site, [a carbon budget could also be used](https://css-tricks.com/reduce-your-websites-environmental-impact-with-a-carbon-budget/). If a website or app exceeds a threshold for carbon intensity, then an alert can be raised or a new deployment can be blocked. 
 
-### Use it for reporting 
+### Use it for reporting
 
 The data from CO2.js can also be used as part of internal monitoring tools and dashboards. Office managers and sustainability teams could also use CO2.js to track the carbon intensity of data usage within an office environment. Plugging network data usage into CO2.js can allow for monitoring and reporting on the digital usage footprint of an organisation or business.
 
 ***
 
 The above a just a few examples of the many and varied ways CO2.js can be applied to provide carbon estimates for data transfer. If you’re using CO2.js in production we’d love to hear how! [Contact us](https://www.thegreenwebfoundation.org/support-form/) via our website.
+
+## Licenses
+
+The code for CO2.js is licensed [Apache 2.0](https://github.com/thegreenwebfoundation/co2.js/blob/main/LICENSE).
+
+The carbon intensity data from Ember is published under the Creative Commons ShareAlike Attribution Licence ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)).
+
+The marginal intensity data is published by the Green Web Foundation, under the Creative Commons ShareAlike Attribution Licence ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)).

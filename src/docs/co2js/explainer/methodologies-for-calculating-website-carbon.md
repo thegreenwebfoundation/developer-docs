@@ -14,19 +14,13 @@ CO2.js offers two models for understanding the environmental impact of compute -
 
 ## Default
 
-Currently, CO2.js uses the OneByte model as the default when calculating carbon emissions.
+Since v0.11.0, CO2.js uses the Sustainable Web Design (SWD) model as the default when calculating carbon emissions.
 
 ## Carbon estimation models
 
-### The OneByte model
-
-The default model in use is the OneByte model as used by the Shift Project, as introduced in their report on CO2 emissions from digital infrastructure, [Lean ICT: for a sober digital][soberDigital].
-
-This returns a number for the estimated CO2 emissions for the corresponding number of bytes sent over the wire, and has been used for video streaming, file downloads and websites.
-
 ### The Sustainable Web Design model
 
-As of version 0.9, CO2.js also provides the  [Sustainable Web Design model][swd] for calculating emissions from digital services. As the name suggests, this has been designed for helping understand the environmental impact of websites. Further details are available on the [Sustainable Web Design website explaining the model](https://sustainablewebdesign.org/calculating-digital-emissions/), but for convenience, a short summary is below.
+By default, CO2.js uses the [Sustainable Web Design model][swd] for calculating emissions from digital services. As the name suggests, this has been designed for helping understand the environmental impact of websites. Further details are available on the [Sustainable Web Design website explaining the model](https://sustainablewebdesign.org/calculating-digital-emissions/), but for convenience, a short summary is below.
 
 #### How the SWD works
 
@@ -47,6 +41,13 @@ This follows the approach used by the IPCC 5th Assessment Report Annex 3 (2014),
 
 [Ember's methodology notes][ember-methodology] detail where the rest of this data comes from in more detail, as well as any further assumptions made.
 
+### The OneByte model
+
+Additionally, CO2.js also allows developers to use the OneByte model as introduced by The Shift Project in their report on CO2 emissions from digital infrastructure, [Lean ICT: for a sober digital][soberDigital].
+
+This returns a number for the estimated CO2 emissions for the corresponding number of bytes sent over the wire, and has been used for video streaming, file downloads and websites.
+
+
 ### How the models differ
 
 These models return slightly different results, since they apply different system boundaries as part of their calculations. Tom Greenwood has written [a terrific blog post](https://www.wholegraindigital.com/blog/website-energy-consumption/) explaining system boundaries and how they impact carbon estimates.
@@ -64,11 +65,11 @@ To use the Sustainable Web Design model in CO2.js, pass in the `{ model: 'swd' }
 ```js
 import { co2 } from '@tgwf/co2'
 
-// Use the default OneByte model
-const oneByte = new co2()
+// Use the default Sustainable Web Design model
+const swd = new co2()
 
-// Use the Sustainable Web Design model
-const swd = new co2({ model: 'swd')}
+// Use the OneByte model
+const oneByte = new co2({ model: "1byte" })
 ```
 
 [ember-methodology]: https://ember-climate.org/app/uploads/2022/03/GER22-Methodology.pdf
