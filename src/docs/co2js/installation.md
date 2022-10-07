@@ -27,9 +27,17 @@ To get started with CO2.js quickly in the browser, you can import the library us
 import tgwf from 'https://cdn.skypack.dev/@tgwf/co2';
 ```
 
-## Using a JS CDN
+## Using a CDN
 
 You can get the latest version of CO2.js using one of the content delivery networks below. This comes in handy if you want to use CO2.js in projects that aren't using Node JS or NPM.
+
+### Unpkgd
+
+You can find the package at [https://unpkg.com/browse/@tgwf/co2@latest/](https://unpkg.com/browse/@tgwf/co2@latest/).
+
+- CommonJS compatible build `https://unpkg.com/@tgwf/co2@latest/dist/cjs/index-node.min.js`
+- ES Modules compatible build `https://unpkg.com/@tgwf/co2@latest/dist/esm/index.js`
+- IIFE compatible build `https://unpkg.com/@tgwf/co2@latest/dist/iife/index.js`
 
 ### jsDelivr
 
@@ -39,13 +47,6 @@ You can find the package at [https://www.jsdelivr.com/package/npm/@tgwf/co2](htt
 - ES Modules compatible build `https://cdn.jsdelivr.net/npm/@tgwf/co2@latest/dist/esm/index.js`
 - IIFE compatible build `https://cdn.jsdelivr.net/npm/@tgwf/co2@latest/dist/iife/index.js`
 
-### Unpkgd
-
-You can find the package at [https://unpkg.com/browse/@tgwf/co2@latest/](https://unpkg.com/browse/@tgwf/co2@latest/).
-
-- CommonJS compatible build `https://unpkg.com/@tgwf/co2@latest/dist/cjs/index-node.min.js`
-- ES Modules compatible build `https://unpkg.com/@tgwf/co2@latest/dist/esm/index.js`
-- IIFE compatible build `https://unpkg.com/@tgwf/co2@latest/dist/iife/index.js`
 
 ## Build it yourself
 
