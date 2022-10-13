@@ -114,6 +114,48 @@
                 </li>
               </ul>
             {%- endfor -%}
+            <li class="menu-title py-2">
+              <span class="text-sm font-bold font-mono">APIs</span>
+              <!-- Sidebar content here -->
+              {%- for main in collections.apiMain -%}
+            <li>
+              {% if main.data.repo and main.data.repo == repo %}
+                {% set openCollapse = 'checked' %}
+              {% else %}
+                {% set openCollapse = '' %}
+              {% endif %}
+              <ul tabindex="0" class="collapse collapse-arrow rounded-box">
+                <li>
+                    <input type="checkbox" aria-label="Expand {{ main.data.libraryName }}"class="peer invisible absolute" {{ openCollapse }}/>
+                  <div class="collapse-title">
+                        <span class="collapse-title-text peer-checked:font-bold">{{ main.data.libraryName }}</span>
+                  </div>
+                  <ul class="collapse-content p-0 pt-1">
+                    {% set navPages = collections.all | getDocumentsFromCollection(main.data.repo) | eleventyNavigation %}
+              {%- for entry in navPages %}
+                {% if sectionTitle != entry.sectionTitle %}
+                  {% set sectionTitle = entry.sectionTitle %}
+                  <li class="menu-title">
+                    <p class="divider text-sm font-bold font-mono">{{ sectionTitle }}</p>
+                  </li>
+                {% endif %}
+                <li {% if entry.url == page.url %} class="bg-secondary text-white pl-4" {%else%} class="pl-4" {% endif %}>
+                  <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+                  {%- if entry.children.length -%}
+                    {%- for child in entry.children %}
+                      <li {% if child.url == page.url %} class="bg-secondary text-white pl-4" {%else%} class="pl-4" {% endif %}>
+                        <a href="{{ child.url | url }}">{{ child.title }}</a>
+                      {% endfor -%}
+                    </li>
+                  {%- endif -%}
+                </li>
+            </li>
+              {%- endfor %}
+              </ul>
+                </li>
+              </ul>
+            {%- endfor -%}
+            </li>
           </ul>
         </div>
       </div>
