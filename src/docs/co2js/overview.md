@@ -13,6 +13,22 @@ eleventyNavigation:
 
 One day, the internet will be powered by renewable energy. Until that day comes, there’ll be a CO2 cost that comes with every byte of data that’s uploaded or downloaded. By being able to calculate these emissions, developers can be empowered to create more efficient, lower carbon apps, websites, and software.
 
+<div class="alert bg-secondary text-white">
+  <div class="items-start">
+    <div>
+      <h2 class="text-white font-bold m-3 gap-2 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="text-white inline flex-shrink-0 w-6 h-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>In a hurry?</h2>
+      <p class="text-lg">Check out our quickstart guide: <br/> <a href="https://www.thegreenwebfoundation.org/news/start-calculating-digital-carbon-emissions-in-5-minutes-with-co2-js/" class="text-white"><em>Start calculating digital carbon emissions in 5 minutes with CO2.js</em></a></p>
+    </div>
+  </div>
+  <div class="flex-none">
+    <a href="https://www.thegreenwebfoundation.org/news/start-calculating-digital-carbon-emissions-in-5-minutes-with-co2-js/" class="btn btn-lg btn-accent no-underline hover:text-white">Go to guide</a>
+  </div>
+</div>
+
 ## What is CO2.js?
 
 CO2.js is a JavaScript library that allows developers to estimate the emissions associated with their apps, websites and software. At its core, CO2.js takes an input of data, in bytes, and returns an estimate of the carbon emissions produced to move that data over the internet. It can be run in Node.js server environments, in the browser, as well as on some serverless and edge compute runtimes. 
