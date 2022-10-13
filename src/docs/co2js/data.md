@@ -17,6 +17,8 @@ Average emissions intensity uses the fuel mix of the entire electricity grid and
 
 Marginal intensity, on the other hand, looks at where the additional electricity to power a device, product or service would come from. In almost all cases it would be from a fossil-fuel power source, and so marginal intensity figures tend to be higher than average intensity figures. The Green Software Foundation is one group that uses marginal intensity as part of its specification.
 
+If you want to learn more about the differences between average or marginal grid intensity data, the team over at Electricity Maps have two great blog posts [explaining both concepts](https://electricitymaps.com/blog/marginal-emissions-what-they-are-and-when-to-use-them/) and why you [might use one over the other](https://electricitymaps.com/blog/marginal-vs-average-real-time-decision-making/).
+
 ## Where to find the data
 
 The raw data files (in CSV) format, can be found in the `data` folder in the [CO2.js repository](https://github.com/thegreenwebfoundation/co2.js/tree/main/data). We have written a generation script that parses the raw data files, and outputs grid intensity data in unminified JSON and CommonJS formats. The generated output can be found in the `data/output` folder of the CO2.js repository.
