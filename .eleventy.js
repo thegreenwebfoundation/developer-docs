@@ -28,7 +28,7 @@ module.exports = (eleventyConfig) => {
 }
 
 let markdownItAnchorOptions = {
-    level: 2, // minimum level header -- anchors will only be applied to h2 level headers and below but not h1
+    level: [2,3], // minimum level header -- anchors will only be applied to h2 level headers and below but not h1
 }
 
   eleventyConfig.setLibrary("md", markdownIt(markdownItOptions).use(markdownItAnchor, {...markdownItAnchorOptions, slugify, permalink: markdownItAnchor.permalink.linkInsideHeader({
@@ -119,6 +119,15 @@ let markdownItAnchorOptions = {
   eleventyConfig.addNunjucksShortcode("getPrNumber", function (url) {
     const prNumber = url.split('/').pop().trim()
     return prNumber
+  })
+
+  eleventyConfig.addNunjucksShortcode("codeSnippet", function (code, lang) {
+    console.log(code)
+    if (lang === 'curl') {
+      return `<pre class="language-b" data-language="bash"><code class="language-b">${code.toString()}</code></pre>`
+    } else if (lang === 'js') {
+      return `<pre class="language-j" data-language="javascript"><code class="language-j">${code}</code></pre>`
+    }
   })
 
   eleventyConfig.addWatchTarget('styles/**/*.css');
