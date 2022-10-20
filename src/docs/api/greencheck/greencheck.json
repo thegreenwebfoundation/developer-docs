@@ -1,9 +1,11 @@
 {
-	"tags": ["greencheck"],
+	"tags": [
+		"greencheck"
+	],
 	"name": "Greenchek API",
 	"permalink": "{% if not overridePermalink %}{% generateDocsPath page.filePathStem %}/index.html{% else %}{{ overridePermalink }}{% endif %}",
 	"layout": "layouts/doc.njk",
 	"repoVersion": "3",
 	"repo": "greencheck-api",
-	"repository": "https://github.com/thegreenwebfoundation/greencheck-api"
+	"repository": "https://github.com/thegreenwebfoundation/admin-portal"
 }
