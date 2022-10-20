@@ -122,11 +122,12 @@ let markdownItAnchorOptions = {
   })
 
   eleventyConfig.addNunjucksShortcode("codeSnippet", function (code, lang) {
-    console.log(code)
+    const cleanCode = code.trim()
+
     if (lang === 'curl') {
-      return `<pre class="language-b" data-language="bash"><code class="language-b">${code.toString()}</code></pre>`
+      return "```shell\n" + cleanCode + "\n```"
     } else if (lang === 'js') {
-      return `<pre class="language-j" data-language="javascript"><code class="language-j">${code}</code></pre>`
+      return "```javascript\n" + cleanCode + "\n```"
     }
   })
 
