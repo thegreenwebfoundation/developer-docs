@@ -1,11 +1,11 @@
 ---
 libraryName: Greencheck API
-title: v3 - Check single URL
+title: v3 - Check a domain
 description: Use this API to check if a domain is hosted on a green web host recognised by The Green Web Foundation.
 hasTabs: true
 eleventyNavigation:
-  key: v3-check-single-url
-  title: Check single URL
+  key: v3-check-single-domain
+  title: Check a domain
   order: 1
   sectionTitle: Version 3
 ---
