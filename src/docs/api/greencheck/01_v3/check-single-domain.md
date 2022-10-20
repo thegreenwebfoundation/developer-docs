@@ -1,4 +1,5 @@
 ---
+tags: apiMain
 libraryName: Greencheck API
 title: v3 - Check a domain
 description: Use this API to check if a domain is hosted on a green web host recognised by The Green Web Foundation.
@@ -16,19 +17,19 @@ The Greencheck API provides endpoints that allow developers to query [The Green 
 
 The endpoint allows you to check if a single website domain is served from a green web host.
 
-### Request method
+## Request method
 
 Use the `GET` method for this request.
 
-### Endpoint
+## Endpoint
 
 The request should be sent to `http://api.thegreenwebfoundation.org/api/v3/greencheck/[hostname]`.
 
 The `[hostname]` parameter should be replaced with the website domain you want to query for.
 
-### Parameters
+## Parameters
 
-#### `[hostname]`
+### `[hostname]`
 
 A valid hostname should be passed to the endpoint. This parameter must not include any protocol, port, or path information.
 
