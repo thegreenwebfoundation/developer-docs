@@ -3,6 +3,7 @@ tags: apiMain
 libraryName: IP to CO2 Intensity
 title: Overview
 description: Use this API to check the carbon intensity of a location based on an IP address.
+hasTabs: true
 eleventyNavigation:
   key: ip-to-co2-overview
   title: Overview
