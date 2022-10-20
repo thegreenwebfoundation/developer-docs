@@ -116,11 +116,11 @@ The response is returned as a JSON object. The content of the returned object de
   "hosted_by_website": string,
   "partner": string || null,
   "green": true,
-  "hosted_by_id": integer,
+  "hosted_by_id": number,
   "modified": ISO 8601 formatted date string,
   "supporting_documents": array[
    object{
-      "id": integer,
+      "id": number,
       "title": string
       "link": string
    },
