@@ -6,7 +6,7 @@ hasTabs: true
 eleventyNavigation:
   key: v2-check-single-url
   title: Check single URL
-  order: 1
+  order: 10
   sectionTitle: Version 2
 ---
 
