@@ -8,7 +8,7 @@ eleventyNavigation:
   key: v3-check-single-domain
   title: Check a domain
   order: 1
-  sectionTitle: Version 3
+  # sectionTitle: Version 3
 ---
 
 # Query for a single domain
