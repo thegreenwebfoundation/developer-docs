@@ -2,7 +2,7 @@
 tags: apiMain
 libraryName: IP to CO2 Intensity
 title: Overview
-description: Use this API to check the carbon intensity of a location based on an IP address.
+description: Use this API to check the carbon intensity of an IP address based on its real-world location.
 hasTabs: true
 eleventyNavigation:
   key: ip-to-co2-overview
@@ -12,7 +12,7 @@ eleventyNavigation:
 
 # IP to CO2 Intensity API
 
-The IP to CO2 Intensity API allows you to query an IP address, and return the average annual grid intensity for the region in which the IP address is located.
+The IP to CO2 Intensity API allows you to query an IP address, and return the average annual grid intensity based on its real-world location.
 
 ## Request method
 
@@ -28,19 +28,24 @@ The `[ip_address]` parameter should be replaced with the IP address you want to 
 
 ### `[ip_address]`
 
-A valid IP address should be passed to the endpoint.
+A **public** IPv4 or IPv6 address should be passed to the endpoint. IP ranges are not accepted by this endpoint.
+
+- `35.187.144.0` <span class="badge align-middle badge-success">Accepted IPv4 address</span>
+- `2600:1900:4050::` <span class="badge align-middle badge-success">Accepted IPv6 address</span>
+- `35.187.144.0/20` <span class="badge align-middle badge-error">Incorrect</span>
+- `2600:1900:4050::/44` <span class="badge align-middle badge-error">Incorrect</span>
 
 ## Sample request
 
 <seven-minute-tabs>
    <ol role="tablist" aria-label="Select a programming language to preview">
     <li><a href="#js" role="tab" aria-selected="true">JavaScript</a></li>
-    <li><a href="#curl" role="tab">cUrl</a></li>
+    <li><a href="#curl" role="tab">cURL</a></li>
    </ol>
 
    <div id="js" role="tabpanel">
 {% set code %}
-fetch("http://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/10.0.0.3", {
+fetch("http://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/35.187.144.0", {
   method: "GET",
 }).then((response) => response.json());
 {% endset %}
@@ -52,7 +57,7 @@ fetch("http://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/10.0.0.3",
    <div id="curl" role="tabpanel">
 {% set code %}
 curl -X 'GET' \
- 'http://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/10.0.0.3' \
+ 'http://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/35.187.144.0' \
  -H 'accept: application/json'
 {% endset %}
 
@@ -65,14 +70,14 @@ curl -X 'GET' \
 
 ```json
 {
-  "country_name": "World",
-  "country_code_iso_2": "xx",
-  "country_code_iso_3": "xxx",
+  "country_name": "Taiwan (Province of China)",
+  "country_code_iso_2": "TW",
+  "country_code_iso_3": "TWN",
   "carbon_intensity_type": "avg",
-  "carbon_intensity": 442.23,
-  "generation_from_fossil": 0.62,
+  "carbon_intensity": 565.629,
+  "generation_from_fossil": 82.84,
   "year": 2021,
-  "checked_ip": "10.0.0.3"
+  "checked_ip": "35.187.144.0"
 }
 ```
 
@@ -85,7 +90,7 @@ The response is returned as a JSON object. When the IP being queried cannot be f
 
 <seven-minute-tabs>
    <ol role="tablist" aria-label="Select to view response for green, and not green URLs.">
-    <li><a href="#green" role="tab" aria-selected="true">Green URL</a></li>
+    <li><a href="#green" role="tab" aria-selected="true">Response</a></li>
    </ol>
 
    <div id="green" role="tabpanel">
@@ -105,3 +110,23 @@ The response is returned as a JSON object. When the IP being queried cannot be f
 
    </div>
 </seven-minute-tabs>
+
+### About the data
+
+#### Carbon Intensity
+
+The `carbon_intensity` data returned by the endpoint is provided by [Ember](https://ember-climate.org/data/data-explorer/). The figures returned are annual, average amounts presenting the `grams per kilowatt-hour (g/kWh)`.
+
+##### What is average intensity?
+
+Average emissions intensity uses the fuel mix of the entire electricity grid and can be used to derive estimates for the carbon footprint of a digital product or service. You’ll see average intensity used in the majority of carbon reporting standards and tooling. This makes it useful if you were to use CO2.js to feed in data to other carbon reporting tools.
+
+##### How is it different from marginal intensity?
+
+Marginal intensity, on the other hand, looks at where the additional electricity to power a device, product or service would come from. In almost all cases it would be from a fossil-fuel power source, and so marginal intensity figures tend to be higher than average intensity figures. The Green Software Foundation is one group that uses marginal intensity as part of its specification.
+
+If you want to learn more about the differences between average or marginal grid intensity data, the team over at Electricity Maps have two great blog posts [explaining both concepts](https://electricitymaps.com/blog/marginal-emissions-what-they-are-and-when-to-use-them/) and why you [might use one over the other](https://electricitymaps.com/blog/marginal-vs-average-real-time-decision-making/).
+
+#### Generation from Fossil
+
+The `generation_from_fossil` figure represents the fraction of total annual electricity that was generated by fossil fuel sources. This data is also provided by Ember. Their methodologies for calculating generation and aggregates can be found [on their website](https://ember-climate.org/app/uploads/2022/07/Ember-Electricity-Data-Methodology.pdf).
