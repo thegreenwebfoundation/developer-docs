@@ -4,7 +4,7 @@ const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-
+const img2picture = require('eleventy-plugin-img2picture');
 const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
 const autoprefixer = require('autoprefixer');
@@ -49,6 +49,21 @@ let markdownItAnchorOptions = {
     sitemap: {
       hostname: "https://developers.thegreenwebfoundation.org",
     },
+  });
+  eleventyConfig.addPlugin(img2picture, {
+    eleventyInputDir: 'src',
+    imagesOutputDir: 'dist/img',
+    urlPath: '/img/',
+    extensions: ['jpg', 'png', 'jpeg'],
+    formats: ['avif', 'webp', 'jpeg'],
+    minWidth: 200,
+    maxWidth: 1500,
+    widthStep: 200,
+    fetchRemote: true, // fetch remote images to optimize and serve them
+    cacheOptions: {
+      duration: "14d", // cache the fetched remote images for 14 days
+      type: "buffer"
+    }
   });
 
   // Filters
