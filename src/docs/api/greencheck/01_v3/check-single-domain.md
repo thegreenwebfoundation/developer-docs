@@ -42,7 +42,7 @@ A valid hostname should be passed to the endpoint. This parameter must not inclu
 <seven-minute-tabs>
    <ol role="tablist" aria-label="Select a programming language to preview">
     <li><a href="#js" role="tab" aria-selected="true">JavaScript</a></li>
-    <li><a href="#curl" role="tab">cUrl</a></li>
+    <li><a href="#curl" role="tab">cURL</a></li>
    </ol>
 
    <div id="js" role="tabpanel">
