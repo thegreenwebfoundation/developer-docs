@@ -58,7 +58,7 @@ let markdownItAnchorOptions = {
     formats: ['avif', 'webp', 'jpeg'],
     minWidth: 200,
     maxWidth: 1500,
-    widthStep: 200,
+    widthStep: 150,
     fetchRemote: true, // fetch remote images to optimize and serve them
     cacheOptions: {
       duration: "14d", // cache the fetched remote images for 14 days
