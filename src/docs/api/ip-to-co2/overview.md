@@ -20,13 +20,13 @@ Use the `GET` method for this request.
 
 ## Endpoint
 
-The request should be sent to `http://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/[ip_address]`.
+The request should be sent to `https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/{ip_address}`.
 
-The `[ip_address]` parameter should be replaced with the IP address you want to query for.
+The `{ip_address}` parameter should be replaced with the IP address you want to query for.
 
 ## Parameters
 
-### `[ip_address]`
+### `{ip_address}`
 
 A **public** IPv4 or IPv6 address should be passed to the endpoint. IP ranges are not accepted by this endpoint.
 
@@ -45,7 +45,7 @@ A **public** IPv4 or IPv6 address should be passed to the endpoint. IP ranges ar
 
    <div id="js" role="tabpanel">
 {% set code %}
-fetch("http://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/35.187.144.0", {
+fetch("https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/35.187.144.0", {
   method: "GET",
 }).then((response) => response.json());
 {% endset %}
@@ -57,7 +57,7 @@ fetch("http://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/35.187.144
    <div id="curl" role="tabpanel">
 {% set code %}
 curl -X 'GET' \
- 'http://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/35.187.144.0' \
+ 'https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/35.187.144.0' \
  -H 'accept: application/json'
 {% endset %}
 
