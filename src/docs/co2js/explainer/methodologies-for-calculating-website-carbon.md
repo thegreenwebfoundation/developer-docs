@@ -31,7 +31,7 @@ This model uses data transfer as an proxy indicator for total resource usage, an
 3. the use-phase energy of user device an user is accessing content on
 4. the total embodied energy used to create all of the above
 
-![swd model](https://github.com/thegreenwebfoundation/co2.js/raw/main/images/swd-energy-usage.png)
+<img alt="swd model" src="https://github.com/thegreenwebfoundation/co2.js/raw/main/images/swd-energy-usage.png" sizes="(min-width: 1264px) 896px, (min-width: 1024px) calc(100vw - 23rem), (min-width: 944px) 896px, calc(100vw - 3rem)">
 
 It then converts these energy figures to carbon emissions, based on the carbon intensity of electricity from the [Ember annual global electricity review][Ember-annual-global-electricity-review].
 
