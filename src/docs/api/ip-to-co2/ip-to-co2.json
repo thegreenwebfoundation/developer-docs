@@ -1,0 +1,11 @@
+{
+	"tags": [
+		"ip-2-co2"
+	],
+	"name": "IP to CO2 Intensity API",
+	"permalink": "{% if not overridePermalink %}{% generateDocsPath page.filePathStem %}/index.html{% else %}{{ overridePermalink }}{% endif %}",
+	"layout": "layouts/doc.njk",
+	"repoVersion": "1",
+	"repo": "ip-2-co2",
+	"repository": "https://github.com/thegreenwebfoundation/admin-portal"
+}

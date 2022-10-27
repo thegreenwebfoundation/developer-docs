@@ -1,11 +1,11 @@
-{% if repo %}
-    {% set pageTitle = repo + ": " + title %}
+{% if libraryName %}
+  {% set pageTitle = libraryName + ": " + title %}
+{% else %}
+  {% set pageTitle = name + ": " + title %}
 {% endif %}
-
 {% if page.url %}
   {% set canonicalURL = "https://developers.thegreenwebfoundation.org" + page.url %}
 {% endif %}
-
 {% metagen
   title=pageTitle or title or "Developer Docs @ The Green Web Foundation",
   desc=description or "This site is a collection of documentation for the open source libraries maintained by The Green Web Foundation.",
@@ -17,8 +17,17 @@
   name="The Green Web Foundation",
   generator="eleventy"
 %}
-
-<link rel="icon" href="https://www.thegreenwebfoundation.org/wp-content/uploads/green-web-smiley-150x150.png" sizes="32x32">
-<link rel="icon" href="https://www.thegreenwebfoundation.org/wp-content/uploads/green-web-smiley-300x300.png" sizes="192x192">
-<link rel="apple-touch-icon" href="https://www.thegreenwebfoundation.org/wp-content/uploads/green-web-smiley-300x300.png">
-<meta name="msapplication-TileImage" content="https://www.thegreenwebfoundation.org/wp-content/uploads/green-web-smiley-300x300.png">
+<link
+  rel="icon"
+  href="https://www.thegreenwebfoundation.org/wp-content/uploads/green-web-smiley-150x150.png"
+  sizes="32x32">
+  <link
+    rel="icon"
+    href="https://www.thegreenwebfoundation.org/wp-content/uploads/green-web-smiley-300x300.png"
+    sizes="192x192">
+    <link
+      rel="apple-touch-icon"
+      href="https://www.thegreenwebfoundation.org/wp-content/uploads/green-web-smiley-300x300.png">
+      <meta
+        name="msapplication-TileImage"
+        content="https://www.thegreenwebfoundation.org/wp-content/uploads/green-web-smiley-300x300.png">
