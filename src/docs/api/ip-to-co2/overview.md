@@ -30,10 +30,10 @@ The `{ip_address}` parameter should be replaced with the IP address you want to 
 
 A **public** IPv4 or IPv6 address should be passed to the endpoint. IP ranges are not accepted by this endpoint.
 
-- `35.187.144.0` <span class="badge align-middle badge-success">Accepted IPv4 address</span>
-- `2600:1900:4050::` <span class="badge align-middle badge-success">Accepted IPv6 address</span>
-- `35.187.144.0/20` <span class="badge align-middle badge-error">Incorrect</span>
-- `2600:1900:4050::/44` <span class="badge align-middle badge-error">Incorrect</span>
+- `35.187.144.0` <span class="badge align-middle badge-success my-0">Accepted IPv4 address</span>
+- `2600:1900:4050::` <span class="badge align-middle badge-success my-0">Accepted IPv6 address</span>
+- `35.187.144.0/20` <span class="badge align-middle badge-error my-0">Incorrect</span>
+- `2600:1900:4050::/44` <span class="badge align-middle badge-error my-0">Incorrect</span>
 
 ## Sample request
 

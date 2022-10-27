@@ -33,9 +33,9 @@ The `{hostname}` parameter should be replaced with the website domain you want t
 
 A valid hostname should be passed to the endpoint. This parameter must not include any protocol, port, or path information.
 
-- `climateaction.tech` <span class="badge align-middle badge-success">Accepted</span>
-- `https://climateaction.tech` <span class="badge align-middle badge-error">Incorrect</span>
-- `climateaction.tech/events` <span class="badge align-middle badge-error">Incorrect</span>
+- `climateaction.tech` <span class="badge align-middle badge-success my-0">Accepted</span>
+- `https://climateaction.tech` <span class="badge align-middle badge-error my-0">Incorrect</span>
+- `climateaction.tech/events` <span class="badge align-middle badge-error my-0">Incorrect</span>
 
 ## Sample request
 
