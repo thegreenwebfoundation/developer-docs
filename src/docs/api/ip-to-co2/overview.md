@@ -117,11 +117,11 @@ The response is returned as a JSON object. When the IP being queried cannot be f
 
 The `carbon_intensity` data returned by the endpoint is provided by [Ember](https://ember-climate.org/data/data-explorer/). The figures returned are annual, average amounts presenting the `grams per kilowatt-hour (g/kWh)`.
 
-##### What is average intensity?
+##### **What is average intensity?**
 
 Average emissions intensity uses the fuel mix of the entire electricity grid and can be used to derive estimates for the carbon footprint of a digital product or service. You’ll see average intensity used in the majority of carbon reporting standards and tooling. This makes it useful if you were to use CO2.js to feed in data to other carbon reporting tools.
 
-##### How is it different from marginal intensity?
+##### **How is it different from marginal intensity?**
 
 Marginal intensity, on the other hand, looks at where the additional electricity to power a device, product or service would come from. In almost all cases it would be from a fossil-fuel power source, and so marginal intensity figures tend to be higher than average intensity figures. The Green Software Foundation is one group that uses marginal intensity as part of its specification.
 
