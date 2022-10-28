@@ -1,15 +1,22 @@
 {% if libraryName %}
   {% set pageTitle = libraryName + ": " + title %}
-{% else %}
+{% elseif name %}
   {% set pageTitle = name + ": " + title %}
+{% else %}
+  {% set pageTitle = "Developer Docs @ The Green Web Foundation" %}
+{% endif %}
+{% if not description %}
+  {% set description = "This site is a collection of documentation for the open source libraries maintained by The Green Web Foundation." %}
 {% endif %}
 {% if page.url %}
   {% set canonicalURL = "https://developers.thegreenwebfoundation.org" + page.url %}
+{% else %}
+  {% set canonicalURL = "https://developers.thegreenwebfoundation.org/"%}
 {% endif %}
 {% metagen
-  title=pageTitle or title or "Developer Docs @ The Green Web Foundation",
-  desc=description or "This site is a collection of documentation for the open source libraries maintained by The Green Web Foundation.",
-  url=canonicalURL or "https://developers.thegreenwebfoundation.org",
+  title=pageTitle,
+  desc=description,
+  url=canonicalURL,
   img="https://www.thegreenwebfoundation.org/wp-content/uploads/Wind-turbines-on-hills.jpg",
   img_alt="	We need a fossil free internet by 2030. The internet is the world's biggest coal powered machine, and this is bug in the system we can fix.",
   twitter_card_type="summary_large_image",
