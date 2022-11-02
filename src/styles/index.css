@@ -287,7 +287,3 @@ seven-minute-tabs [role="tabpanel"] pre {
 seven-minute-tabs [role="tabpanel"] pre:last-child {
   margin-bottom: 0;
 }
-
-.drawer-side {
-  min-width: 10vw;
-}

@@ -5,8 +5,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    {% include 'partials/css.njk' %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% include 'partials/css.njk' %}
     {% include 'partials/metadata.njk' %}
   </head>
   <body>
@@ -20,17 +19,20 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </label>
-        <ul class="menu menu-horizontal max-w-xs w-60 md:w-full">
-          <!-- Navbar menu content here -->
-          <li> <a href="/" aria-label="Homepage">
-              <img
-                src="/img/logo_horizontal.svg"
-                alt="The Green Web Foundation typographic logo"
-                class="max-w-xs w-full"
-                height="58px"
-                width="765px"/>
-            </a></li>
-        </ul>
+            <ul
+              class="menu menu-horizontal max-w-xs w-60 md:w-full">
+              <!-- Navbar menu content here -->
+              <li>
+                <a href="/" aria-label="Homepage">
+                  <img
+                    src="/img/logo_horizontal.svg"
+                    alt="The Green Web Foundation typographic logo"
+                    class="max-w-xs w-full"
+                    height="58px"
+                    width="765px"/>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
         <!-- Page content here -->
@@ -41,17 +43,26 @@
                 {% if relatedPR or pageVersion %}
                   <div class="alert alert-warning mb-8">
                     <div>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewbox="0 0 24 24"><path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77
+                            1.333.192 3 1.732 3z"/>
+                      </svg>
                       {% if relatedPR %}
-                        <span>Warning: Some code used on this page relates to an open pull request - <a href="{{ relatedPR }}">#{% getPrNumber relatedPR %}</a>.</span>
+                        <span>Warning: Some code used on this page relates to an open pull request -
+                          <a href="{{ relatedPR }}">#{% getPrNumber relatedPR %}</a>.</span>
                       {% elif pageVersion !== repoVersion %}
-                        <span>Warning: Some code used on this page refers to version <a href="https://github.com/thegreenwebfoundation/co2.js/tree/v{{pageVersion}}">{{ pageVersion }}</a> of this library.</span>
+                        <span>Warning: Some code used on this page refers to version
+                          <a href="https://github.com/thegreenwebfoundation/co2.js/tree/v{{ pageVersion }}">{{ pageVersion }}</a>
+                          of this library.</span>
                       {% endif %}
                     </div>
                   </div>
                 {% endif %}
                 {{ content | safe }}
-                </div>
+              </div>
             </div>
           </div>
           {% include 'partials/footer.njk' %}
@@ -71,95 +82,97 @@
                   width="372px"/>
               </a>
             </li>
-            <li><a href="/" aria-label="Homepage">Home</a></li>
+            <li>
+              <a href="/" aria-label="Homepage">Home</a>
+            </li>
             <li class="menu-title py-2">
               <span class="text-sm font-bold font-mono">Libraries</span>
             </li>
-              <!-- Sidebar content here -->
-              {%- for main in collections.main -%}
-            <li>
-              {% if main.data.repo == repo %}
-                {% set openCollapse = 'checked' %}
-              {% else %}
-                {% set openCollapse = '' %}
-              {% endif %}
-              <ul tabindex="0" class="collapse collapse-arrow rounded-box">
-                <li>
-                    <input type="checkbox" aria-label="Expand {{ main.data.libraryName }}"class="peer invisible absolute" {{ openCollapse }}/>
-                  <div class="collapse-title">
-                        <span class="collapse-title-text peer-checked:font-bold">{{ main.data.libraryName }}</span>
-                  </div>
-                  <ul class="collapse-content p-0 pt-1">
-                    {% set navPages = collections.all | getDocumentsFromCollection(main.data.repo) | eleventyNavigation %}
-              {%- for entry in navPages %}
-                {% if sectionTitle != entry.sectionTitle %}
-                  {% set sectionTitle = entry.sectionTitle %}
-                  <li class="menu-title">
-                    <p class="divider text-sm font-bold font-mono">{{ sectionTitle }}</p>
-                  </li>
+            <!-- Sidebar content here -->
+            {%- for main in collections.main -%}
+              <li>
+                {% if main.data.repo == repo %}
+                  {% set openCollapse = 'checked' %}
+                {% else %}
+                  {% set openCollapse = '' %}
                 {% endif %}
-                <li {% if entry.url == page.url %} class="bg-secondary text-white pl-4" {%else%} class="pl-4" {% endif %}>
-                  <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-                  {%- if entry.children.length -%}
-                    {%- for child in entry.children %}
-                      <li {% if child.url == page.url %} class="bg-secondary text-white pl-4" {%else%} class="pl-4" {% endif %}>
-                        <a href="{{ child.url | url }}">{{ child.title }}</a>
-                      {% endfor -%}
-                    </li>
-                  {%- endif -%}
-                </li>
-            </li>
-              {%- endfor %}
-              </ul>
-                </li>
-              </ul>
-            {%- endfor -%}
-            <li class="menu-title py-2">
-              <span class="text-sm font-bold font-mono">APIs</span>
-              <!-- Sidebar content here -->
-              {%- for main in collections.apiMain -%}
-            <li>
-              {% if main.data.repo and main.data.repo == repo %}
-                {% set openCollapse = 'checked' %}
-              {% else %}
-                {% set openCollapse = '' %}
-              {% endif %}
-              <ul tabindex="0" class="collapse collapse-arrow rounded-box">
-                <li>
-                    <input type="checkbox" aria-label="Expand {{ main.data.libraryName }}"class="peer invisible absolute" {{ openCollapse }}/>
-                  <div class="collapse-title">
-                        <span class="collapse-title-text peer-checked:font-bold">{{ main.data.libraryName }}</span>
-                  </div>
-                  <ul class="collapse-content p-0 pt-1">
-                    {% set navPages = collections.all | getDocumentsFromCollection(main.data.repo) | eleventyNavigation %}
-              {%- for entry in navPages %}
-                {% if sectionTitle != entry.sectionTitle %}
-                  {% set sectionTitle = entry.sectionTitle %}
-                  <li class="menu-title">
-                    <p class="divider text-sm font-bold font-mono">{{ sectionTitle }}</p>
+                <ul tabindex="0" class="collapse collapse-arrow rounded-box">
+                  <li>
+                    <input type="checkbox" aria-label="Expand {{ main.data.libraryName }}" class="peer invisible absolute" {{ openCollapse }}/>
+                    <div class="collapse-title">
+                      <span class="collapse-title-text peer-checked:font-bold">{{ main.data.libraryName }}</span>
+                    </div>
+                    <ul class="collapse-content p-0 pt-1">
+                      {% set navPages = collections.all | getDocumentsFromCollection(main.data.repo) | eleventyNavigation %}
+                      {%- for entry in navPages %}
+                        {% if sectionTitle != entry.sectionTitle %}
+                          {% set sectionTitle = entry.sectionTitle %}
+                          <li class="menu-title">
+                            <p class="divider text-sm font-bold font-mono">{{ sectionTitle }}</p>
+                          </li>
+                        {% endif %}
+                        <li {% if entry.url == page.url %} class="bg-secondary text-white pl-4" {% else %} class="pl-4" {% endif %}>
+                          <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+                          {%- if entry.children.length -%}
+                            {%- for child in entry.children %}
+                              <li {% if child.url == page.url %} class="bg-secondary text-white pl-4" {% else %} class="pl-4" {% endif %}>
+                                <a href="{{ child.url | url }}">{{ child.title }}</a>
+                              {% endfor -%}
+                            </li>
+                          {%- endif -%}
+                        </li>
+                      </li>
+                    {%- endfor %}
                   </li>
+                </ul>
+              </li>
+            </ul>
+          {%- endfor -%}
+          <li class="menu-title py-2">
+            <span class="text-sm font-bold font-mono">APIs</span>
+            <!-- Sidebar content here -->
+            {%- for main in collections.apiMain -%}
+              <li>
+                {% if main.data.repo and main.data.repo == repo %}
+                  {% set openCollapse = 'checked' %}
+                {% else %}
+                  {% set openCollapse = '' %}
                 {% endif %}
-                <li {% if entry.url == page.url %} class="bg-secondary text-white pl-4" {%else%} class="pl-4" {% endif %}>
-                  <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-                  {%- if entry.children.length -%}
-                    {%- for child in entry.children %}
-                      <li {% if child.url == page.url %} class="bg-secondary text-white pl-4" {%else%} class="pl-4" {% endif %}>
-                        <a href="{{ child.url | url }}">{{ child.title }}</a>
-                      {% endfor -%}
-                    </li>
-                  {%- endif -%}
-                </li>
-            </li>
-              {%- endfor %}
-              </ul>
-                </li>
-              </ul>
-            {%- endfor -%}
-            </li>
-          </ul>
-        </div>
-      </div>
+                <ul tabindex="0" class="collapse collapse-arrow rounded-box">
+                  <li>
+                    <input type="checkbox" aria-label="Expand {{ main.data.libraryName }}" class="peer invisible absolute" {{ openCollapse }}/>
+                    <div class="collapse-title">
+                      <span class="collapse-title-text peer-checked:font-bold">{{ main.data.libraryName }}</span>
+                    </div>
+                    <ul class="collapse-content p-0 pt-1">
+                      {% set navPages = collections.all | getDocumentsFromCollection(main.data.repo) | eleventyNavigation %}
+                      {%- for entry in navPages %}
+                        {% if sectionTitle != entry.sectionTitle %}
+                          {% set sectionTitle = entry.sectionTitle %}
+                          <li class="menu-title">
+                            <p class="divider text-sm font-bold font-mono">{{ sectionTitle }}</p>
+                          </li>
+                        {% endif %}
+                        <li {% if entry.url == page.url %} class="bg-secondary text-white pl-4" {% else %} class="pl-4" {% endif %}>
+                          <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+                          {%- if entry.children.length -%}
+                            {%- for child in entry.children %}
+                              <li {% if child.url == page.url %} class="bg-secondary text-white pl-4" {% else %} class="pl-4" {% endif %}>
+                                <a href="{{ child.url | url }}">{{ child.title }}</a>
+                              {% endfor -%}
+                            </li>
+                          {%- endif -%}
+                        </li>
+                      </li>
+                    {%- endfor %}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          {%- endfor -%}
+        </li>
+      </ul>
     </div>
-    <script async defer src="https://scripts.withcabin.com/hello.js"></script>
+    {% analytics %}
   </body>
 </html>
