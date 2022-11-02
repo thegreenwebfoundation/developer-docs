@@ -1,3 +1,6 @@
 {
-	"tags": ["api"]
+	"tags": [
+		"api"
+	],
+	"hideChangelog": true
 }
