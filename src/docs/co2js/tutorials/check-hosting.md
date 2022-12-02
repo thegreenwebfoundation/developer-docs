@@ -6,7 +6,7 @@ eleventyNavigation:
   title: "Check a domain for green hosting"
   # parent: overview
   sectionTitle: Tutorials
-  order: 10
+  order: 13
 ---
 
 # {{ title }}
