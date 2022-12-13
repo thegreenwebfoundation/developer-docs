@@ -6,8 +6,9 @@ eleventyNavigation:
   title: "Getting started: NodeJS"
   # parent: overview
   sectionTitle: Tutorials
-  order: 10
+  order: 11
 ---
+
 # {{ title }}
 
 ## Overview
@@ -66,7 +67,7 @@ npm install @tgwf/co2
 In your project’s `index.js` file, add the following code to initialise CO2.js.
 
 ```js
-const { co2 } = require('@tgwf/co2')
+const { co2 } = require("@tgwf/co2");
 const co2Emission = new co2();
 ```
 
@@ -74,7 +75,7 @@ const co2Emission = new co2();
 
 CO2.js includes a `perByte()` function. This function accepts two variables:
 
-- bytes:  `number` - The bytes you want to calculate CO2 for.
+- bytes: `number` - The bytes you want to calculate CO2 for.
 - green: `boolean` - Whether the bytes are transferred from a green host. By default, this value is `false`.
 
 <aside class="alert bg-base-200 text-base-content">
@@ -84,12 +85,16 @@ CO2.js includes a `perByte()` function. This function accepts two variables:
 Adding the code below to the `index.js` file allows us to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host.
 
 ```js
-const bytesSent = (1000 * 1000 * 1000) // 1GB expressed in bytes
-const greenHost = false // Is the data transferred from a green host?
+const bytesSent = 1000 * 1000 * 1000; // 1GB expressed in bytes
+const greenHost = false; // Is the data transferred from a green host?
 
-estimatedCO2 = co2Emission.perByte(bytesSent, greenHost)
+estimatedCO2 = co2Emission.perByte(bytesSent, greenHost);
 
-console.log(`Sending a gigabyte, had a carbon footprint of ${estimatedCO2.toFixed(3)} grams of CO2`)
+console.log(
+  `Sending a gigabyte, had a carbon footprint of ${estimatedCO2.toFixed(
+    3
+  )} grams of CO2`
+);
 ```
 
 In the code above, you are:
