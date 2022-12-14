@@ -142,3 +142,7 @@ The response is returned as a JSON object. The content of the returned object de
 
    </div>
 </seven-minute-tabs>
+
+## Troubleshooting
+
+{% include 'snippets/why-not-green.md' %}

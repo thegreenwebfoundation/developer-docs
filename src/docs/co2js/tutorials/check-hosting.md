@@ -116,6 +116,10 @@ node hosting.js
 # ['google.com', 'facbook.com']
 ```
 
+## Wrapping up
+
+You now know how to use CO2.js to check one or more domains for green hosting.
+
 ## Troubleshooting
 
 ### Use a valid domain
@@ -126,6 +130,4 @@ The domain/s passed to the `check()` function must not include any protocol, por
 - `https://climateaction.tech` <span class="badge align-middle badge-error my-0">Incorrect</span>
 - `climateaction.tech/events` <span class="badge align-middle badge-error my-0">Incorrect</span>
 
-## Wrapping up
-
-You now know how to use CO2.js to check one or more domains for green hosting.
+{% include 'snippets/why-not-green.md' %}
