@@ -9,45 +9,47 @@ layout: layouts/default.njk
 {% set nextPage = collections.all | getDocumentsFromCollection(repo) | eleventyNavigation | nextPage(page.url) %}
 {% set previousPage = collections.all | getDocumentsFromCollection(repo) | eleventyNavigation | previousPage(page.url) %}
 <div class="not-prose">
-    <div class="bg-base-content/10 my-10 mx-1 h-px"></div>
-    <div class="flex justify-between">
-        <div>
-            {% if previousPage %}
-                <a href="{{ previousPage.url }}" class="btn btn-sm md:btn-md btn-ghost gap-2 normal-case lg:gap-3">
-                    <svg
-                        class="h-6 w-6 fill-current md:h-8 md:w-8"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24">
-                        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
-                    </svg>
-                    <div class="flex flex-col items-start">
-                        <span class="text-base-content/50 hidden text-xs font-normal md:block">Prev</span>
-                        <span>{{ previousPage.title }}</span>
-                    </div>
-                </a>
-            {% endif %}
+    {% if previousPage or nextPage %}
+        <div class="bg-base-content/10 my-10 mx-1 h-px"></div>
+        <div class="flex justify-between">
+            <div>
+                {% if previousPage %}
+                    <a href="{{ previousPage.url }}" class="btn btn-sm md:btn-md btn-ghost gap-2 normal-case lg:gap-3">
+                        <svg
+                            class="h-6 w-6 fill-current md:h-8 md:w-8"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24">
+                            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+                        </svg>
+                        <div class="flex flex-col items-start">
+                            <span class="text-base-content/50 hidden text-xs font-normal md:block">Prev</span>
+                            <span>{{ previousPage.title }}</span>
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
+            <div>
+                {% if nextPage %}
+                    <a href="{{ nextPage.url }}" class="btn btn-sm btn-ghost md:btn-md gap-2 normal-case lg:gap-3">
+                        <div class="flex flex-col items-end">
+                            <span class="text-primary-content/50 hidden text-xs font-normal md:block">Next</span>
+                            <span>{{ nextPage.title }}</span>
+                        </div>
+                        <svg
+                            class="h-6 w-6 fill-current md:h-8 md:w-8"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24">
+                            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                        </svg>
+                    </a>
+                {% endif %}
+            </div>
         </div>
-        <div>
-            {% if nextPage %}
-                <a href="{{ nextPage.url }}" class="btn btn-sm btn-ghost md:btn-md gap-2 normal-case lg:gap-3">
-                    <div class="flex flex-col items-end">
-                        <span class="text-primary-content/50 hidden text-xs font-normal md:block">Next</span>
-                        <span>{{ nextPage.title }}</span>
-                    </div>
-                    <svg
-                        class="h-6 w-6 fill-current md:h-8 md:w-8"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24">
-                        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-                    </svg>
-                </a>
-            {% endif %}
-        </div>
-    </div>
+    {% endif %}
     <div class="bg-base-content/10 my-10 mx-1 h-px"></div>
     <div class="flex flex-col justify-between gap-2 px-4 text-xs md:flex-row">
         <div class="flex flex-col gap-2">
@@ -91,8 +93,8 @@ layout: layouts/default.njk
                         173v294h224q26 0 45 19t19 45zm-480-576h-640q0-133 93.5-226.5t226.5-93.5 226.5 93.5 93.5 226.5z"></path>
                 </svg>
                 <div>Do you see a bug?
-                    <a target="_blank" rel="noopener" class="link" href="{{ repository }}/issues/">Open an issue
-                                                                                                                        on GitHub</a>
+                    <a target="_blank" rel="noopener" class="link" href="{{ repository }}/issues/">Open an issue on
+                                                GitHub</a>
                 </div>
             </div>
             <div class="flex items-center gap-2">
