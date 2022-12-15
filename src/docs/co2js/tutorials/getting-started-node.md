@@ -112,7 +112,7 @@ To find out how much carbon 1GB of data produces, run the code in node.
 node index.js
 
 # Output:
-# Sending a gigabyte, had a carbon footprint of 290.813 grams of CO2
+# Sending a gigabyte, had a carbon footprint of 358.020 grams of CO2
 ```
 
 ## Wrapping up
