@@ -100,6 +100,16 @@ let markdownItAnchorOptions = {
     return `<script async defer src="https://scripts.withcabin.com/hello.js"></script>`
   })
 
+  eleventyConfig.addNunjucksAsyncShortcode("postFeatureImage", async function (src) {
+    if (!src) {
+      return ''
+    }
+
+    const url = await fetch('https://www.thegreenwebfoundation.org/wp-json/wp/v2/media/' + src).then(data => data.json()).then(data => data.source_url)
+
+    return url
+  });
+
   eleventyConfig.addNunjucksShortcode("languageBadge", function (language) {
     if (language === "javascript") {
       return `<span class="badge badge-large bg-yellow-300 text-slate-900 border-current">JavaScript</span>`
