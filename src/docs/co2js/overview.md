@@ -49,9 +49,25 @@ Behind the scenes, developers could look to use CO2.js as part of their deployme
 
 The data from CO2.js can also be used as part of internal monitoring tools and dashboards. Office managers and sustainability teams could also use CO2.js to track the carbon intensity of data usage within an office environment. Plugging network data usage into CO2.js can allow for monitoring and reporting on the digital usage footprint of an organisation or business.
 
----
+## Case studies
 
 The above a just a few examples of the many and varied ways CO2.js can be applied to provide carbon estimates for data transfer. If you’re using CO2.js in production we’d love to hear how! [Contact us](https://www.thegreenwebfoundation.org/support-form/) via our website.
+
+<ul class="list-disc px-0 prose-lg flex gap-6 flex-wrap">
+{%- for post in caseStudies -%}
+            <li class="card w-full md:w-96 bg-base-100 shadow-xl not-prose">
+            <figure class="not-prose"><img src="{% postFeatureImage post.featured_media %}" alt="" class=" not-prose" loading="lazy"/></figure>
+             <div class="card-body not-prose">
+    <h3 class="card-title not-prose">{{ post.title.rendered | safe }}
+    </h3>
+    <span>{{ post.excerpt.rendered | safe }}</span>
+    <div class="card-actions justify-end not-prose">
+      <a href="{{ post.link }}" class="btn btn-secondary text-white no-underline">Read more</a>
+    </div>
+  </div>
+                </li>
+          {%- endfor -%}
+</ul>
 
 ## Licenses
 

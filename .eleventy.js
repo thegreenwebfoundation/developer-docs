@@ -9,6 +9,7 @@ const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano')
+const fetch = require('node-fetch').default;
 
 const postCssPlugins = [tailwindcss(require('./tailwind.config.js')), autoprefixer()]
 
@@ -99,6 +100,16 @@ let markdownItAnchorOptions = {
 
     return `<script async defer src="https://scripts.withcabin.com/hello.js"></script>`
   })
+
+  eleventyConfig.addNunjucksAsyncShortcode("postFeatureImage", async function (src) {
+    if (!src) {
+      return ''
+    }
+
+    const url = await fetch('https://www.thegreenwebfoundation.org/wp-json/wp/v2/media/' + src).then(data => data.json()).then(data => data.source_url)
+
+    return url
+  });
 
   eleventyConfig.addNunjucksShortcode("languageBadge", function (language) {
     if (language === "javascript") {
