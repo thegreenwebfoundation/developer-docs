@@ -1,9 +1,9 @@
 ---
-title: "Advanced: Get segment-level results"
+title: "Advanced - Get segment-level results"
 description: "In this tutorial, you will use CO2.js to return carbon estimates for each of the system segments found in the Sustainable Web Design model."
 eleventyNavigation:
   key: segment
-  title: "Advanced: Get segment-level results"
+  title: "Advanced - Get segment-level results"
   # parent: overview
   sectionTitle: Tutorials
   order: 15

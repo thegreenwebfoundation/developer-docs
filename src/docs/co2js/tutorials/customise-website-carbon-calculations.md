@@ -1,9 +1,9 @@
 ---
-title: "Advanced: Customise website carbon calculations"
+title: "Advanced - Customise website carbon calculations"
 description: "In this tutorial, you will use CO2.js to adjust the variables that are used by website carbon calculations to produce a case specific output."
 eleventyNavigation:
   key: customise-website-carbon-calculations
-  title: "Advanced: Customise website carbon calculations"
+  title: "Advanced - Customise website carbon calculations"
   # parent: overview
   sectionTitle: Tutorials
   order: 14
