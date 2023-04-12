@@ -22,19 +22,6 @@ The Sustainable Web Design model is a methodology which provides a general frame
 
 In this tutorial, you will learn how to return a breakdown of emissions for each segment using the Sustainable Web Design model in CO2.js.
 
-## Before starting
-
-You can follow along with this tutorial in your local development environment, or by using the button below to launch the project in Gitpod.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thegreenwebfoundation/gitpod-node-starter)
-
-### Local development
-
-If you are following along this tutorial locally, you will need to have the following setup on your machine:
-
-- Node version 14 or later
-- NPM version 6 or later
-
 ### Methodologies
 
 It is also worth noting that what we will cover in this tutorial only works with the Sustainable Web Design model in CO2.js. Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about the model itself.
