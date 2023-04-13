@@ -13,7 +13,7 @@ eleventyNavigation:
 
 ## Overview
 
-The Sustainable Web Design model is a methodology which provides a general framework that can be used to estimate a website's carbon emissions. It uses bytes transferred to extrapolate energy usage numbers for your application as a fraction of the energy used by the total system comprised of:
+The Sustainable Web Design model is a methodology which provides a general framework that can be used to estimate a website's carbon emissions. It can be used to return a total value for carbon emissions related to the transfer of bytes. It can also be uses to extrapolate carbon emissions associated with different segments of the entire website system:
 
 1. the use-phase energy of datacentres serving content
 2. the use-phase energy network transfering the data
