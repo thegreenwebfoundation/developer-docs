@@ -1,9 +1,9 @@
 ---
-title: "Advanced - Customise website carbon calculations"
+title: "Customise website carbon calculations"
 description: "In this tutorial, you will use CO2.js to adjust the variables that are used by website carbon calculations to produce a case specific output."
 eleventyNavigation:
   key: customise-website-carbon-calculations
-  title: "Advanced - Customise website carbon calculations"
+  title: "Customise website carbon calculations"
   # parent: overview
   sectionTitle: Tutorials
   order: 14
@@ -36,6 +36,8 @@ You should already have CO2.js installed and setup in your project. If you do no
 
 ## Initialise CO2.js
 
+In your project, use the lines below to initialise CO2.js.
+
 ```js
 const { co2 } = require("@tgwf/co2");
 const co2Emission = new co2();
@@ -58,6 +60,10 @@ The Sustainable Web Design model applies a number of constants to its carbon emi
 - What percentage of data for return visitors is downloaded
 - The global average grid intensity (442 g/kWh) is used for all segments. Green hosted data centers use a grid intensity of 50 g/kWh.
 
+  <aside class="alert bg-base-200 text-base-content">
+  <p>💡 Learn more about the system segments used in the Sustainable Web Design model on the <a href="/co2js/explainer/methodologies-for-calculating-website-carbon#the-sustainable-web-design-model">Methodologies for calculating website carbon</a> page.</p>
+  </aside>
+
 We can create a JavaScript object to change these variables before passing them into CO2.js.
 
 ```js
@@ -73,7 +79,7 @@ const options = {
 };
 ```
 
-Here you can see that we have create an object within which we have set some key-values to adjust the constants used by the Sustainable Web Design calculation.
+Here we have created an object within which we have set some key-values to adjust the constants used by the Sustainable Web Design calculation.
 
 - `dataReloadRatio` – a number between 0 and 1 representing the percentage of data that is downloaded by return visitors.
 - `firstVisitPercentage` – a number between 0 and 1 representing the percentage of new visitors.
@@ -140,7 +146,7 @@ Running the code above returns the object below:
 
 This contains:
 
-- `co2` - The result of the carbon emissions calculation
+- `co2` - The result of the carbon emissions calculation in grams
 - `green` - Whether the calculation was based on data being hosted in a green data center
 - `variables` - A JavaScript object that details all the other variables used in the calculation.
 
@@ -154,7 +160,7 @@ In the meantime, we encourage you to try them out and leave us your feedback in 
 
 ## Wrapping up
 
-You now know to CO2.js to change the variables used in the Sustainable Web Design model calculations.
+You now know how to use CO2.js to change the variables used in the Sustainable Web Design model calculations.
 
 From here you can:
 

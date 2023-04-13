@@ -1,9 +1,9 @@
 ---
-title: "Advanced - Get segment-level results"
+title: "Get segment-level results"
 description: "In this tutorial, you will use CO2.js to return carbon estimates for each of the system segments found in the Sustainable Web Design model."
 eleventyNavigation:
   key: segment
-  title: "Advanced - Get segment-level results"
+  title: "Get segment-level results"
   # parent: overview
   sectionTitle: Tutorials
   order: 15
@@ -13,7 +13,7 @@ eleventyNavigation:
 
 ## Overview
 
-The Sustainable Web Design model is a methodology which provides a general framework that can be used to estimate a website's carbon emissions. It calculates uses bytes transferred to extrapolate energy usage numbers for your application as a fraction of the energy used by the total system comprised of:
+The Sustainable Web Design model is a methodology which provides a general framework that can be used to estimate a website's carbon emissions. It uses bytes transferred to extrapolate energy usage numbers for your application as a fraction of the energy used by the total system comprised of:
 
 1. the use-phase energy of datacentres serving content
 2. the use-phase energy network transfering the data
@@ -40,7 +40,7 @@ You should already have CO2.js installed and setup in your project. If you do no
 
 ## Initialise CO2.js
 
-To have CO2.js return segment-level emissions estimates can be done by passing a `results` key with the value of "segment" when initialising CO2.js in your project.
+To have CO2.js return segment-level emissions estimates you need to set a `results` key with the value of "segment" when initialising CO2.js in your project.
 
 ```js
 const { co2 } = require("@tgwf/co2");
@@ -76,16 +76,16 @@ Running the code above returns the object below:
 }
 ```
 
-You can see that is contains a breakdown of:
+You can see that it contains a breakdown of:
 
 - The emissions for each system segment's first and return visit (since we are using the `perVisit` function).
 - The `total` carbon emissions for our calculation.
 
 ## Wrapping up
 
-You now know to CO2.js to return segment-level carbon estimates when using the Sustainable Web Design model.
+You now know to how to use CO2.js to return segment-level carbon estimates when using the Sustainable Web Design model.
 
 From here you can:
 
 - Try using the `perByte` function.
-- Try using this with the `perVisitTrace` or `perByteTrace` function. You can read more about those in [this tutorial](/co2/tutorials/customise-website-carbon-calculations).
+- Try using this with the `perVisitTrace` or `perByteTrace` function. You can read more about those in the [Cusomtise website carbon calculations](/co2/tutorials/customise-website-carbon-calculations) tutorial.
