@@ -287,3 +287,9 @@ seven-minute-tabs [role="tabpanel"] pre {
 seven-minute-tabs [role="tabpanel"] pre:last-child {
   margin-bottom: 0;
 }
+
+.alert > :where(:not(p)) {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
