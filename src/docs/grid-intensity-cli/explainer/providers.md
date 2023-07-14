@@ -131,7 +131,7 @@ The Electricity Map API provides worldwide access to 24/7 grid carbon intensity 
 
 Before using the Electricity Maps integration, you must first [obtain an API key](https://api-portal.electricitymaps.com/). This will allow you to access and use their API. You can use their free tier for non-commercial use. You can also register for a 30 day trial of their paid API which includes their forecast data.
 
-Once you have an Electricity Map API key, you must set the `ELECTRICITY_MAP_API_TOKEN` and `ELECTRICITY_MAP_API_URL` environment variables. This allows the Grid Intensity CLI to access the Electricity Map API.
+Once you have an Electricity Maps API key, you must set the `ELECTRICITY_MAP_API_TOKEN` and `ELECTRICITY_MAP_API_URL` environment variables. This allows the Grid Intensity CLI to access the Electricity Maps API.
 
 ```bash
 export ELECTRICITY_MAP_API_TOKEN=your-token
