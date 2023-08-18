@@ -80,10 +80,6 @@ const options = {
 
 Here we have created an object within which we have set some key-values to adjust the constants used by the Sustainable Web Design calculation.
 
-<aside class="alert alert-success">
-<p>💡 Please note that all the keys above are <b>optional</b>. If a key-value is not set, or an incorrect value is used then the default figure from the Sustainable Web Design model is used.</p>
-</aside>
-
 - `dataReloadRatio` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of data that is downloaded by return visitors.
 - `firstVisitPercentage` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of new visitors.
 - `returnVisitPercentage` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of returning visitors.
