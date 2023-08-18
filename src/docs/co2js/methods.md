@@ -30,7 +30,7 @@ Here we are using the OneByte model, and using the `perByte()` function to check
 The `perByte()` function accepts the following parameters:
 
 - **bytes** `number` <div class="badge gap-2 align-middle my-0">Required</div>: The value of bytes to estimate emissions for.
-- **green hosting** `boolean`: if the data being measured is served from a green web host.
+- **green hosting** `boolean` <span class="badge align-middle badge-success my-0">Optional</span>: if the data being measured is served from a green web host.
 
 ### Result
 
@@ -45,7 +45,7 @@ The `perByteTrace()` function is an extension of `perByte()` which allows for ce
 The `perByteTrace()` function accepts the following parameters:
 
 - **bytes** `number` <div class="badge gap-2 align-middle my-0">Required</div>: The value of bytes to estimate emissions for.
-- **green hosting** `boolean`: if the data being measured is served from a green web host.
+- **green hosting** `boolean` <span class="badge align-middle badge-success my-0">Optional</span>: if the data being measured is served from a green web host.
 - **options**: `object` <span class="badge align-middle badge-success my-0">Optional</span> - A JavaScript object containing any Sustainable Web Design specific variables to be change.
 
 #### The `options` parameter
@@ -101,8 +101,8 @@ Here we are using the Sustainable Web Design model, and using the `perVisit()` f
 
 The `perVisit()` function accepts the following parameters:
 
-- **bytes** <div class="badge gap-2 align-middle">Required</div> <div class="badge badge-ghost gap-2 align-middle">Number</div>: The value of bytes to estimate emissions for.
-- **green hosting** <div class="badge badge-ghost gap-2 align-middle">Boolean</div>: `true` if the data being measured is served from a green web host.
+- **bytes** `number` <div class="badge gap-2 align-middle my-0">Required</div>: The value of bytes to estimate emissions for.
+- **green hosting** `boolean` <span class="badge align-middle badge-success my-0">Optional</span>: if the data being measured is served from a green web host.
 
 ## perVisitTrace <div class="badge badge-warning gap-2 align-middle">Sustainable Web Design only</div>
 
@@ -113,7 +113,7 @@ The `perVisitTrace()` function is an extension of `perVisit()` which allows for 
 The `perVisitTrace()` function accepts the following parameters:
 
 - **bytes** `number` <div class="badge gap-2 align-middle my-0">Required</div>: The value of bytes to estimate emissions for.
-- **green hosting** `boolean`: if the data being measured is served from a green web host.
+- **green hosting** `boolean` <span class="badge align-middle badge-success my-0">Optional</span>: if the data being measured is served from a green web host.
 - **options**: `object` <span class="badge align-middle badge-success my-0">Optional</span> - A JavaScript object containing any Sustainable Web Design specific variables to be change.
 
 #### The `options` parameter
