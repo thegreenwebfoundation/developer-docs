@@ -58,11 +58,10 @@ The Sustainable Web Design model applies a number of constants to its carbon emi
 - What percentage of visits to a site are new visitors
 - What percentage of visits to a site are returning visitors
 - What percentage of data for return visitors is downloaded
-- The global average grid intensity (442 g/kWh) is used for all segments. Green hosted data centers use a grid intensity of 50 g/kWh.
+- The global average grid intensity is used for all segments. Green hosted data centers use a grid intensity of 50 g/kWh.
 
-  <aside class="alert bg-base-200 text-base-content">
-  <p>💡 Learn more about the system segments used in the Sustainable Web Design model on the <a href="/co2js/explainer/methodologies-for-calculating-website-carbon#the-sustainable-web-design-model">Methodologies for calculating website carbon</a> page.</p>
-  </aside>
+<aside class="alert alert-info">
+<p>💡 Learn more about the system segments used in the Sustainable Web Design model on the <a class="text-inherit" href="/co2js/explainer/methodologies-for-calculating-website-carbon#the-sustainable-web-design-model">Methodologies for calculating website carbon</a> page.</p></aside>
 
 We can create a JavaScript object to change these variables before passing them into CO2.js.
 
@@ -81,6 +80,10 @@ const options = {
 
 Here we have created an object within which we have set some key-values to adjust the constants used by the Sustainable Web Design calculation.
 
+<aside class="alert alert-success">
+<p>💡 Please note that all the keys above are <b>optional</b>. If a key-value is not set, or an incorrect value is used then the default figure from the Sustainable Web Design model is used.</p>
+</aside>
+
 - `dataReloadRatio` – a number between 0 and 1 representing the percentage of data that is downloaded by return visitors.
 - `firstVisitPercentage` – a number between 0 and 1 representing the percentage of new visitors.
 - `returnVisitPercentage` – a number between 0 and 1 representing the percentage of returning visitors.
@@ -93,10 +96,6 @@ The values for `device`, `dataCenter`, and `networks` can be either:
 
 - A number representing the carbon intensity for the given segment (in grams per kilowatt-hour). In the example above, we have set `device` and `network` grid intensity in this way.
 - An object, which contains a key of country and a value that is an Alpha-3 ISO country code. In the example above, we have set `dataCenter` in this way, using the country code for Taiwan (TWN).
-
-<aside class="alert bg-base-200 text-base-content">
-<p>💡 Please note that all the keys above are <b>optional</b>. If a key-value is not set, or an incorrect value is used then the default figure from the Sustainable Web Design model is used.</p>
-</aside>
 
 We can now use this object to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host. In the example below, we've used the `perVisitTrace` function.
 
