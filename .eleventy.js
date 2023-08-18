@@ -29,7 +29,7 @@ module.exports = (eleventyConfig) => {
 }
 
 let markdownItAnchorOptions = {
-    level: [2,3], // minimum level header -- anchors will only be applied to h2 level headers and below but not h1
+    level: [2], // minimum level header -- anchors will only be applied to h2 level headers and below but not h1
 }
 
   eleventyConfig.setLibrary("md", markdownIt(markdownItOptions).use(markdownItAnchor, {...markdownItAnchorOptions, slugify, permalink: markdownItAnchor.permalink.linkInsideHeader({

@@ -80,22 +80,13 @@ const options = {
 
 Here we have created an object within which we have set some key-values to adjust the constants used by the Sustainable Web Design calculation.
 
-<aside class="alert alert-success">
-<p>💡 Please note that all the keys above are <b>optional</b>. If a key-value is not set, or an incorrect value is used then the default figure from the Sustainable Web Design model is used.</p>
-</aside>
-
-- `dataReloadRatio` – a number between 0 and 1 representing the percentage of data that is downloaded by return visitors.
-- `firstVisitPercentage` – a number between 0 and 1 representing the percentage of new visitors.
-- `returnVisitPercentage` – a number between 0 and 1 representing the percentage of returning visitors.
-- `gridIntensity` – an object that can contain the following keys:
-  - `device` – the grid intensity to use for the device segment.
-  - `dataCenter` – the grid intensity to use for the data center segment.
-  - `networks` – the grid intensity to use for the networks segment.
-
-The values for `device`, `dataCenter`, and `networks` can be either:
-
-- A number representing the carbon intensity for the given segment (in grams per kilowatt-hour). In the example above, we have set `device` and `network` grid intensity in this way.
-- An object, which contains a key of country and a value that is an Alpha-3 ISO country code. In the example above, we have set `dataCenter` in this way, using the country code for Taiwan (TWN).
+- `dataReloadRatio` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of data that is downloaded by return visitors.
+- `firstVisitPercentage` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of new visitors.
+- `returnVisitPercentage` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of returning visitors.
+- `gridIntensity` <span class="badge align-middle badge-success my-0">Optional</span> – an `object` that can contain the following keys:
+  - `device` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
+  - `dataCenter` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
+  - `networks` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
 
 We can now use this object to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host. In the example below, we've used the `perVisitTrace` function.
 
