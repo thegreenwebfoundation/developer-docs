@@ -15,6 +15,9 @@ CO2.js exposes two functions that developers can use to return CO2 estimates. Th
 
 The `perByte()` function can be used with both the [OneByte and Sustainable Web Design models](/co2js/models/). We recommend using this function, as it will return a CO2 value (in grams) for raw data transfer using a given model. It can be used for calculating emissions from websites, file uploads, streaming etc.
 
+<aside class="alert alert-info">
+<p>If you are using the Sustainable Web Design model and need to change any of the values used in the calculation, we recommend you use the <a class="text-inherit" href="#perbytetrace-sustainable-web-design-only">perByteTrace function.</a> </p></aside>
+
 ```js
 import { co2 } from "@tgwf/co2";
 
@@ -39,6 +42,9 @@ The `perByte()` function returns a floating point decimal value which is the amo
 ## perByteTrace <div class="badge badge-warning gap-2 align-middle">Sustainable Web Design only</div>
 
 The `perByteTrace()` function is an extension of `perByte()` which allows for certain inputs to be adjusted. This allows for more accurate, scenario specific estimates to be produced using the Sustainable Web Design model.
+
+<aside class="alert alert-info">
+<p>This function returns a result which includes details of all the variables that were used in the calculation. Since this function allows developers to deviate from the standard Sustainable Web Design model, we strongly recommend that it is made clear to the end user what values have changed as part of the calculation.</p></aside>
 
 ### Accepted parameters
 
@@ -87,6 +93,9 @@ The `perByteTrace()` function returns an object with the following keys:
 
 The `perVisit()` function can only be used with the Sustainable Web Design models. This function includes assumptions the model authors have made [about website visitors and caching](https://sustainablewebdesign.org/calculating-digital-emissions/#:~:text=Returning%20visitors%20are%20assumed%20to%20be%2025%25%2C%20loading%202%25%20of%20data.) as part its calculation. For that reason, we recommend only using it if you are comfortable with those assumptions. The `perVisit()` function is best used for calculating website carbon emissions.
 
+<aside class="alert alert-info">
+<p>If you need to change any of the values used in the calculation, we recommend you use the <a class="text-inherit" href="#pervisittrace-sustainable-web-design-only">perVisitTrace function.</a> </p></aside>
+
 ```js
 import { co2 } from "@tgwf/co2";
 
@@ -107,6 +116,9 @@ The `perVisit()` function accepts the following parameters:
 ## perVisitTrace <div class="badge badge-warning gap-2 align-middle">Sustainable Web Design only</div>
 
 The `perVisitTrace()` function is an extension of `perVisit()` which allows for certain inputs to be adjusted. This allows for more accurate, scenario specific estimates to be produced using the Sustainable Web Design model.
+
+<aside class="alert alert-info">
+<p>This function returns a result which includes details of all the variables that were used in the calculation. Since this function allows developers to deviate from the standard Sustainable Web Design model, we strongly recommend that it is made clear to the end user what values have changed as part of the calculation.</p></aside>
 
 ### Accepted parameters
 
