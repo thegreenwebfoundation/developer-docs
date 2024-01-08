@@ -28,7 +28,7 @@ You can get the latest version of CO2.js using one of the content delivery netwo
 To get started with CO2.js quickly in the browser, you can import the library using Skypack.
 
 ```js
-import tgwf from 'https://cdn.skypack.dev/@tgwf/co2';
+import tgwf from "https://cdn.skypack.dev/@tgwf/co2";
 ```
 
 ### Unpkgd
@@ -47,7 +47,6 @@ You can find the package at [https://www.jsdelivr.com/package/npm/@tgwf/co2](htt
 - ES Modules compatible build `https://cdn.jsdelivr.net/npm/@tgwf/co2@latest/dist/esm/index.js`
 - IIFE compatible build `https://cdn.jsdelivr.net/npm/@tgwf/co2@latest/dist/iife/index.js`
 
-
 ## Build it yourself
 
 You can also build the CO2.js library from the source code. This allows you to make code changes should you need to do so. To build CO2.js:
@@ -56,7 +55,15 @@ You can also build the CO2.js library from the source code. This allows you to m
 1. Clone or fork the repository.
 1. Navigate to the folder on your machine and run `npm run build` in your terminal.
 1. Once the build has finished running, you will find a `/dist` folder has been created. Inside you can find:
-  
-    - `dist/cjs` - A CommonJS compatible build.
-    - `dist/esm` - An ES Modules compatible build.
-    - `dist/iife` - An Immediately Invoked Function Expression (IIFE) version of the library.
+
+   - `dist/cjs` - A CommonJS compatible build.
+   - `dist/esm` - An ES Modules compatible build.
+   - `dist/iife` - An Immediately Invoked Function Expression (IIFE) version of the library.
+
+## TypeScript support
+
+Type definitions for CO2.js are [published in the DefinitelyTyped project](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/tgwf__co2), and are [available on NPM](https://www.npmjs.com/package/@types/tgwf__co2) at `@types/tgwf__co2`.
+
+If you want to use type definitions in your project, they should be installed as a devDependency.
+
+`npm install --dev @types/tgwf__co2`
