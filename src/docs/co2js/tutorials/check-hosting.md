@@ -73,7 +73,7 @@ The hosting module includes a `check()` function. We will be using this to perfo
 To check if a single domain is green hosted, you can pass the following parameters into the `check` function:
 
 - domain: `string` the website domain you want to check for green hosting.
-- userAgentIdentifier: `string` <span class="badge align-middle badge-success my-0">Optional</span> the name of the project, product, or app which is performing the check.
+- userAgentIdentifier: `string` <span class="badge align-middle badge-success my-0">Optional since v0.14.2</span> the name of the project, product, or app which is performing the check.
 
 When checking a single domain, this function returns a `boolean` response (`true` for green hosted, `false` for not).
 
@@ -99,7 +99,7 @@ node hosting.js
 To check if more than one domain is green hosted, you can pass the following parameters into the `check` function:
 
 - domains: `array` an array of strings representing website domain you want to check for green hosting.
-- userAgentIdentifier: `string` <span class="badge align-middle badge-success my-0">Optional</span> the name of the project, product, or app which is performing the check.
+- userAgentIdentifier: `string` <span class="badge align-middle badge-success my-0">Optional since v0.14.2</span> the name of the project, product, or app which is performing the check.
 
 When checking multiple domains, this function returns an `array` of any green domains that are found.
 
