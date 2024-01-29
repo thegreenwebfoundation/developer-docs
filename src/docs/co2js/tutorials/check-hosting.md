@@ -108,7 +108,7 @@ Adding the code below to the `hosting.js` file allows us to check if the domains
 ```js
 const domains = ["google.com", "facebook.com", "twitter.com"];
 
-hosting.check(domains).then((result) => {
+hosting.check(domains, "myGreenWebApp").then((result) => {
   console.log(result);
 });
 ```
