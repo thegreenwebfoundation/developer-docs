@@ -73,7 +73,7 @@ const options = {
   gridIntensity: {
     device: 565.629,
     dataCenter: { country: "TWN" },
-    networks: 442,
+    network: 442,
   },
 };
 ```
@@ -86,7 +86,7 @@ Here we have created an object within which we have set some key-values to adjus
 - `gridIntensity` <span class="badge align-middle badge-success my-0">Optional</span> – an `object` that can contain the following keys:
   - `device` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
   - `dataCenter` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
-  - `networks` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
+  - `network` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
 
 We can now use this object to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host. In the example below, we've used the `perVisitTrace` function.
 
@@ -100,7 +100,7 @@ const options = {
   gridIntensity: {
     device: 565.629,
     dataCenter: { country: "TWN" },
-    networks: 442,
+    network: 442,
   },
 };
 
