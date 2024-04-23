@@ -5,7 +5,7 @@ grid-intensity provider list
 
 NAME                  URL
 CarbonIntensityOrgUK  carbonintensity.org.uk
-ElectricityMap        electricitymap.org
+ElectricityMaps       electricitymaps.com
 Ember                 ember-climate.org
 WattTime              watttime.org
 ```
