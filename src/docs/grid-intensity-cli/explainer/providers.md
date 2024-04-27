@@ -123,29 +123,29 @@ If you require absolute Marginal Operating Emissions Rate (MOER) data, this is a
 
 ## Electricity Maps <div class="badge badge-warning gap-2 align-middle">API token required</div>
 
-The Electricity Map API provides worldwide access to 24/7 grid carbon intensity historically, in real time, and as a forecast for the next 24 hours.
+The Electricity Maps API provides worldwide access to 24/7 grid carbon intensity historically, in real time, and as a forecast for the next 24 hours.
 
-`--provider ElectricityMap`
+`--provider ElectricityMaps`
 
 ### Registration
 
 Before using the Electricity Maps integration, you must first [obtain an API key](https://api-portal.electricitymaps.com/). This will allow you to access and use their API. You can use their free tier for non-commercial use. You can also register for a 30 day trial of their paid API which includes their forecast data.
 
-Once you have an Electricity Maps API key, you must set the `ELECTRICITY_MAP_API_TOKEN` and `ELECTRICITY_MAP_API_URL` environment variables. This allows the Grid Intensity CLI to access the Electricity Maps API.
+Once you have an Electricity Maps API key, you must set the `ELECTRICITY_MAPS_API_TOKEN` and `ELECTRICITY_MAPS_API_URL` environment variables. This allows the Grid Intensity CLI to access the Electricity Maps API.
 
 ```bash
-export ELECTRICITY_MAP_API_TOKEN=your-token
-export ELECTRICITY_MAP_API_URL=https://api-access.electricitymaps.com/free-tier/
+export ELECTRICITY_MAPS_API_TOKEN=your-token
+export ELECTRICITY_MAPS_API_URL=https://api-access.electricitymaps.com/free-tier/
 ```
 
 ### Required parameters
 
-When using Electricity Maps, you will need to pass a supported location. You can get a [list of all supported locations](https://static.electricitymap.org/api/docs/index.html#zones) using the Electricity Map API.
+When using Electricity Maps, you will need to pass a supported location. You can get a [list of all supported locations](https://static.electricitymap.org/api/docs/index.html#zones) using the Electricity Maps API.
 
 For example, running the command below will return data for Portugal.
 
 ```bash
-grid-intensity --provider ElectricityMap --location PT
+grid-intensity --provider ElectricityMaps --location PT
 
 # Returns
 
@@ -153,7 +153,7 @@ grid-intensity --provider ElectricityMap --location PT
 	{
 		"emissions_type": "average",
 		"metric_type": "absolute",
-		"provider": "ElectricityMap",
+		"provider": "ElectricityMaps",
 		"location": "PT",
 		"units": "gCO2e per kWh",
 		"valid_from": "2023-07-14T10:00:00Z",
