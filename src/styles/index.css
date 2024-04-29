@@ -32,6 +32,7 @@ h4[id],
 h5[id],
 h6[id] {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
   scroll-margin-block-start: 1rem;
