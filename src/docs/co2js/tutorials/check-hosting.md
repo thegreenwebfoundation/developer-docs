@@ -73,14 +73,29 @@ The hosting module includes a `check()` function. We will be using this to perfo
 To check if a single domain is green hosted, you can pass the following parameters into the `check` function:
 
 - domain: `string` the website domain you want to check for green hosting.
-- userAgentIdentifier: `string` <span class="badge align-middle badge-success my-0">Optional since v0.14.2</span> the name of the project, product, or app which is performing the check.
+- options: `object` <span class="badge align-middle badge-success my-0">Optional since v0.15.0</span> An object of domain check options. It may contain the following keys
+  - verbose: `boolean` indicate where you want to receive the full JSON payload from the API, or a simpler true/false result.
+  - userAgentIdentifier: `string` representing the app, site, or organisation that is making the request.
 
-When checking a single domain, this function returns a `boolean` response (`true` for green hosted, `false` for not).
+### Changing the type of response received
 
-Adding the code below to the `hosting.js` file allows us to check if the domain `google.com` is served from a green web host.
+When checking a single domain, you can choose to receive the result as:
+
+1. A `boolean` value (`true` for green hosted, `false` for not), or
+2. An `object` containing the full JSON payload the is returned from the Green Web Dataset.
+
+#### Return a boolean response <span class="badge align-middle badge-success my-0">Default</span>
+
+The default behaviour of the `check` function for a single domain in CO2.js is to return a boolean (true/false) response whenever a domain is queried. You can also explicitly set this by setting `verbose: false` in the options that are passed into the function.
+
+Adding the code below to the `hosting.js` file allows us to check if the domain `google.com` is served from a green web host and return a boolean response.
 
 ```js
-hosting.check("google.com", "myGreenWebApp").then((result) => {
+const options = {
+  verbose: false,
+  userAgentIdentifier: "myGreenApp",
+};
+hosting.check("google.com", options).then((result) => {
   console.log(result);
 });
 ```
@@ -94,21 +109,18 @@ node hosting.js
 # true
 ```
 
-## Check multiple domains for green hosting
+#### Return a verbose response
 
-To check if more than one domain is green hosted, you can pass the following parameters into the `check` function:
+Alternately, you can choose to return a verbose response when checking a domain. This will return all the information available for that domain's hosting provider in the Green Web Dataset. The response will be returned as a JSON object. To do this, you will need to set `verbose: true` in the options that are passed into the function.
 
-- domains: `array` an array of strings representing website domain you want to check for green hosting.
-- userAgentIdentifier: `string` <span class="badge align-middle badge-success my-0">Optional since v0.14.2</span> the name of the project, product, or app which is performing the check.
-
-When checking multiple domains, this function returns an `array` of any green domains that are found.
-
-Adding the code below to the `hosting.js` file allows us to check if the domains `google.com`, `facebook.com`, and `twitter.com` are served from a green web hosts.
+Adding the code below to the `hosting.js` file allows us to check if the domain `google.com` is served from a green web host and return a boolean response.
 
 ```js
-const domains = ["google.com", "facebook.com", "twitter.com"];
-
-hosting.check(domains, "myGreenWebApp").then((result) => {
+const options = {
+  verbose: true,
+  userAgentIdentifier: "myGreenApp",
+};
+hosting.check("google.com", options).then((result) => {
   console.log(result);
 });
 ```
@@ -119,7 +131,126 @@ Running the code above returns the following result:
 node hosting.js
 
 # Output:
-# ['google.com', 'facbook.com']
+# {
+#  url: 'google.com',
+#  hosted_by: 'Google Inc.',
+#  hosted_by_website: 'https://www.google.com',
+#  partner: null,
+#  green: true,
+#  hosted_by_id: 595,
+#  modified: '2024-05-02T06:01:59',
+#  supporting_documents: [
+#    {
+#     id: 108,
+#      title: 'Sustainability at Google',
+#      link: 'https://sustainability.google'
+#    },
+#    {
+#      id: 139,
+#      title: 'Independent verification of Google 2020 Reporting',
+#      link: 'https://s3.nl-ams.scw.cloud/tgwf-web-app-live/uploads/Google_Cloud_-_3degrees_cloud_services_review_statement_final.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=SCWT1WBAW6NZ5SW5GYJ8%2F20240502%2Fnl-ams%2Fs3%2Faws4_request&X-Amz-Date=20240502T071323Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=1bc5b6f5bbe461b13fb694a7787fede307226386891d0b87ac1914fa95a27684'
+#    },
+#    ... results truncated for readability
+#  ]
+# }
+```
+
+## Check multiple domains for green hosting
+
+To check if more than one domain is green hosted, you can pass the following parameters into the `check` function:
+
+- domains: `array` an array of strings representing website domain you want to check for green hosting.
+- options: `object` <span class="badge align-middle badge-success my-0">Optional since v0.15.0</span> An object of domain check options. It may contain the following keys
+  - verbose: `boolean` indicate where you want to receive the full JSON payload from the API, or a simpler true/false result.
+  - userAgentIdentifier: `string` representing the app, site, or organisation that is making the request.
+
+### Changing the type of response received
+
+When checking a multiple domains, you can choose to receive the result as:
+
+1. A `array` of strings corresponding to any green domains found by the check, or
+2. An `object` containing the full JSON payload the is returned from the Green Web Dataset.
+
+#### Return an array response <span class="badge align-middle badge-success my-0">Default</span>
+
+The default behaviour of the `check` function for multiple domains in CO2.js is to return an array of strings corresponding to the queried domains that were identified as green in the Green Web Dataset. You can also explicitly set this by setting `verbose: false` in the options that are passed into the function.
+
+Adding the code below to the `hosting.js` file allows us to check if the domains `google.com` and `pchome.com` are served from a green web host and return a boolean response.
+
+```js
+const options = {
+  verbose: false,
+  userAgentIdentifier: "myGreenApp",
+};
+hosting.check(["google.com", "pchome.com"], options).then((result) => {
+  console.log(result);
+});
+```
+
+Running the code above returns the following result:
+
+```bash
+node hosting.js
+
+# Output:
+# ["google.com"]
+```
+
+#### Return a verbose response
+
+Alternately, you can choose to return a verbose response when checking multiple domains. This will return all the information available for those domain's hosting provider in the Green Web Dataset. The response will be returned as a JSON object. To do this, you will need to set `verbose: true` in the options that are passed into the function.
+
+Adding the code below to the `hosting.js` file allows us to check if the domain `google.com` is served from a green web host and return a boolean response.
+
+```js
+const options = {
+  verbose: true,
+  userAgentIdentifier: "myGreenApp",
+};
+hosting.check("google.com", options).then((result) => {
+  console.log(result);
+});
+```
+
+Running the code above returns the following result:
+
+```bash
+node hosting.js
+
+# Output:
+# {
+#   "google.com": {
+# url: 'google.com',
+# hosted_by: 'Google Inc.',
+# hosted_by_website: 'https://www.google.com',
+# partner: null,
+# green: true,
+# hosted_by_id: 595,
+# modified: '2024-05-02T06:01:59',
+# supporting_documents: [
+#   {
+#    id: 108,
+#     title: 'Sustainability at Google',
+#     link: 'https://sustainability.google'
+#   },
+#   {
+#     id: 139,
+#     title: 'Independent verification of Google 2020 Reporting',
+#     link: 'https://s3.nl-ams.scw.cloud/tgwf-web-app-live/uploads/Google_Cloud_-_3degrees_cloud_services_review_statement_final.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=SCWT1WBAW6NZ5SW5GYJ8%2F20240502%2Fnl-ams%2Fs3%2Faws4_request&X-Amz-Date=20240502T071323Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=1bc5b6f5bbe461b13fb694a7787fede307226386891d0b87ac1914fa95a27684'
+#   },
+#   ... results truncated for readability
+# ]
+#    },
+#  'pchome.com': {
+#   url: 'pchome.com',
+#   hosted_by: null,
+#   hosted_by_website: null,
+#   partner: null,
+#   green: false,
+#   hosted_by_id: null,
+#   modified: '2024-05-02T07:16:10.504512'
+#   },
+# }
 ```
 
 ## Wrapping up
