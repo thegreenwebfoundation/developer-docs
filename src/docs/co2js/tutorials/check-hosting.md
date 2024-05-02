@@ -207,7 +207,7 @@ const options = {
   verbose: true,
   userAgentIdentifier: "myGreenApp",
 };
-hosting.check("google.com", options).then((result) => {
+hosting.check(["google.com", "pchome.com"], options).then((result) => {
   console.log(result);
 });
 ```
