@@ -88,6 +88,9 @@ Here we have created an object within which we have set some key-values to adjus
   - `dataCenter` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
   - `network` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
 
+<aside class="alert alert-info">
+<p>💡 When the <code>green</code> parameter (the 2nd parameter) passed into the <code>perByteTrace</code> or <code>perVisitTrace</code> function is set to <code>true</code>, the grid intensity used for <code>datacenter</code> is set to 50 gCO2e/kWh. This value is applied regardless of any other custom value that is set by the user.</p></aside>
+
 We can now use this object to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host. In the example below, we've used the `perVisitTrace` function.
 
 ```js

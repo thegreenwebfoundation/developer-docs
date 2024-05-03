@@ -4,7 +4,7 @@ description: "In this tutorial, you will install CO2.js in a Node environment. T
 eleventyNavigation:
   key: check-hosting
   title: "Check a domain for green hosting"
-  # parent: overview
+  #     parent: overview
   sectionTitle: Tutorials
   order: 13
 ---
@@ -220,36 +220,36 @@ node hosting.js
 # Output:
 # {
 #   "google.com": {
-# url: 'google.com',
-# hosted_by: 'Google Inc.',
-# hosted_by_website: 'https://www.google.com',
-# partner: null,
-# green: true,
-# hosted_by_id: 595,
-# modified: '2024-05-02T06:01:59',
-# supporting_documents: [
-#   {
-#    id: 108,
-#     title: 'Sustainability at Google',
-#     link: 'https://sustainability.google'
+#     url: 'google.com',
+#     hosted_by: 'Google Inc.',
+#     hosted_by_website: 'https://www.google.com',
+#     partner: null,
+#     green: true,
+#     hosted_by_id: 595,
+#     modified: '2024-05-02T06:01:59',
+#     supporting_documents: [
+#     {
+#       id: 108,
+#       title: 'Sustainability at Google',
+#       link: 'https://sustainability.google'
+#     },
+#     {
+#       id: 139,
+#       title: 'Independent verification of Google 2020 Reporting',
+#       link: 'https://s3.nl-ams.scw.cloud/tgwf-web-app-live/uploads/Google_Cloud_-_3degrees_cloud_services_review_statement_final.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=SCWT1WBAW6NZ5SW5GYJ8%2F20240502%2Fnl-ams%2Fs3%2Faws4_request&X-Amz-Date=20240502T071323Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=1bc5b6f5bbe461b13fb694a7787fede307226386891d0b87ac1914fa95a27684'
+#     },
+#     ... results truncated for readability
+#     ]
 #   },
-#   {
-#     id: 139,
-#     title: 'Independent verification of Google 2020 Reporting',
-#     link: 'https://s3.nl-ams.scw.cloud/tgwf-web-app-live/uploads/Google_Cloud_-_3degrees_cloud_services_review_statement_final.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=SCWT1WBAW6NZ5SW5GYJ8%2F20240502%2Fnl-ams%2Fs3%2Faws4_request&X-Amz-Date=20240502T071323Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=1bc5b6f5bbe461b13fb694a7787fede307226386891d0b87ac1914fa95a27684'
-#   },
-#   ... results truncated for readability
-# ]
+#   "pchome.com": {
+#       url: "pchome.com",
+#       hosted_by: null,
+#       hosted_by_website: null,
+#       partner: null,
+#       green: false,
+#       hosted_by_id: null,
+#       modified: "2024-05-02T07:16:10.504512"
 #    },
-#  'pchome.com': {
-#   url: 'pchome.com',
-#   hosted_by: null,
-#   hosted_by_website: null,
-#   partner: null,
-#   green: false,
-#   hosted_by_id: null,
-#   modified: '2024-05-02T07:16:10.504512'
-#   },
 # }
 ```
 
