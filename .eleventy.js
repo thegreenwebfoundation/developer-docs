@@ -9,7 +9,7 @@ const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano')
-const fetch = require('node-fetch').default;
+// const fetch = require('node-fetch').default;
 
 const postCssPlugins = [tailwindcss(require('./tailwind.config.js')), autoprefixer()]
 
