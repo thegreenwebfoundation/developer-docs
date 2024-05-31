@@ -19,7 +19,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.1",
-    "daisyui": "^4.11.1",
+    "daisyui": "^2.15.3",
     "eleventy-plugin-img2picture": "^5.0.1",
     "eleventy-plugin-metagen": "^1.8.3",
     "markdown-it": "^14.1.0",
