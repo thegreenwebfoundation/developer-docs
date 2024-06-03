@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "eleventy --serve",
     "build": "export NODE_ENV=production && eleventy"
