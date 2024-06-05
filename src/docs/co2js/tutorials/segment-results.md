@@ -1,6 +1,6 @@
 ---
 title: "Get segment-level results"
-description: "In this tutorial, you will use CO2.js to return carbon estimates for each of the system segments found in the Sustainable Web Design model."
+description: "In this tutorial, you will use CO2.js to return carbon estimates for each of the system segments found in the Sustainable Web Design Model."
 eleventyNavigation:
   key: segment
   title: "Get segment-level results"
@@ -13,18 +13,18 @@ eleventyNavigation:
 
 ## Overview
 
-The Sustainable Web Design model is a methodology which provides a general framework that can be used to estimate a website's carbon emissions. It can be used to return a total value for carbon emissions related to the transfer of bytes. It can also be uses to extrapolate carbon emissions associated with different segments of the entire website system:
+The Sustainable Web Design Model is a methodology which provides a general framework that can be used to estimate a website's carbon emissions. It can be used to return a total value for carbon emissions related to the transfer of bytes. It can also be uses to extrapolate carbon emissions associated with different segments of the entire website system:
 
 1. the use-phase energy of datacentres serving content
 2. the use-phase energy network transfering the data
 3. the use-phase energy of user device an user is accessing content on
 4. the total embodied energy used to create all of the above
 
-In this tutorial, you will learn how to return a breakdown of emissions for each segment using the Sustainable Web Design model in CO2.js.
+In this tutorial, you will learn how to return a breakdown of emissions for each segment using the Sustainable Web Design Model in CO2.js.
 
 ### Methodologies
 
-It is also worth noting that what we will cover in this tutorial only works with the Sustainable Web Design model in CO2.js. Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about the model itself.
+It is also worth noting that what we will cover in this tutorial only works with the Sustainable Web Design Model in CO2.js. Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about the model itself.
 
 ## Learning goals
 
@@ -32,7 +32,7 @@ This tutorial assumes you are already familiar with how to [install CO2.js](/co2
 
 In this tutorial you will learn:
 
-- How to return a breakdown of emissions by system segment when using the Sustainable Web Design model
+- How to return a breakdown of emissions by system segment when using the Sustainable Web Design Model
 
 ## Setting up
 
@@ -83,7 +83,7 @@ You can see that it contains a breakdown of:
 
 ## Wrapping up
 
-You now know to how to use CO2.js to return segment-level carbon estimates when using the Sustainable Web Design model.
+You now know to how to use CO2.js to return segment-level carbon estimates when using the Sustainable Web Design Model.
 
 From here you can:
 

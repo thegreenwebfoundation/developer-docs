@@ -13,10 +13,10 @@ CO2.js exposes two functions that developers can use to return CO2 estimates. Th
 
 ## perByte()
 
-The `perByte()` function can be used with both the [OneByte and Sustainable Web Design models](/co2js/models/). We recommend using this function, as it will return a CO2 value (in grams) for raw data transfer using a given model. It can be used for calculating emissions from websites, file uploads, streaming etc.
+The `perByte()` function can be used with both the [OneByte and Sustainable Web Design Models](/co2js/models/). We recommend using this function, as it will return a CO2 value (in grams) for raw data transfer using a given model. It can be used for calculating emissions from websites, file uploads, streaming etc.
 
 <aside class="alert alert-info">
-<p>If you are using the Sustainable Web Design model and need to change any of the values used in the calculation, we recommend you use the <a class="text-inherit" href="#perbytetrace-sustainable-web-design-only">perByteTrace function.</a> </p></aside>
+<p>If you are using the Sustainable Web Design Model and need to change any of the values used in the calculation, we recommend you use the <a class="text-inherit" href="#perbytetrace-sustainable-web-design-only">perByteTrace function.</a> </p></aside>
 
 ```js
 import { co2 } from "@tgwf/co2";
@@ -41,10 +41,10 @@ The `perByte()` function returns a floating point decimal value which is the amo
 
 ## perByteTrace <div class="badge badge-warning gap-2 align-middle">Sustainable Web Design only</div>
 
-The `perByteTrace()` function is an extension of `perByte()` which allows for certain inputs to be adjusted. This allows for more accurate, scenario specific estimates to be produced using the Sustainable Web Design model.
+The `perByteTrace()` function is an extension of `perByte()` which allows for certain inputs to be adjusted. This allows for more accurate, scenario specific estimates to be produced using the Sustainable Web Design Model.
 
 <aside class="alert alert-info">
-<p>This function returns a result which includes details of all the variables that were used in the calculation. Since this function allows developers to deviate from the standard Sustainable Web Design model, we strongly recommend that it is made clear to the end user what values have changed as part of the calculation.</p></aside>
+<p>This function returns a result which includes details of all the variables that were used in the calculation. Since this function allows developers to deviate from the standard Sustainable Web Design Model, we strongly recommend that it is made clear to the end user what values have changed as part of the calculation.</p></aside>
 
 ### Accepted parameters
 
@@ -56,7 +56,7 @@ The `perByteTrace()` function accepts the following parameters:
 
 #### The `options` parameter
 
-The `options` parameter can contain any of the following keys. These can be used to adjust the values used by the Sustainable Web Design model's calculation.
+The `options` parameter can contain any of the following keys. These can be used to adjust the values used by the Sustainable Web Design Model's calculation.
 
 - `gridIntensity` <span class="badge align-middle badge-success my-0">Optional</span> – an `object` that can contain the following keys:
   - `device` <span class="badge align-middle badge-success my-0">Optional</span> – A `number` representing the carbon intensity for the given segment (in grams per kilowatt-hour). Or, an `object`, which contains a key of country and a value that is an Alpha-3 ISO country code.
@@ -91,7 +91,7 @@ The `perByteTrace()` function returns an object with the following keys:
 
 ## perVisit <div class="badge badge-warning gap-2 align-middle">Sustainable Web Design only</div>
 
-The `perVisit()` function can only be used with the Sustainable Web Design models. This function includes assumptions the model authors have made [about website visitors and caching](https://sustainablewebdesign.org/calculating-digital-emissions/#:~:text=Returning%20visitors%20are%20assumed%20to%20be%2025%25%2C%20loading%202%25%20of%20data.) as part its calculation. For that reason, we recommend only using it if you are comfortable with those assumptions. The `perVisit()` function is best used for calculating website carbon emissions.
+The `perVisit()` function can only be used with the Sustainable Web Design Models. This function includes assumptions the model authors have made [about website visitors and caching](https://sustainablewebdesign.org/calculating-digital-emissions/#:~:text=Returning%20visitors%20are%20assumed%20to%20be%2025%25%2C%20loading%202%25%20of%20data.) as part its calculation. For that reason, we recommend only using it if you are comfortable with those assumptions. The `perVisit()` function is best used for calculating website carbon emissions.
 
 <aside class="alert alert-info">
 <p>If you need to change any of the values used in the calculation, we recommend you use the <a class="text-inherit" href="#pervisittrace-sustainable-web-design-only">perVisitTrace function.</a> </p></aside>
@@ -104,7 +104,7 @@ const swd = new co2({ model: "swd" });
 const emissions = swd.perVisit(1000000);
 ```
 
-Here we are using the Sustainable Web Design model, and using the `perVisit()` function to check the carbon emissions for transferring 1 million bytes.
+Here we are using the Sustainable Web Design Model, and using the `perVisit()` function to check the carbon emissions for transferring 1 million bytes.
 
 ### Accepted parameters
 
@@ -115,10 +115,10 @@ The `perVisit()` function accepts the following parameters:
 
 ## perVisitTrace <div class="badge badge-warning gap-2 align-middle">Sustainable Web Design only</div>
 
-The `perVisitTrace()` function is an extension of `perVisit()` which allows for certain inputs to be adjusted. This allows for more accurate, scenario specific estimates to be produced using the Sustainable Web Design model.
+The `perVisitTrace()` function is an extension of `perVisit()` which allows for certain inputs to be adjusted. This allows for more accurate, scenario specific estimates to be produced using the Sustainable Web Design Model.
 
 <aside class="alert alert-info">
-<p>This function returns a result which includes details of all the variables that were used in the calculation. Since this function allows developers to deviate from the standard Sustainable Web Design model, we strongly recommend that it is made clear to the end user what values have changed as part of the calculation.</p></aside>
+<p>This function returns a result which includes details of all the variables that were used in the calculation. Since this function allows developers to deviate from the standard Sustainable Web Design Model, we strongly recommend that it is made clear to the end user what values have changed as part of the calculation.</p></aside>
 
 ### Accepted parameters
 
@@ -130,7 +130,7 @@ The `perVisitTrace()` function accepts the following parameters:
 
 #### The `options` parameter
 
-The `options` parameter can contain any of the following keys. These can be used to adjust the values used by the Sustainable Web Design model's calculation.
+The `options` parameter can contain any of the following keys. These can be used to adjust the values used by the Sustainable Web Design Model's calculation.
 
 - `dataReloadRatio` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of data that is downloaded by return visitors.
 - `firstVisitPercentage` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of new visitors.

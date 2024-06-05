@@ -13,13 +13,13 @@ eleventyNavigation:
 
 ## Overview
 
-The Sustainable Web Design model is a methodology which provides a general framework that can be used to estimate a website's carbon emissions. Being able to adjust the underlying variables used in the model allows developers to return more accurate, scenario specific carbon estimates.
+The Sustainable Web Design Model is a methodology which provides a general framework that can be used to estimate a website's carbon emissions. Being able to adjust the underlying variables used in the model allows developers to return more accurate, scenario specific carbon estimates.
 
-In this tutorial, you will learn how to adjust the variables used by the Sustainable Web Design model in CO2.js. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) of data.
+In this tutorial, you will learn how to adjust the variables used by the Sustainable Web Design Model in CO2.js. Then, you will calculate the CO2 emissions of transferring 1 gigabyte (GB) of data.
 
 ### Methodologies
 
-It is also worth noting that what we will cover in this tutorial only works with the Sustainable Web Design model in CO2.js. Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about the model itself.
+It is also worth noting that what we will cover in this tutorial only works with the Sustainable Web Design Model in CO2.js. Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about the model itself.
 
 ## Learning goals
 
@@ -27,7 +27,7 @@ This tutorial assumes you are already familiar with how to [install CO2.js](/co2
 
 In this tutorial you will learn:
 
-- How to change the variables used by the Sustainable Web Design model in CO2.js
+- How to change the variables used by the Sustainable Web Design Model in CO2.js
 - How to use these changed variables to produce website carbon estimates
 
 ## Setting up
@@ -53,7 +53,7 @@ CO2.js includes `perByteTrace` and `perVisitTrace` function. These function acce
 
 ## Changing variables
 
-The Sustainable Web Design model applies a number of constants to its carbon emissions calculation. They are:
+The Sustainable Web Design Model applies a number of constants to its carbon emissions calculation. They are:
 
 - What percentage of visits to a site are new visitors
 - What percentage of visits to a site are returning visitors
@@ -61,7 +61,7 @@ The Sustainable Web Design model applies a number of constants to its carbon emi
 - The global average grid intensity is used for all segments. Green hosted data centers use a grid intensity of 50 g/kWh.
 
 <aside class="alert alert-info">
-<p>💡 Learn more about the system segments used in the Sustainable Web Design model on the <a class="text-inherit" href="/co2js/explainer/methodologies-for-calculating-website-carbon#the-sustainable-web-design-model">Methodologies for calculating website carbon</a> page.</p></aside>
+<p>💡 Learn more about the system segments used in the Sustainable Web Design Model on the <a class="text-inherit" href="/co2js/explainer/methodologies-for-calculating-website-carbon#the-sustainable-web-design-model">Methodologies for calculating website carbon</a> page.</p></aside>
 
 We can create a JavaScript object to change these variables before passing them into CO2.js.
 
@@ -153,7 +153,7 @@ In the meantime, we encourage you to try them out and leave us your feedback in 
 
 ## Wrapping up
 
-You now know how to use CO2.js to change the variables used in the Sustainable Web Design model calculations.
+You now know how to use CO2.js to change the variables used in the Sustainable Web Design Model calculations.
 
 From here you can:
 
