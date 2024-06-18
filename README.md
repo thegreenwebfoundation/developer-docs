@@ -1,6 +1,6 @@
-# The Green Web Foundation - Developer Docs Website
+# Green Web Foundation - Developer Docs Website
 
-Welcome to the [developer documentation site](https://developers.thegreenwebfoundation.org/) for The Green Web Foundation's open-source libraries. Here, you'll find comprehensive guides and resources to help you understand, use, and contribute to our projects effectively.
+Welcome to the [developer documentation site](https://developers.thegreenwebfoundation.org/) for Green Web Foundation's open-source libraries. Here, you'll find comprehensive guides and resources to help you understand, use, and contribute to our projects effectively.
 
 ## Getting Started
 
