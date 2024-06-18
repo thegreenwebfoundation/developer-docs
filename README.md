@@ -17,19 +17,19 @@ Before you begin, make sure you have the following software installed on your ma
 
 ### Installation
 
-1. **Clone Repository:** Start by cloning this repository to your local machine using Git:
+1. **Clone repository:** Start by cloning this repository to your local machine using Git:
 
    ```bash
    git clone https://github.com/thegreenwebfoundation/developer-docs
    ```
 
-2. **Navigate to Project Directory:** Once the cloning process is complete, navigate to the project directory:
+2. **Navigate to project directory:** Once the cloning process is complete, navigate to the project directory:
 
    ```bash
    cd developer-docs
    ```
 
-3. **Install Dependencies:** Install the project dependencies using npm:
+3. **Install dependencies:** Install the project dependencies using npm:
 
    ```bash
    npm install
@@ -43,15 +43,15 @@ Before you begin, make sure you have the following software installed on your ma
 
 ### Making Changes
 
-1. **Edit Markdown Files:** Make changes to the markdown (`.md`) files located in the `src` folder to update the content as needed.
+1. **Edit markdown files:** Make changes to the markdown (`.md`) files located in the `src/docs` folder to update the content as needed.
 
-2. **Preview Changes:** After making your modifications, run the following command to preview the changes locally:
+2. **Preview changes:** After making your modifications, run the following command to preview the changes locally:
 
    ```bash
    npm run dev
    ```
 
-   This will start a local development server, allowing you to view your changes in a web browser.
+   This will start a local development server, allowing you to view your changes in a web browser. You can now view your changes by visiting [https://localhost:8080](https://localhost:8080).
 
 ### Using GitPod
 
