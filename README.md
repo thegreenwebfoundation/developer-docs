@@ -12,7 +12,7 @@ To work on this site locally, follow these steps:
 
 Before you begin, make sure you have the following software installed on your machine:
 
-- [Node.js](https://nodejs.org/)
+- [Node.js](https://nodejs.org/) v20 or later
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
 ### Installation
