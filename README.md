@@ -21,6 +21,8 @@ Before you begin, make sure you have the following software installed on your ma
    git clone https://github.com/thegreenwebfoundation/developer-docs
    ```
 
+   If you plan to contribute to this project, then please [create a fork of it](https://github.com/thegreenwebfoundation/.github/fork) in your own Github account before making changes.
+
 2. **Navigate to project directory:** Once the cloning process is complete, navigate to the project directory:
 
    ```bash
