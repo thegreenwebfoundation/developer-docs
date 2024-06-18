@@ -60,3 +60,7 @@ Alternatively, you can open this project in GitPod for a hassle-free development
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thegreenwebfoundation/developer-docs)
 
 By following these steps, you can seamlessly work on this site locally and contribute to improving our developer documentation.
+
+## Contributing changes
+
+To contribute changes back to this project, please follow the steps outlined in the [CONTRIBUTING.md](/CONTRIBUTING.md) file in this repository.
