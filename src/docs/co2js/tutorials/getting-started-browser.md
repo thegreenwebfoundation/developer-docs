@@ -13,7 +13,7 @@ eleventyNavigation:
 
 ## Overview
 
-In this tutorial, you will use CO2.js in the browser to calculate the CO2 emissions of transferring 1 gigabyte (GB) or data.
+In this tutorial, you will use CO2.js in the browser to calculate the CO2 emissions of transferring 1 gigabyte (GB) of data.
 
 ## Before starting
 
@@ -95,10 +95,10 @@ document.getElementById('result').innerHTML = estimatedCO2
 
 In the code above, you are:
 
-- Initialising the `co2.js` library.
+- Initialising the `CO2.js` library.
 - Setting a variable for the bytes you want to check.
 - Setting a variable for green hosting status.
-- Passing these variables to the `perByte` function, which returns a carbon estimate.
+- Passing these variables to the `perByte()` function, which returns a carbon estimate.
 - Outputting the results to an element on the page.
 
 When you're done, the `<script>` block should look like this:
