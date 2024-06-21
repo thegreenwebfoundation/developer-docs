@@ -24,10 +24,12 @@ Thank you for considering contributing to Green Web Foundation - Developer Docs 
 
 ## Submitting Changes
 
-- Push the changes made in your branch to your fork of this repository.
-- Submit a pull request this the repository in the `thegreenwebfoundation` organization.
-  - Your pull request description should clearly explain the changes you have made, any new files, dependencies, or network requests that have been added, and provide any additional context to help reviewers understand the changes made.
-- You pull request will be reviewed by a maintainer from Green Web Foundation.
+- Push the changes made in your branch to your fork.
+- Submit a [pull request](https://github.com/thegreenwebfoundation/developer-docs/pulls) to the Developer Docs repository in the `thegreenwebfoundation` organization.
+  - When opening a new pull request, you'll see a template. Please follow it. It asks you to state: 
+    - link to the related issue
+    - what your changes are - be sure to should clearly explain the changes you have made, any new files, dependencies, or network requests that have been added, and provide any additional context to help reviewers understand the changes made.
+- Your pull request will be reviewed by a maintainer from Green Web Foundation.
 - After feedback has been given we expect responses within two weeks. After two weeks we may close the pull request if it isn't showing any activity.
 
 ## Code of Conduct
