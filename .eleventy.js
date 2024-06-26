@@ -157,6 +157,8 @@ let markdownItAnchorOptions = {
     }
   })
 
+  eleventyConfig.addWatchTarget("./src/styles/");
+
   eleventyConfig.addWatchTarget('styles/**/*.css');
   return {
     markdownTemplateEngine: "njk",
