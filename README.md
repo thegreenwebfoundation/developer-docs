@@ -13,6 +13,13 @@ Before you begin, make sure you have the following software installed on your ma
 - [Node.js](https://nodejs.org/) v20 or later
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
+This project is built using the [Eleventy (11ty)](https://www.11ty.dev/) static site generator. The [11ty documentation](https://www.11ty.dev/docs/) has thorough explainers for different bits of functionality that might come in useful when working on this website.
+
+This project's template files are written in Nunjucks and Markdown. If you are using Visual Studio Code as your code editor when working on this project, we recommend that you install the following plugins:
+
+- [Nunjucks for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ronnidc.nunjucks)
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+
 ### Installation
 
 1. **Clone repository:** Start by cloning this repository to your local machine using Git:
