@@ -12,7 +12,7 @@ eleventyNavigation:
 # {{ title }}
 
 <aside class="alert alert-info">
-<p>This tutorial uses the Sustainable Web Design Model version 3. 💡 Learn more about the the Sustainable Web Design Model on the <a class="text-inherit" href="/co2js/explainer/methodologies-for-calculating-website-carbon#the-sustainable-web-design-model">Models</a> page.</p></aside>
+<p>This tutorial uses the Sustainable Web Design Model version 3. 💡 Learn more about the the Sustainable Web Design Model on the <a class="text-inherit" href="/co2js/models/">Models</a> page.</p></aside>
 
 ## Overview
 
