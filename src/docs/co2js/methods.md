@@ -157,7 +157,7 @@ const options = {
 
 ### Result
 
-The `perByteTrace()` function returns an object with the following keys:
+The `perVisitTrace()` function returns an object with the following keys:
 
 - `co2` - A `number` representing the carbon emissions calculated in grams
 - `green` - A `boolean` indicating whether the calculation was based on data being hosted in a green data center
