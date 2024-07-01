@@ -29,7 +29,7 @@ const declaredSwd = new co2({ model: "swd" });
 
 In May 2024, version 4 of the Sustainable Web Design Model was published for initial community feedback. The update includes a change to the estimation formula, introduces separation between operational and embodied emissions, and updates the underlying data that forms the foundation of the model. We have covered the changes made in [this helpful blog post](https://www.thegreenwebfoundation.org/news/understanding-the-latest-sustainable-web-design-model-update/).
 
-CO2.js v0.16 sees the inclusion of Sustainable Web Design Model version 4 as one of the models that can be used in CO2.js. Developers will be required to explicitly opt-in to using Sustainable Web Design Model version 4, but will have access to all the same functions that can be accessed in version 3. Switching to version 4 should create minimal disruption for most developers, with only the returned values when using `perByteTrace` and `perVisitTrace` functions changing. Read the [full guide to using Sustainable Web Design Model version 4](#).
+CO2.js v0.16 sees the inclusion of Sustainable Web Design Model version 4 as one of the models that can be used in CO2.js. Developers will be required to explicitly opt-in to using Sustainable Web Design Model version 4, but will have access to all the same functions that can be accessed in version 3. Switching to version 4 should create minimal disruption for most developers, with only the returned values when using `perByteTrace` and `perVisitTrace` functions changing.
 
 The code sample below shows how to use SWDM version 4 in CO2.js to estimate 1000 bytes using the `perByte` function. Note that the version number has been explicitly declared (`version: 4`) when initiating a new `co2()` instance.
 
