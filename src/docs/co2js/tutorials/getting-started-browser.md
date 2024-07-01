@@ -1,7 +1,7 @@
 ---
 title: "Getting started: In the browser"
 description: "In this tutorial, you will use CO2.js in the browser to calculate the CO2 emissions of transferring 1 gigabyte (GB) of data."
-relatedPR: 
+relatedPR:
 eleventyNavigation:
   key: getting-started-browser
   title: "Getting started: In the browser"
@@ -9,6 +9,7 @@ eleventyNavigation:
   sectionTitle: Tutorials
   order: 10
 ---
+
 # {{ title }}
 
 ## Overview
@@ -23,7 +24,7 @@ You can follow along with this tutorial in your local development environment, o
 
 ### Methodologies
 
-It is also worth noting that currently CO2.js uses the Sustainable Web Design model as the default when calculating carbon emissions.a Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about both models.
+It is also worth noting that currently CO2.js uses the Sustainable Web Design Model as the default when calculating carbon emissions.a Check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about both models.
 
 ## Learning goals
 
@@ -41,20 +42,23 @@ Here's some boilerplate code to get started with. Copy this into the `index.html
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My CO2.js calculator</title>
 
     <script type="module">
       <!-- Our code will go here -->
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>The carbon emissions of 1 gigabyte</h1>
-    <p>Sending a gigabyte, had a carbon footprint of <span id="result">???????</span> grams of CO2</p>
-</body>
+    <p>
+      Sending a gigabyte, had a carbon footprint of
+      <span id="result">???????</span> grams of CO2
+    </p>
+  </body>
 </html>
 ```
 
@@ -64,17 +68,17 @@ So that we can get to writing code sooner, we will use [Skypack](https://www.sky
 
 <aside class="alert bg-base-200 text-base-content"><p>You can also install CO2.js using NPM, or build it yourself. See the <a href="https://developers.thegreenwebfoundation.org/co2js/installation/" class="link">installation guide</a> for details.</p></aside>
 
-In the `index.html` file you just created, add the following line inside the `<script>` block in the head of the page. 
+In the `index.html` file you just created, add the following line inside the `<script>` block in the head of the page.
 
 ```js
-import tgwf from 'https://cdn.skypack.dev/@tgwf/co2';
+import tgwf from "https://cdn.skypack.dev/@tgwf/co2";
 ```
 
 ## Calculating emissions per byte
 
 CO2.js includes a `perByte()` function. This function accepts two variables:
 
-- bytes:  `number` - The bytes you want to calculate CO2 for.
+- bytes: `number` - The bytes you want to calculate CO2 for.
 - green: `boolean` - Whether the bytes are transferred from a green host. By default, this value is `false`.
 
 <aside class="alert bg-base-200 text-base-content">
@@ -84,13 +88,13 @@ CO2.js includes a `perByte()` function. This function accepts two variables:
 Adding the code below to the `<script>` block allows us to calculate the carbon emissions of a gigabyte, transferred from a regular (not green) host. Be sure to add this code _after_ the import statement.
 
 ```js
-const emissions = new tgwf.co2()
-const bytesSent = (1000 * 1000 * 1000) // 1GB expressed in bytes
-const greenHost = false // Is the data transferred from a green host?
+const emissions = new tgwf.co2();
+const bytesSent = 1000 * 1000 * 1000; // 1GB expressed in bytes
+const greenHost = false; // Is the data transferred from a green host?
 
-let estimatedCO2 = emissions.perByte(bytesSent, greenHost).toFixed(3) // We use toFixed(3) here to set the result to 3 decimal places.
+let estimatedCO2 = emissions.perByte(bytesSent, greenHost).toFixed(3); // We use toFixed(3) here to set the result to 3 decimal places.
 
-document.getElementById('result').innerHTML = estimatedCO2
+document.getElementById("result").innerHTML = estimatedCO2;
 ```
 
 In the code above, you are:
@@ -105,14 +109,14 @@ When you're done, the `<script>` block should look like this:
 
 ```html
 <script type="module">
-  import tgwf from 'https://cdn.skypack.dev/@tgwf/co2';
-  const emissions = new tgwf.co2()
-  const bytesSent = (1000 * 1000 * 1000) // 1GB expressed in bytes
-  const greenHost = false // Is the data transferred from a green host?
+  import tgwf from "https://cdn.skypack.dev/@tgwf/co2";
+  const emissions = new tgwf.co2();
+  const bytesSent = 1000 * 1000 * 1000; // 1GB expressed in bytes
+  const greenHost = false; // Is the data transferred from a green host?
 
-  let estimatedCO2 = emissions.perByte(bytesSent, greenHost).toFixed(3)
+  let estimatedCO2 = emissions.perByte(bytesSent, greenHost).toFixed(3);
 
-  document.getElementById('result').innerHTML = estimatedCO2
+  document.getElementById("result").innerHTML = estimatedCO2;
 </script>
 ```
 
