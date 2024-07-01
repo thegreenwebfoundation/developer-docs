@@ -42,6 +42,8 @@ const bytes = 1000;
 const estimate = version4.perByte(1000);
 ```
 
+Learn more about the [different methods available when using the Sustainable Web Design Model](/co2js/methods/), including how to adjust variables used within the model.
+
 ## Using the OneByte model
 
 If you want to use the OneByte model, then you'll need to let CO2.js know. This can be done by passing in a `model` parameter with a value of `"1byte"` when you initiate a new `co2()` object.
