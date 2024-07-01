@@ -11,6 +11,9 @@ eleventyNavigation:
 
 # {{ title }}
 
+<aside class="alert alert-info">
+<p>This tutorial uses the Sustainable Web Design Model version 3. 💡 Learn more about the the Sustainable Web Design Model on the <a class="text-inherit" href="/co2js/explainer/methodologies-for-calculating-website-carbon#the-sustainable-web-design-model">Models</a> page.</p></aside>
+
 ## Overview
 
 The Sustainable Web Design Model is a methodology which provides a general framework that can be used to estimate a website's carbon emissions. Being able to adjust the underlying variables used in the model allows developers to return more accurate, scenario specific carbon estimates.
