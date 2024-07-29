@@ -3,15 +3,15 @@ layout: layouts/default.njk
 templateEngineOverride: njk,md
 ---
 
-# Welcome to The Green Web Foundation's Documentation Site
+# Welcome to Green Web Foundation's Documentation Site
 
 ## What you'll find here
 
-This site is a collection of documentation for the open source libraries maintained by The Green Web Foundation. Here you will find tutorials, guides, and explainers to help you implement our libraries into your solutions.
+This site is a collection of documentation for the open source libraries maintained by [Green Web Foundation](https://www.thegreenwebfoundation.org). Here you will find tutorials, guides, and explainers to help you implement our libraries into your solutions.
 
 ## Libraries
 
-The Green Web Foundation has built and maintains several libraries. These libraries allow developers to access peer-reviewed carbon estimation calculations, as well as provide interfaces to surface carbon intensity data.
+[Green Web Foundation](https://www.thegreenwebfoundation.org) has built and maintains several libraries. These libraries allow developers to access peer-reviewed carbon estimation calculations, as well as provide interfaces to surface carbon intensity data.
 
 <div class="">
 

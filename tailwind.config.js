@@ -1,9 +1,16 @@
 module.exports = {
   content: ['./src/**/*.{njk,md}', './.eleventy.js'],
+  theme: {
+    fontFamily: {
+      sans: ['TWKEverett', 'sans-serif'],
+      serif: ['TWKEverett', 'serif'],
+    },
+  },
   daisyui: {
-    themes: [{
+    themes: [
+      {
       tgwf: {
-        "primary": "#65B54C",
+        "primary": "#00FF00",
         "secondary": "#476F22",
         "accent": "#F48C26",
         "neutral": "#1B1A18",
