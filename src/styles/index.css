@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.menu .menu-title {
+  opacity: 1;
+} 
 .menu .menu-title > * {
-  @apply text-zinc-800;
+
 }
 
 .footer .footer-title {
-  @apply text-white;
+  /* @apply text-white; */
   opacity: 1;
 }
 
