@@ -159,7 +159,10 @@ let markdownItAnchorOptions = {
 
   eleventyConfig.addWatchTarget("./src/styles/");
 
-  eleventyConfig.addWatchTarget('styles/**/*.css');
+  eleventyConfig.setServerOptions({
+    watch: ['dist/index.html'],
+  });
+  
   return {
     markdownTemplateEngine: "njk",
     dir: {
