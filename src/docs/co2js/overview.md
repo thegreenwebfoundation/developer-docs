@@ -25,7 +25,7 @@ One day, the internet will be powered by renewable energy. Until that day comes,
     </div>
   </div>
   <div class="flex-none">
-    <a href="https://www.thegreenwebfoundation.org/news/start-calculating-digital-carbon-emissions-in-5-minutes-with-co2-js/" class="btn btn-lg btn-accent no-underline hover:text-white">Go to guide</a>
+    <a href="https://www.thegreenwebfoundation.org/news/start-calculating-digital-carbon-emissions-in-5-minutes-with-co2-js/" class="btn btn-lg btn-black hover:bg-primary">Go to guide</a>
   </div>
 </div>
 
@@ -62,7 +62,7 @@ The above a just a few examples of the many and varied ways CO2.js can be applie
     </h3>
     <span>{{ post.excerpt.rendered | safe }}</span>
     <div class="card-actions justify-end not-prose">
-      <a href="{{ post.link }}" class="btn btn-secondary text-white no-underline">Read more</a>
+      <a href="{{ post.link }}" class="btn btn-secondary">Read more</a>
     </div>
   </div>
                 </li>
