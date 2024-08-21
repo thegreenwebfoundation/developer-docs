@@ -113,9 +113,9 @@ let markdownItAnchorOptions = {
 
   eleventyConfig.addNunjucksShortcode("languageBadge", function (language) {
     if (language === "javascript") {
-      return `<span class="badge badge-large bg-yellow-300 text-slate-900 border-current">JavaScript</span>`
+      return `<span class="badge badge-large bg-info text-black border-0">JavaScript</span>`
     } else if (language === "go") {
-      return `<span class="badge badge-large bg-cyan-600 text-cyan-50 border-current">Go/Golang</span>`
+      return `<span class="badge badge-large bg-secondary text-white border-0">Go/Golang</span>`
     }
 
     return ''
@@ -159,7 +159,10 @@ let markdownItAnchorOptions = {
 
   eleventyConfig.addWatchTarget("./src/styles/");
 
-  eleventyConfig.addWatchTarget('styles/**/*.css');
+  eleventyConfig.setServerOptions({
+    watch: ['dist/index.html'],
+  });
+  
   return {
     markdownTemplateEngine: "njk",
     dir: {
