@@ -69,6 +69,13 @@ The above a just a few examples of the many and varied ways CO2.js can be applie
           {%- endfor -%}
 </ul>
 
+## Keep updated
+
+Receive periodic updates about the CO2.js library including information about the latest releases, future plans, ways to get involved in contributing or learning opportunities.
+
+<a href="https://www.thegreenwebfoundation.org/co2-js/#stay-updated" class="btn btn-primary">Join the mailing list</a>
+<a href="https://www.thegreenwebfoundation.org/feed/co2js" class="btn btn-neutral">RSS Feed</a>
+
 ## Licenses
 
 The code for CO2.js is licensed [Apache 2.0](https://github.com/thegreenwebfoundation/co2.js/blob/main/LICENSE). ([What does this mean?](<https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)>))
