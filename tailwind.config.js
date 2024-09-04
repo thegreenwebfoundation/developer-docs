@@ -1,19 +1,19 @@
 module.exports = {
   content: ['./src/**/*.{njk,md}', './.eleventy.js'],
   daisyui: {
-    themes: [{
+    themes: [ {
       tgwf: {
-        "primary": "#65B54C",
-        "secondary": "#476F22",
-        "accent": "#F48C26",
-        "neutral": "#1B1A18",
+        "primary": "#00FF00",
+        "secondary": "#0066FF",
+        "accent": "#CB2CFF",
+        "neutral": "#F4F3F2",
         "base-100": "#FFFFFF",
-        "info": "#3377FF",
-        "success": "#8AC850",
-        "warning": "#FBDA56",
-        "error": "#FE3E3E",
+        "info": "#FFE600",
+        "success": "#00FF00",
+        "warning": "#0066FF",
+        "error": "#CB2CFF",
       },
-    }, ],
+    } ],
   },
   plugins: [require('daisyui'), require('@tailwindcss/typography')],
 };
