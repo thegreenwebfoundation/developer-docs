@@ -127,9 +127,22 @@ inputs:
 
 ## Measuring the carbon footprint of a webpage
 
-Now, that we have discussed the pipeline in more detail, let's have a look at the final manifest file. It includes additional information. The plugins section specifies the plugins that are used in the pipeline. The tree section contains the information about our pipeline. It can potentially include multiple children and thus multiple pipelines, but we do not need this for our use case.
+Using this pipeline inside of a IF manifest file will allow us to setup an IF run which loads a web page, scrolls to the bottom, checks for green hosting, and then estimates the carbon emissions of that test using the Sustainable Web Design Model.
 
-Compared to the pipeline discussed above, we have added two more plugins that are not doing much. They are only there to adjust the timestamp and duration to the actual time and duration of measurment.
+First, let's create a folder in which we'll keep our manifest file as well as the output for this project.
+
+```bash
+mkdir if-measure-webpage-tutorial
+cd if-measure-webpage-tutorial
+```
+
+Inside of this folder, create a YAML file which will contain our IF manifest. You can name this whatever you want, but for this tutorial we'll call it `manifest.yml`.
+
+The manifest file we'll create includes additional information on top of the pipeline we specified earlier. The `plugins` section specifies the plugins that are used in the pipeline. The `tree` section contains the information about our pipeline. It can potentially include multiple children and thus multiple pipelines, but we do not need this for our use case.
+
+You'll notice that we've added two more plugins to our pipeline. These output a timestamp for the start of the IF run, as well as recording the time the run stops which we then use to output the duration.
+
+Our final `manifest.yml` file looks like this:
 
 ```yaml
 name: if-measure-webpage-tutorial
@@ -178,15 +191,13 @@ tree:
             returnVisitPercentage: 0.1
 ```
 
-To use this manifest file to measure a webpage of your choosing, you have to copy it to a file and save it, say as `measure-webpage.yaml`. Put the url of the page you want to measure inside the `url` field.
-
-Now, you can run it by executing
+Now, you can run it by executing the following command from inside the `if-measure-webpage-tutorial` folder we created earlier.
 
 ```bash
-if-run --manifest <path/to/measure-webpage.yaml> --output <path/to/measure-webpage-results>
+if-run --manifest ./manifest.yml --output ./output.yml
 ```
 
-With `--output` you define a path at which IF is storing the results of the manifest run. Open it and check the values reported in the `outputs` section. The field `carbon-operational` holds the estimated carbon impact of loading the specified webpage in grams.
+This will create an output file in the root of the current folder. You can change this to a different file path if you wish. Open the `output.yml` file and check the values reported in the `outputs` section. The field `carbon-operational` holds the estimated carbon impact of loading the specified webpage in grams.
 
 Your `outputs` should look similar to the example below.
 
