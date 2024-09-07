@@ -92,7 +92,7 @@ Let us first look at the pipeline part of the manifest together with its inputs 
 
 The MeasureWebpage plugin essentially takes in a url and measures how many bytes need to be transferred to load the webpage in a browser. It comes with a couple of config options that are described in detail [here](https://github.com/wr24-greenit/if-webpage-plugins/blob/main/src/lib/measure-webpage/README.md).
 
-The plugins are executed in the order defined in the pipeline. The inputs are passed to the first plugin which potentially modifies them or add additional parameters. The set of updated inputs is then returned. IF takes care of passing them on to the next plugin. This repeats until the last plugin of the pipeline is executed and produces the final output.
+The plugins are executed in the order defined in the pipeline. The inputs are passed to the first plugin which potentially modifies them or adds additional parameters. The set of updated inputs is then returned. IF takes care of passing them on to the next plugin. This repeats until the last plugin of the pipeline is executed and produces the final output.
 
 ### Our pipeline
 
@@ -104,7 +104,7 @@ Our pipeline does the following:
 
 In the manifest below, you can see the pipeline we have specified. We then set some configuration options for the plugins. The CO2.js plugin is told to use the `SWD` model. The MeasureWebpage plugin is told to scroll the page to the bottom, such that all lazy loaded contents are also loaded and included in the measurement.
 
-In the inputs below we also pass options for the `SWD` model as inputs. We tell the model to assume that 10% of visitors are returning visitors, while 90% are visiting just once. The input values `timestamp` and `duration` are IF specific and should serve the purpose of correctly labelling the time the pipeline is run. Normally these would be changed to match the time we run the pipeline, but for this tutorial we will ignore them. We also set a `url` input, which is required by the MeasureWebpage plugin to run the initial web page test.
+In the inputs below we also pass options for the `SWD` model as inputs. We tell the model to assume that 10% of visitors are returning visitors, while 90% are visiting just once. The input values `timestamp` and `duration` are IF specific and should serve the purpose of correctly labelling the time the pipeline is run. Normally these would be changed to match the time we run the pipeline, but at this point we ignore them. We also set a `url` input, which is required by the MeasureWebpage plugin to run the initial web page test.
 
 ```yaml
 pipeline:
