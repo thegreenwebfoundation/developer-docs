@@ -8,6 +8,16 @@ const getGithubData = async () => {
         state: 'open',
     });
 
+    // Remove any issues with the "release-planned" label
+    issues.data = issues.data.filter(issue => !issue.labels.find(label => label.name === "release-planned"));
+
+    // Check for any issues that have a label of "funding-required" and add that to the data
+    issues.data.forEach(issue => {
+        if (issue.labels.find(label => label.name === "funding-required")) {
+            issue.fundingRequired = true;
+        }
+    });
+
     return issues.data;
 }
 
