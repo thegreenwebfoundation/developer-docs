@@ -1,3 +1,4 @@
+require('dotenv').config()
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const metagen = require('eleventy-plugin-metagen');
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
