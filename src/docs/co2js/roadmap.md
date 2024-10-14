@@ -1,6 +1,4 @@
 ---
-tags: main
-libraryName: CO2.js
 title: Roadmap
 description: This page contains links to different Github issues that track the various ideas and plans we've got for the CO2.js library.
 eleventyNavigation:
