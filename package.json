@@ -27,6 +27,7 @@
     "tailwindcss": "^3.4.3"
   },
   "dependencies": {
-    "@octokit/core": "^6.1.2"
+    "@octokit/core": "^6.1.2",
+    "dotenv": "^16.4.5"
   }
 }
