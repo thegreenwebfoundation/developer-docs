@@ -16,9 +16,6 @@ const getGithubData = async () => {
         }
     });
     
-
-    console.log(issues.data[0]);
-    
     return issues.data;
 }
 
