@@ -1,0 +1,35 @@
+<ul class="list-none roadmap-list">
+    {%- for issue in issues -%}
+        <li class="px-3 py-2">
+            <h3>
+                <a href="{{ issue.html_url }}">
+                    <span class="link link-hover">{{ issue.title | safe }}</span>
+                    {%- if issue.milestone.title -%}
+                        <span class="badge badge-outline ml-3">Release {{ issue.milestone.title }}</span>
+                    {%- elseif issue.fundingRequired -%}
+                        <a href="https://www.thegreenwebfoundation.org/donate/" class="badge badge-accent ml-3 text-white no-underline">Funding
+                            Required</a>
+                    {%- endif -%}
+                </a>
+            </h3>
+            <div class="flex gap-4 flex-row flex-wrap items-center mb-4">
+                <p class="prose-sm not-prose">Comments: {{ issue.comments }}</p>
+                <p class="prose-sm not-prose">Reactions: {{ issue.reactions.total_count }}</p>
+                <p class="prose-sm not-prose">Contributed by:
+                    <span class="roadmap-issue-contributor">
+                        <img class="sm:invisible md:visible" src="{{ issue.user.avatar_url }}" loading="lazy">
+                            <a href="{{ issue.user.html_url }}">{{ issue.user.login }}</a>
+                        </span>
+                    </p>
+                </div>
+                <div class="flex flex-row flex-wrap items-center gap-6 not-prose font-semibold">
+                    {%- if issue.fundingRequired -%}
+                        <a href="https://www.thegreenwebfoundation.org/donate/" class="link link-accent">Fund this work</a>
+                    {%- endif -%}
+                    <a href="{{ issue.html_url }}" class="link link-hover text-black">
+                        View on GitHub
+                    </a>
+                </div>
+            </li>
+        {%- endfor -%}
+    </ul>
