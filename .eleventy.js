@@ -1,27 +1,28 @@
-const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-const metagen = require('eleventy-plugin-metagen');
-const sitemap = require("@quasibit/eleventy-plugin-sitemap");
-const markdownIt = require('markdown-it');
-const markdownItAnchor = require('markdown-it-anchor');
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const img2picture = require('eleventy-plugin-img2picture');
-const postcss = require('postcss');
-const tailwindcss = require('tailwindcss');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano')
+import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
+import metagen from "eleventy-plugin-metagen";
+import sitemap from "@quasibit/eleventy-plugin-sitemap";
+import markdownIt from "markdown-it";
+import markdownItAnchor from "markdown-it-anchor";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import img2picture from "eleventy-plugin-img2picture";
+import postcss from "postcss";
+import tailwindcss from "tailwindcss";
+import autoprefixer from "autoprefixer";
+import cssnano from "cssnano";
+import tailwindConfig from "./tailwind.config.js";
 // const fetch = require('node-fetch').default;
 
-const postCssPlugins = [tailwindcss(require('./tailwind.config.js')), autoprefixer()]
+const postCssPlugins = [tailwindcss(tailwindConfig), autoprefixer()];
 
 const dev = process.env.NODE_ENV !== 'production'
 
 if (!dev) { postCssPlugins.push(cssnano())}
 const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-'))
 
-module.exports = (eleventyConfig) => {
+export default (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy({
     public: './'
-  })
+  });
 
   // Process Markdown
   let markdownItOptions = {

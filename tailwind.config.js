@@ -1,7 +1,10 @@
-module.exports = {
-  content: ['./src/**/*.{njk,md}', './.eleventy.js'],
+import daisyui from "daisyui";
+import typography from "@tailwindcss/typography";
+
+export default {
+  content: ["./src/**/*.{njk,md}", "./.eleventy.js"],
   daisyui: {
-    themes: [ {
+    themes: [{
       tgwf: {
         "primary": "#00FF00",
         "secondary": "#0066FF",
@@ -13,7 +16,7 @@ module.exports = {
         "warning": "#0066FF",
         "error": "#CB2CFF",
       },
-    } ],
+    }],
   },
-  plugins: [require('daisyui'), require('@tailwindcss/typography')],
+  plugins: [daisyui, typography],
 };
