@@ -335,5 +335,16 @@ seven-minute-tabs [role="tabpanel"] pre:last-child {
 }
 
 .roadmap-list > li:nth-child(odd) {
-  @apply bg-neutral-50;
+  @apply bg-neutral-100;
+  @apply border-y-neutral-300;
+  @apply border-y;
+  @apply border-solid;
+}
+
+.roadmap-list > li > h3:first-child {
+  margin-block-start: 1.25rem;
+}
+
+.roadmap-list > li > div:last-child {
+  margin-block-end: 1.25rem;
 }
