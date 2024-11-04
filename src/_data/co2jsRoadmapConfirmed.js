@@ -1,5 +1,11 @@
+const dev = process.env.NODE_ENV !== 'production'
 
 const getGithubData = async () => {
+    const { devData } = await import('../helpers/dev/githubData.js');
+    if (dev) {
+        return devData;
+    }
+    
     const { Octokit } = await import('@octokit/core');
     const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
     const issues = await octokit.request('GET /repos/{owner}/{repo}/issues', {
