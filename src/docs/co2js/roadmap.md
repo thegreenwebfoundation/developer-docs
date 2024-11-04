@@ -11,16 +11,23 @@ eleventyNavigation:
 
 We publish our roadmap to give the CO2.js community visibility on future features and enhancements we have planned, and what we need help and funding for. Features for which we are seeking funding – something that we rely heavily on as a non-profit organisation – are highlighted. We'd love to hear from organisations that are interested in feature sponsorship.
 
-## Planned Updates
+## Confirmed
 
-Updates that we have planned for releases in the near future.
+Things that we have a detailed spec for and are funded. These are updates that we are committing to releasing.
 
-{% set issues = co2jsRoadmapCurrent %}
+{% set issues = co2jsRoadmapConfirmed %}
 {% include 'partials/roadmapList.njk' %}
 
-## Future Updates
+## Designing
 
-Updates that we would like to work on or include in CO2.js but which require funding or community contribution.
+These are things that we have identified a specific outcome that is to be addressed. However, we’re still working on the details, timings and/or where the funding will come from.
 
-{% set issues = co2jsRoadmapFuture %}
+{% set issues = co2jsRoadmapDesigning %}
+{% include 'partials/roadmapList.njk' %}
+
+## Exploring
+
+New ideas that we have not yet fully triaged, but that we feel are worth further discussion on how they might be implemented.
+
+{% set issues = co2jsRoadmapExploring %}
 {% include 'partials/roadmapList.njk' %}
