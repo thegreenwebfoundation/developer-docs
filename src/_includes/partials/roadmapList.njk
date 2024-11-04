@@ -7,8 +7,8 @@
                     {%- if issue.milestone.title -%}
                         <span class="badge badge-outline ml-3">Release {{ issue.milestone.title }}</span>
                     {%- elseif issue.fundingRequired -%}
-                        <a href="https://www.thegreenwebfoundation.org/donate/" class="badge badge-accent ml-3 text-white no-underline">Funding
-                            Required</a>
+                        <a href="https://www.thegreenwebfoundation.org/donate/" class="badge badge-accent ml-3 text-white no-underline">Sponsor
+                            this</a>
                     {%- endif -%}
                 </a>
             </h3>
@@ -23,9 +23,6 @@
                     </p>
                 </div>
                 <div class="flex flex-row flex-wrap items-center gap-6 not-prose font-semibold">
-                    {%- if issue.fundingRequired -%}
-                        <a href="https://www.thegreenwebfoundation.org/donate/" class="link link-accent">Fund this work</a>
-                    {%- endif -%}
                     <a href="{{ issue.html_url }}" class="link link-hover text-black">
                         View on GitHub
                     </a>
