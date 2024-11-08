@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "eleventy --serve",
-    "build": "export NODE_ENV=production && npx eleventy"
+    "build": "export NODE_ENV=production && eleventy"
   },
   "keywords": [],
   "author": "",
