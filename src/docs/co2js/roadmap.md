@@ -27,7 +27,7 @@ These are things that we have identified a specific outcome that is to be addres
 
 ## Exploring
 
-New ideas that we have not yet fully triaged, but that we feel are worth further discussion on how they might be implemented.
+New ideas that we have not yet fully triaged, but that we feel are worth further discussion on how they might be implemented. These are a selection of the issues we are most hopeful for. To see all open issues, see the [CO2.js repository on GitHub](https://github.com/thegreenwebfoundation/co2.js/issues).
 
 {% set issues = co2jsRoadmapExploring %}
 {% include 'partials/roadmapList.njk' %}
