@@ -4,9 +4,8 @@
 
 .menu .menu-title {
   opacity: 1;
-} 
+}
 .menu .menu-title > * {
-
 }
 .footer .footer-title {
   /* @apply text-white; */
@@ -295,7 +294,12 @@ seven-minute-tabs [role="tabpanel"] pre:last-child {
   display: block;
 }
 
-
+.roadmap-issue-contributor img {
+  display: inline-block;
+  height: 2.5ch;
+  border-radius: 50%;
+  margin-block: 0;
+}
 
 @layer components {
   .alert {
@@ -308,7 +312,9 @@ seven-minute-tabs [role="tabpanel"] pre:last-child {
   .badge {
     @apply font-normal;
   }
-  .badge-secondary, .badge-warning, .badge-error {
+  .badge-secondary,
+  .badge-warning,
+  .badge-error {
     @apply text-white;
   }
 
@@ -318,11 +324,27 @@ seven-minute-tabs [role="tabpanel"] pre:last-child {
   .btn-lg {
     @apply px-7;
   }
-  .btn-primary, .btn-secondary {
+  .btn-primary,
+  .btn-secondary {
     @apply hover:text-white hover:bg-accent;
   }
   .btn-black {
     @apply bg-black text-white;
     @apply hover:text-black hover:bg-secondary;
   }
+}
+
+.roadmap-list > li:nth-child(odd) {
+  @apply bg-neutral-100;
+  @apply border-y-neutral-300;
+  @apply border-y;
+  @apply border-solid;
+}
+
+.roadmap-list > li > h3:first-child {
+  margin-block-start: 1.25rem;
+}
+
+.roadmap-list > li > div:last-child {
+  margin-block-end: 1.25rem;
 }
