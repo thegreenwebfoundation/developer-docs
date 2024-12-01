@@ -1,6 +1,7 @@
 ---
 title: Installation
 description: This guide will show you how to quickly get started with CO2.js in a variety of ways.
+hasTabs: true
 eleventyNavigation:
   key: install
   title: Installation
@@ -27,9 +28,15 @@ You can get the latest version of CO2.js using one of the content delivery netwo
 
 To get started with CO2.js quickly in the browser, you can import the library using esm.sh.
 
-```js
-import tgwf from "https://esm.sh/@tgwf/co2";
-```
+<!-- markdownlint-disable -->
+
+{% set codeContent %}
+import tgwf from 'https://esm.sh/@tgwf/co2@latest';
+{% endset %}
+{% set tabId = "install" %}
+{% include "snippets/esmCjsTabs.njk" %}
+
+<!-- markdownlint-enable -->
 
 ### Unpkgd
 

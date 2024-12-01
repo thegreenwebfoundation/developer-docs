@@ -290,6 +290,14 @@ seven-minute-tabs [role="tabpanel"] pre:last-child {
   margin-bottom: 0;
 }
 
+seven-minute-tabs pre code a {
+  color: inherit !important;
+}
+
+seven-minute-tabs pre code p {
+  margin: 0;
+}
+
 .alert > p {
   display: block;
 }
