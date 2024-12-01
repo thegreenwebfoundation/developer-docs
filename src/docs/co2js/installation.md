@@ -23,12 +23,12 @@ npm install @tgwf/co2
 
 You can get the latest version of CO2.js using one of the content delivery networks below. This comes in handy if you want to use CO2.js in projects that aren't using Node JS or NPM.
 
-### Using Skypack
+### Using esm.sh
 
-To get started with CO2.js quickly in the browser, you can import the library using Skypack.
+To get started with CO2.js quickly in the browser, you can import the library using esm.sh.
 
 ```js
-import tgwf from "https://cdn.skypack.dev/@tgwf/co2";
+import tgwf from "https://esm.sh/@tgwf/co2";
 ```
 
 ### Unpkgd
