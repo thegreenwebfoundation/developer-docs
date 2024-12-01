@@ -1,0 +1,27 @@
+{# This code is borrowed from the 11ty docs website #}
+<seven-minute-tabs persist="persist" sync="sync">
+    <ol role="tablist" aria-label="Select to view response for green, and not green URLs.">
+        <li>
+            <a href="{{ tabid }}-esm" role="tab" data-tabs-persist="group:esm" tabindex="-1" aria-controls="{{ tabid }}-esm">ESM</a>
+        </li>
+        <li>
+            <a href="{{ tabid }}-cjs" role="tab" data-tabs-persist="group:cjs" tabindex="-1" aria-controls="{{ tabid }}-cjs">CommonJS</a>
+        </li>
+    </ol>
+    <div id="{{ tabid }}-esm" role="tabpanel">
+        {% highlight "js" %}
+        {%- if codeContent %}
+            {{ codeContent | safe }}
+        {% endif %}
+        {% endhighlight %}
+    </div>
+    <div id="{{ tabid }}-cjs" role="tabpanel">
+        {% highlight "js" %}
+        {%- if codeContentCjs %}
+            {{ codeContentCjs | safe }}
+        {%- else if codeContent %}
+            {{ codeContent | esmToCjs | safe }}
+        {% endif %}
+        {% endhighlight %}
+    </div>
+</seven-minute-tabs>

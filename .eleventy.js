@@ -78,6 +78,20 @@ let markdownItAnchorOptions = {
       );
   });
 
+  eleventyConfig.addFilter("esmToCjs", async (sourceCode) => {
+    const { ImportTransformer } = await import('esm-import-transformer');
+		try {
+			let it = new ImportTransformer(sourceCode);
+			let outputCode = it.transformToRequire();
+
+			// lol
+			return outputCode.replace("export default ", "module.exports = ");
+		} catch(e) {
+			console.log( sourceCode );
+			throw e;
+		}
+	});
+
   eleventyConfig.addNunjucksFilter("getDocumentsFromCollection", function (collection, value) {
     const docs = collection.filter(doc => doc.data.repo === value)
     return docs
