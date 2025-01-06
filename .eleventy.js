@@ -107,6 +107,10 @@ let markdownItAnchorOptions = {
       return ''
     }
 
+    if (src.toString().startsWith('http')) {
+      return src
+    }
+
     const url = await fetch('https://www.thegreenwebfoundation.org/wp-json/wp/v2/media/' + src).then(data => data.json()).then(data => data.source_url)
 
     return url
