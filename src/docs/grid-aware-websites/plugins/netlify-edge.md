@@ -15,7 +15,7 @@ This plugin provides useful helper functions that can be used when setting up th
 
 After you have installed the `@greenweb/grid-aware-websites` package ([see steps](/grid-aware-websites/getting-started/)), you can use this plugin to:
 
-- Fetch the location of a user based on `geo` data that is exposed by the Netlify Edge platform.
+- Fetch the location of a user from the Netlify Edge context.
 
 ## Installation
 

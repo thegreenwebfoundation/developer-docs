@@ -15,14 +15,14 @@ This plugin provides useful helper functions that can be used when setting up th
 
 After you have installed the `@greenweb/grid-aware-websites` package ([see steps](/grid-aware-websites/getting-started/)), you can use this plugin to:
 
-- Fetch the location of a user based on `cf` header values that are sent along in each Cloudflare request.
+- Fetch the location of a user based from the Cloudflare request.
 
 ## Installation
 
 In your Cloudflare Workers project, install this plugin by running the following command:
 
 ```bash
-npm install @greenweb/gaw-plugin-cloudflare-workers`
+npm install @greenweb/gaw-plugin-cloudflare-workers
 ```
 
 ## Fetching location
