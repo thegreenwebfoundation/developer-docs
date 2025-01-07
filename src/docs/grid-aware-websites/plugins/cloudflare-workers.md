@@ -40,17 +40,16 @@ export default {
   async fetch(request, env, ctx) {
 
     // Use the getLocation function to check for the user's country in the request object
-    const cfData = getLocation(request);
+    const location = getLocation(request);
 
     // If there's an error, process the request as normal
-    if (cfData.status === "error") {
-        const response = await fetch(request.url);
-        return new Response(response.body, response);
+    if (location.status === "error") {
+        return new Response('There was an error');
     }
 
     // Otherwise we can get the "country" variable 
-    const { country } = cfData;
-    console.log(country);
+    const { country } = location;
+    return new Response(`The country is ${country}.`)
   },
 };
 ```
@@ -69,16 +68,16 @@ export default {
   async fetch(request, env, ctx) {
 
     // Use the getLocation function to check for the user's country in the request object
-    const cfData = getLocation(request);
+    const location = getLocation(request);
 
     // If there's an error, return a message
-    if (cfData.status === "error") {
+    if (location.status === "error") {
         const response = await fetch(request.url);
         return new Response('There was an error');
     }
 
     // Otherwise we can get the "country" variable 
-    const { country } = cfData;
+    const { country } = location;
     
     // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
     const gridData = await gridAwarePower(country, apiKey);
