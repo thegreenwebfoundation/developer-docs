@@ -53,7 +53,7 @@ export default async (request, context) => {
 
 ### Using this with the Grid-aware Websites library
 
-The code below shows a simple implementation of this plugin alongside the Grid-aware Websites core library in a Cloudflare Worker.
+The code below shows a simple implementation of this plugin alongside the Grid-aware Websites core library in a Netlify Edge Function.
 
 ```js
 import { gridAwarePower } from "https://esm.sh/@greenweb/grid-aware-websites@latest";
