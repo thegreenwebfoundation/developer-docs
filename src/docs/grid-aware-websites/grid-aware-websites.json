@@ -1,0 +1,16 @@
+{
+    "tags": [
+        "grid-aware-websites",
+        "gaw",
+        "grid-aware"
+    ],
+    "name": "Grid-aware Websites",
+    "permalink": "{% if not overridePermalink %}{% generateDocsPath page.filePathStem %}/index.html{% else %}{{ overridePermalink }}{% endif %}",
+    "layout": "layouts/doc.njk",
+    "repo": "grid-aware-websites",
+    "languages": [
+        "javascript"
+    ],
+    "repository": "https://github.com/thegreenwebfoundation/grid-aware-websites",
+    "repoVersion": "0.2.0"
+}
