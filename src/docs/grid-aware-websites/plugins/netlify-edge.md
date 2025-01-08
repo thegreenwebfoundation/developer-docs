@@ -70,6 +70,9 @@ export default async (request, context) => {
       return new Response('There was an error');
   }
 
+  // Otherwise we can get the "country" variable 
+  const { country } = location;
+
   // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
     const gridData = await gridAwarePower(country, apiKey);
 
