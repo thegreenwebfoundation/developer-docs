@@ -22,7 +22,11 @@ It’s a web-first, *connect not collect* style approach, of most benefit to tho
 1. **New standards mean that this data will be comparable, machine-readable, and likely across different parts of the world.** This could make verifying claims and identifying greenwashing easier, if it’s done right.
 1. **Carbon.txt is our open-source project to make this sustainability information easier to discover.** Carbon.txt is a spec that defines predictable, consistent places on any website to publish sustainability data so that both humans and machines can find it.
 
-## Carbon.txt Tools
+## These docs
+
+The documentation on this website is aimed at developers looking to build additional tooling that extends carbon.txt - primarily through plugins and other extensions to the [carbon.txt validator](https://github.com/thegreenwebfoundation/carbon-txt-validator).
+
+## Other Carbon.txt Tools
 
 Below are a collection of tools that you can use to get started creating a carbon.txt file for your organisation, or to check the contents of an existing carbon.txt file.
 
