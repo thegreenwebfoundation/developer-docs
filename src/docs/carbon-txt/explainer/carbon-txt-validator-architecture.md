@@ -43,7 +43,7 @@ The validator is designed to work as a single deployable unit. This might be as 
 
 ### Components
 
-![Components - there are multiple components that make up the carbon.txt validator. They are the API & CLI; Carbon.txt Finder; Carbon.txt Parser; CSRD Processor](img/1-c-components.jpg)
+![Components - there are multiple components that make up the carbon.txt validator. They are the API & CLI; Carbon.txt Finder; Carbon.txt Parser; CSRD Processor](https://carbon-txt-validator.readthedocs.io/en/latest/_images/1-c-components.jpg)
 
 The carbon.txt validator is split into a series of components, with clear
 divisions of responsibility
@@ -82,7 +82,7 @@ So, for a CSRD report that is written to fit pre-agreed standards, like being wr
 
 ### Classes
 
-![Classes - The CSRD Processor uses the Arelle third-party library to parse and validate XBRL documents. There can be additional validation rules added to the processor which are run before returning results.](img/1-d-classes.jpg)
+![Classes - The CSRD Processor uses the Arelle third-party library to parse and validate XBRL documents. There can be additional validation rules added to the processor which are run before returning results.](https://carbon-txt-validator.readthedocs.io/en/latest/_images/1-d-classes.jpg)
 
 The In our CSRD Processor uses [Arelle](https://arelle.readthedocs.io/), an open source library for working with XBRL documents, to turn XBRL-formatted CSRD reports into datastructures that can be manipulated in Python, and that can be checked for the existence of specific data points.
 
