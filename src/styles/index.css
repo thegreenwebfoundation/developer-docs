@@ -348,3 +348,7 @@ seven-minute-tabs [role="tabpanel"] pre:last-child {
 .roadmap-list > li > div:last-child {
   margin-block-end: 1.25rem;
 }
+
+.language-toml .table {
+  display: initial;
+}
