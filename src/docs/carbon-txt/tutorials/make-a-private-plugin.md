@@ -1,9 +1,9 @@
 ---
-title: "Make a private plugin to use with the carbon.txt CLI"
+title: "Make a private carbon.txt plugin"
 description: "In this tutorial, you will learn how to make a private plugin that can be used with the carbon.txt CLI."
 eleventyNavigation:
   key: make-private-plugin
-  title: "Make a private plugin to use with the carbon.txt CLI"
+  title: "Make a private carbon.txt plugin"
   #     parent: overview
   sectionTitle: Tutorials
   order: 13
@@ -45,7 +45,7 @@ You can check that the carbon.txt validator has been successfully installed by r
 
 It is also worth being aware that under the hood, the carbon.txt validator uses [Pluggy](https://pluggy.readthedocs.io/), a widely used framework for building plugin systems, based around exposing a set of "hooks", at various stages of the lifecycle of running the validator.
 
-## Making one-off projects for internal use
+## Making a private plugin
 
 The plugin we are building in this tutorial will:
 
@@ -127,7 +127,7 @@ uv tool run carbon-txt validate domain used-in-tests.carbontxt.org --plugins-dir
 
 Our output should look something like the output below, with the extra `Results of processing linked documents in the carbon.txt file` section being the additional information the _our plugin_ is adding to the carbon.txt validator response.
 
-```
+```bash
 Attempting to resolve domain: used-in-tests.carbontxt.org
 Trying a DNS delegated lookup for domain used-in-tests.carbontxt.org
 Checking if a carbon.txt file is reachable at https://used-in-tests.carbontxt.org/carbon.txt
