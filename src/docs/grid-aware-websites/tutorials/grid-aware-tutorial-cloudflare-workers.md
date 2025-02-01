@@ -65,17 +65,6 @@ grid-aware-worker/
 
 The `src/index.js` file contains the Worker code that we will modify to add grid awareness to our website.
 
-## Adding Grid-aware Websites to the Worker
-
-Before we begin writing code, we will first install the Grid-aware Websites core library and the Cloudflare Workers plugin into our project. In a terminal window run the following NPM commands:
-
-```bash
-npm install @greenweb/grid-aware-websites
-npm install @greenweb/gaw-plugin-cloudflare-workers
-```
-
-The Grid-aware Websites library's main function is to fetch data about a given location from a specified data source (in our case the Electricity Maps API), and based on that information return a flag indicating if grid-aware changes should be applied to a website. The Cloudflare Workers plugin has some specific functionality that makes it easier to work with Cloudflare Workers.
-
 ## Configuring our worker
 
 ### Setting routes
@@ -100,6 +89,17 @@ Later in the project, we'll use the Electricity Maps API to get information abou
 ```txt
 EMAPS_API_KEY="<your_api_key>"
 ```
+
+## Adding Grid-aware Websites to the Worker
+
+Before we begin writing code, we will first install the Grid-aware Websites core library and the Cloudflare Workers plugin into our project. In a terminal window run the following NPM commands:
+
+```bash
+npm install @greenweb/grid-aware-websites
+npm install @greenweb/gaw-plugin-cloudflare-workers
+```
+
+The Grid-aware Websites library's main function is to fetch data about a given location from a specified data source (in our case the Electricity Maps API), and based on that information return a flag indicating if grid-aware changes should be applied to a website. The Cloudflare Workers plugin has some specific functionality that makes it easier to work with Cloudflare Workers.
 
 ## Writing some code
 
@@ -208,24 +208,29 @@ Go to [http://localhost:8787](http://localhost:8787) to view your Worker. If eve
 
 Now that we're getting the country of the request, we can use that value with the Grid-aware Websites library to get information about the fuel mix of that country's energy grid. The Grid-aware Websites library will then return a flag indicating if grid-aware changes should be made to the web page or not.
 
-Let's start by removing the response that returns the country code. Replace it with the code below, which:
+Let's start by removing the response that returns the country code.
 
 ```diff
 - return new Response(`Request from country code ${country}.`)
-+ const gridData = await gridAwarePower(country, env.EMAPS_API_KEY);
-+
-+ // If there's an error getting data, return the web page without any modifications
-+ if (gridData.status === 'error') {
-+  return new Response(response.body, {
-+   ...response,
-+   headers: {
-+    ...response.headers,
-+   },
-+  });
-+ }
-+ 
-+ // Otherwise, return the grid data in the response
-+ return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`)
+```
+
+Replace it with the code below, which:
+
+```js
+const gridData = await gridAwarePower(country, env.EMAPS_API_KEY);
+
+// If there's an error getting data, return the web page without any modifications
+if (gridData.status === 'error') {
+ return new Response(response.body, {
+  ...response,
+  headers: {
+   ...response.headers,
+  },
+ });
+}
+
+// Otherwise, return the grid data in the response
+return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`)
 ```
 
 In the code above, we pass the request country and the Electricity Maps API key into the `gridAwarePower` function. This function will return information about the energy grid we have requested data for, as well as a `gridAware` flag - a boolean value indicating whether grid-aware changes should be made to the website.
