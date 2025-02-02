@@ -74,7 +74,7 @@ Before we start writing code, we'll first configure our worker to run on the rou
 ```json
 "routes": [
   {
-   "pattern": "thegreenwebfoundation.org/tools/grid-aware-websites/",
+   "pattern": "www.thegreenwebfoundation.org/tools/grid-aware-websites/",
    "zone_name": "thegreenwebfoundation.org"
   }
  ]
@@ -217,7 +217,9 @@ Let's start by removing the response that returns the country code.
 Replace it with the code below, which:
 
 ```js
-const gridData = await gridAwarePower(country, env.EMAPS_API_KEY);
+const gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
+  mode: 'low-carbon'
+});
 
 // If there's an error getting data, return the web page without any modifications
 if (gridData.status === 'error') {
@@ -236,3 +238,152 @@ return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`)
 In the code above, we pass the request country and the Electricity Maps API key into the `gridAwarePower` function. This function will return information about the energy grid we have requested data for, as well as a `gridAware` flag - a boolean value indicating whether grid-aware changes should be made to the website.
 
 Again, we can test that everything works so far by running the `npx wrangler dev` command in our project. Now, when you go to [http://localhost:8787](http://localhost:8787), you should see the contents `gridData` object in the browser.
+
+### Making changes to the web page if grid-aware changes are recommended
+
+If the `gridData.gridAware` flag returns as `true`, that indicates to us that the website visitor is in a region where more than 50% of the energy is being delivered by fossil fuel sources.
+
+In this case, we will want to make some changes to our web page to make it less power hungry on the users device. To do this quickly in a Cloudflare Worker, we can use the [HTMLRewriter API](https://developers.cloudflare.com/workers/runtime-apis/html-rewriter/). This API allows us to parse the HTML in the response, manipulate it, and then return the adjusted HTML back to the user in the response.
+
+If you're not familiar with the HTMLRewriter, you should check out the docs linked to above. In our Cloudflare Worker, we will write some code to remove an `iframe` that we have on the `/tools/grid-aware-websites` page of our website at the time of writing.
+
+Remove the `Grid data:` response at the end of the Worker.
+
+```diff
+- return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`)
+```
+
+Replace it with the HTMLRewriter code below:
+
+```js
+// If the grid aware flag is triggered (gridAware === true), then we'll return a modified HTML page to the user.
+if (gridData.gridAware) {
+  const modifyHTML = new HTMLRewriter()
+  .on('iframe', {
+   element(element) {
+    element.remove();
+   },
+  })
+
+ // Transform the response using the HTMLRewriter API, and set appropriate headers.
+ let modifiedResponse = new Response(modifyHTML.transform(response).body, {
+  ...response,
+  headers: {
+   ...response.headers,
+   'Content-Type': 'text/html;charset=UTF-8'
+  },
+ });
+
+ return modifiedResponse
+}
+
+return new Response(response.body, {
+  ...response,
+  headers: {
+   ...response.headers,
+  },
+ }); 
+```
+
+The code above creates a new instance of the HTMLRewriter API that looks for and removes all `iframe` elements. You can chain these steps to make other changes to a web page, even adding content.
+
+Then, pass the response into the instance of the HTMLRewriter that we've just created, and return the modified response alongside addition headers.
+
+Otherwise, if the `gridData.gridAware` flag is returned as `false`, we just return the initial response without any modifications.
+
+## Putting it all together
+
+The final code in your Cloudflare Worker should look like this:
+
+```js
+import { gridAwarePower } from '@greenweb/grid-aware-websites';
+import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
+
+export default {
+ async fetch(request, env, ctx) {
+    // First fetch the request
+  const response = await fetch(request.url);
+  // Then check if the request content type is HTML.
+  const contentType = response.headers.get('content-type');
+
+  // If the content is not HTML, then return the response without any changes.
+  if (!contentType || !contentType.includes('text/html')) {
+   return new Response(response.body, {
+    ...response,
+   });
+  }
+
+  // If the content type is HTML, we get the country the request came from
+  const location = await getLocation(request);
+  const { country } = location;
+
+  // If the country data does not exist, then return the response without any changes.
+  if (!country) {
+   return new Response(response.body, {
+    ...response,
+   });
+  }
+
+  const gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
+    mode: 'low-carbon'
+  });
+
+  // If there's an error getting data, return the web page without any modifications
+  if (gridData.status === 'error') {
+  return new Response(response.body, {
+    ...response,
+    headers: {
+    ...response.headers,
+    },
+  });
+  }
+
+  // If the grid aware flag is triggered (gridAware === true), then we'll return a modified HTML page to the user.
+  if (gridData.gridAware) {
+    const modifyHTML = new HTMLRewriter().on('iframe', {
+      element(element) {
+        element.remove();
+      },
+    })
+
+    // Transform the response using the HTMLRewriter API, and set appropriate headers.
+    let modifiedResponse = new Response(modifyHTML.transform(response).body, {
+      ...response,
+      headers: {
+      ...response.headers,
+      'Content-Type': 'text/html;charset=UTF-8'
+      },
+    });
+
+    return modifiedResponse
+  }
+
+  return new Response(response.body, {
+    ...response,
+    headers: {
+    ...response.headers,
+    },
+  }); 
+ }
+}
+```
+
+### Testing the completed worker
+
+Now, when you run `npx wrangler dev` and visit [http://localhost:8787](http://localhost:8787), you should see the web page showing the domain you configured at the start of this tutorial. You can then use the address bar to navigate to the path on which you configured the Worker code to execute. For us, that is `http://localhost:8787/tools/grid-aware-websites/`.
+
+TODO: Missing something here about how to actually test if the changes worked.
+
+## Deploying to production
+
+When you're ready, you can deploy your worker to run on your website for the actual path you've configured.
+
+Before doing that, though, you should first add the `EMAPS_API_KEY` secret to your Cloudflare account so that it can be used by the Worker. You can [learn more about secrets](https://developers.cloudflare.com/workers/configuration/secrets/) in the Cloudflare docs. To add the `EMAPS_API_KEY` secret to your account, run the following command in your terminal.
+
+```bash
+npx wrangler secret put EMAPS_API_KEY
+```
+
+You'll then be prompted to select the Cloudflare account to add this to - it must be the same account as the domain or zone you are doing to deploy this Worker too eventually. You'll then be asked to add your API key value. Do that, and press enter. If you're deploying the Worker code for the first time, you will also be asked if you want to create a new Worker to assign this secret to. Select `Yes (Y)`. With that done, you should soon see a message confirming that the secret was successfully added.
+
+Now, you can run `npx wrangler deploy` in your terminal to deploy your Worker to production.
