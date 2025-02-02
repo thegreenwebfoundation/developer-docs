@@ -235,7 +235,7 @@ if (gridData.status === 'error') {
 return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`)
 ```
 
-In the code above, we pass the request country and the Electricity Maps API key into the `gridAwarePower` function. This function will return information about the energy grid we have requested data for, as well as a `gridAware` flag - a boolean value indicating whether grid-aware changes should be made to the website.
+In the code above, we pass the request country and the Electricity Maps API key into the `gridAwarePower` function. This function will return information about the energy grid we have requested data for, as well as a `gridAware` flag - a boolean value indicating whether grid-aware changes should be made to the website. You might have also noticed that we have specified a `mode` property which we passed into the function via an object. This `mode` property tells the `gridAwarePower` function that we want to use data from Electricity Maps that shows "low-carbon" energy (that is renewables + nuclear). You can learn more about the modes available, and other options, on the [Getting Starting page](/grid-aware-websites/getting-started/#using-the-gridawarepower-function).
 
 Again, we can test that everything works so far by running the `npx wrangler dev` command in our project. Now, when you go to [http://localhost:8787](http://localhost:8787), you should see the contents `gridData` object in the browser.
 
@@ -388,4 +388,201 @@ You'll then be prompted to select the Cloudflare account to add this to - it mus
 
 Now, you can run `npx wrangler deploy` in your terminal to deploy your Worker to production.
 
-TODO: Add an advanced section talking about caching Electricity Maps API data & caching page responses
+---
+
+## Advanced
+
+In this next section, we will cover some more advanced functionality which can be added to the Cloudflare Worker we've just created. That is:
+
+- How to store and use data from Electricity Maps API to avoid making multiple requests for the same data.
+- How to store and retrieve the modified version of the web page to avoid running HTMLRewriter each time.
+
+These are quality of life improvements to our code but while the are not critical, they may have performance and usage benefits especially for websites that received a lot of traffic. You can implement none, one, or both of these additional bits of functionality in your project. As such, each section below is written as individual components, so apologies in advance for any duplicated content.
+
+### Storing and reusing live grid data
+
+In the example below, we will update our Cloudflare Worker function to store the data response from the Electricity Maps API for one hour, and reuse that data for subsequent requests. To do this, we will use another Cloudflare product called [Workers KV](https://developers.cloudflare.com/kv/) - a low-latency key-value store. Workers KV has a generous free plan, however you [should be aware of the limitations](https://developers.cloudflare.com/kv/platform/limits/) when using it.
+
+We will use Workers KV to store the response from the Electricity Maps API in the following format - `key: zone ID, value: API data`. Then, the next time we have a request from a location with the same zone ID, we can use this stored data rather than making another outbound API request.
+
+To do this, we will use some helper functions that are part of the `greenweb/gaw-plugins-cloudflare-workers` library. These functions are - `saveDataToKv` and `fetchDataFromKv`.
+
+#### Storing data in Workers KV
+
+To setup saving grid data to Cloudflare Workers KV, you will need to create a KV namespace and bind it to your project. In your project, run the following command:
+
+```bash
+npx wrangler kv namespace create GAW_DATA_KV
+```
+
+If created successfully, you will receive instructions in your terminal for how to update your project's `wrangler.json` configuration file so that it binds to the new KV store you've just created.
+
+<aside class="alert alert-info text-base-content">
+<p><strong>Note:</strong> The KV store your create <i>must</i> be called <code>GAW_DATA_KV</code> otherwise the helper functions in the <code>greenweb/gaw-plugins-cloudflare-workers</code> plugin will not be able to work properly.</p>
+</aside>
+
+Now, we are ready to start modifying our Workers code to put data in the `GAW_DATA_KV` store. In the `src/index.js` of your project, change the import statements at the start of the file, and then make the code changes below:
+
+```diff
+- import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
++ import { getLocation, saveDataToKv, fetchDataFromKv } from '@greenweb/gaw-plugin-cloudflare-workers';
+```
+
+```diff
+  const gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
+    mode: 'low-carbon'
+  });
+
+  // If there's an error getting data, return the web page without any modifications
+  if (gridData.status === 'error') {
+    return new Response(response.body, {
+      ...response,
+      headers: {
+      ...response.headers,
+      },
+    });
+  }
+
++ // Save the gridData to the KV store. By default, data is cached for 1 hour.
++ await saveDataToKv(env, country, JSON.stringify(gridData))
+```
+
+Here, we import the two functions we'll need into our project. Then further down in our code, we use the `saveDataToKv` function to store the `gridData` JSON which we've got from the API. The key we use to store this is the `country` constant. By default, this data will be stored for one (1) hour before it expires. This duration can be shortened or extended by passing in an additional options parameter into the `saveDataToKv` function. Learn more about how to do that in the docs.
+
+<!-- TODO: Write those docs ...! -->
+
+#### Fetching data in Workers KV
+
+Now that we are storing data for one hour, we can start to use it in our Worker to avoid making repeated outbound API calls. To do this, make the following changes to your code:
+
+```diff
+- const gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
+-    mode: 'low-carbon'
+-  });
++ // First check if the there's data for the country saved to KV
++ let gridData = await fetchDataFromKv(env, country);
+
++ // If no cached data, fetch it using the `gridAwarePower` function
++ if (!gridData) {
++   gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
++     "mode": "low-carbon"  
++   });
++ }
+
+  // If there's an error getting data, return the web page without any modifications
+  if (gridData.status === 'error') {
+    return new Response(response.body, {
+      ...response,
+      headers: {
+      ...response.headers,
+      },
+    });
+  }
+
+  // Save the gridData to the KV store. By default, data is cached for 1 hour.
+  await saveDataToKv(env, country, JSON.stringify(gridData))
+```
+
+Here, we first check the `GAW_DATA_KV` to see if there's information stored for based on the value of the `country` parameter we pass it. If there is not, only then do we use the `gridAwarePower` function to make a request to the Electricity Maps API for data about that country's grid.
+
+### Storing and reusing modified page content
+
+In the example below, we will update our Cloudflare Worker function to store the modified page content, and reuse that as the response for subsequent requests where it is needed. To do this, we will use another Cloudflare product called [Workers KV](https://developers.cloudflare.com/kv/) - a low-latency key-value store. Workers KV has a generous free plan, however you [should be aware of the limitations](https://developers.cloudflare.com/kv/platform/limits/) when using it.
+
+We will use Workers KV to store the HTML content that is modified using HTMLRewriter in the following format - `key: page URL, value: modified HTML content`. Then, the next time we need to return a modified version for that page, we can use this stored data rather than rerunning the HTMLRewriter again.
+
+To do this, we will use some helper functions that are part of the `greenweb/gaw-plugins-cloudflare-workers` library. These functions are - `savePageToKv` and `fetchPageFromKv`.
+
+#### Storing modified pages in Workers KV
+
+To setup saving modified page content to Cloudflare Workers KV, you will need to create a KV namespace and bind it to your project. In your project, run the following command:
+
+```bash
+npx wrangler kv namespace create GAW_PAGE_KV
+```
+
+If created successfully, you will receive instructions in your terminal for how to update your project's `wrangler.json` configuration file so that it binds to the new KV store you've just created.
+
+<aside class="alert alert-info text-base-content">
+<p><strong>Note:</strong> The KV store your create <i>must</i> be called <code>GAW_PAGE_KV</code> otherwise the helper functions in the <code>greenweb/gaw-plugins-cloudflare-workers</code> plugin will not be able to work properly.</p>
+</aside>
+
+Now, we are ready to start modifying our Workers code to put data in the `GAW_PAGE_KV` store. In the `src/index.js` of your project, change the import statements at the start of the file, and then make the code changes below:
+
+```diff
+- import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
++ import { getLocation, savePageToKv, fetchPageFromKv } from '@greenweb/gaw-plugin-cloudflare-workers';
+```
+
+```diff
+  if (gridData.gridAware) {
+    const modifyHTML = new HTMLRewriter().on('iframe', {
+      element(element) {
+        element.remove();
+      },
+    })
+
+    // Transform the response using the HTMLRewriter API, and set appropriate headers.
+    let modifiedResponse = new Response(modifyHTML.transform(response).body, {
+      ...response,
+      headers: {
+      ...response.headers,
+      'Content-Type': 'text/html;charset=UTF-8'
+      },
+    });
+
++   // Store the modified response in the KV. By default, data is cached for 24 hours.
++   await savePageToKv(env, request.url, modifiedResponse.clone());
+
+    return modifiedResponse
+  }
+```
+
+Here, we import the two functions we'll need into our project. Then further down in our code, we use the `savePageToKv` function to store a clone of the modified response. The key we use to store this is the `request.url` value. By default, this data will be stored for 24 hours before it expires. This duration can be shortened or extended by passing in an additional options parameter into the `savePageToKv` function. Learn more about how to do that in the docs.
+
+<!-- TODO: Write those docs ...! -->
+
+#### Fetching and returning a modified page from KV
+
+Now that we are storing a modified version of the page for 24 hours, we can start to return it the next time we need to make grid-aware changes. This avoids us having to repeatedly run the HTMLRewriter API to return the same content. To do this, make the following changes to your code:
+
+```diff
+  if (gridData.gridAware) {
+
++   // Check if the response is already stored in KV
++   const cachedResponse = await fetchPageFromKv(env, request.url);
++
++   // If there's a cached response, return that
++   if (cachedResponse) {
++     return new Response(cachedResponse, {
++       ...response,
++       headers: {
++         ...response.headers,
++         'Content-Type': 'text/html;charset=UTF-8',
++       }
++     });
++   }
+
+    const modifyHTML = new HTMLRewriter().on('iframe', {
+      element(element) {
+        element.remove();
+      },
+    })
+
+    // Transform the response using the HTMLRewriter API, and set appropriate headers.
+    let modifiedResponse = new Response(modifyHTML.transform(response).body, {
+      ...response,
+      headers: {
+      ...response.headers,
+      'Content-Type': 'text/html;charset=UTF-8'
+      },
+    });
+
+    // Store the modified response in the KV. By default, data is cached for 24 hours.
+    await savePageToKv(env, request.url, modifiedResponse.clone());
+
+    return modifiedResponse
+  }
+```
+
+Here, we first check the `GAW_PAGE_KV` to see if there's a modified version of the page stored based on the value of the `request.url` parameter we pass it. If there is, we return the content from the KV. If there is not, only then do we use the HTMLRewriter API modify the page before returning it.
