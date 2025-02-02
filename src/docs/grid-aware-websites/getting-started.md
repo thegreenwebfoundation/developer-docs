@@ -112,6 +112,31 @@ Save the `index.js` file and run the file using the `node index.js` command in y
 
 You will notice the `gridAware` property that is returned in the response. When using this library to determine if grid-aware changes should be applied to a website, you would check against this property (`true` for apply changes, `false` for don't apply changes).
 
+#### `gridAwarePower` - Options
+
+In the example above, we have used the `gridAwarePower` function with the default configuration. However, we can change the type of data that is used as well as specify the minimum percentage for our chosen fuel mix before grid-awareness is triggered (i.e. `gridAware` is set to `true`).
+
+We can do this by passing in a third parameter into the `gridAwarePower` function, which is an optional object containing:
+
+- **mode** `string` <div class="badge gap-2 align-middle my-0">Optional</div>: The energy data we want to use - either "renewable" or "low-carbon". Default: "renewable".
+- **minimumPercentage** `number` <div class="badge gap-2 align-middle my-0">Optional</div>: The minimum percentage of the chosen fuel mix before grid-awareness should be triggered. Default: 50.
+
+You can see how this can be implemented in the example snippet below.
+
+```js
+const zone = "TW"; // Set Taiwan (TW) as the zone we want to check for.
+const apiKey = "you_api_key"; // Set your own Electricity Maps API key here.
+
+
+const options = {
+  mode: 'low-carbon',
+  minimumPercentage: 75 // The minimum percentage of the chosen fuel mix before grid-awareness should be triggered. Default: 50
+}
+
+// Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
+const gridData = await gridAwarePower(zone, apiKey, options);
+```
+
 ### Using the `gridAwareCO2e` function
 
 The `gridAwareCO2e` function allows developers to choose to use the current grid intensity of a regional grid to determine if grid-aware changes should be applied. It allows for developers to specific if they would like to set their own grid intensity limit, or compare the current grid intensity to the annual average for the region being checked. The default mode is average-based comparison.
@@ -153,6 +178,45 @@ Save the `index.js` file and run the file using the `node index.js` command in y
 ```
 
 Again, in this example we would use the value of the `gridAware` property to determine if grid-aware changes should be made to a website.
+
+#### `gridAwareCO2e` - Options
+
+In the example above, we have used the `gridAwareCO2e` function with the default configuration. However, we can change the how grid awareness is determined within the function as well as specify a minimum value for carbon intensity for for the same purpose (i.e. `gridAware` is set to `true`).
+
+We can do this by passing in a third parameter into the `gridAwareCO2e` function, which is an optional object containing:
+
+- **mode** `string` <div class="badge gap-2 align-middle my-0">Optional</div>: The type of comparison used to determine grid-awareness - either "average" or "limit". Default: "average".
+- **minimumIntensity** `number` <div class="badge gap-2 align-middle my-0">Optional</div>: Only used if `mode === "limit"`. The minimum grid intensity value (grams CO2e/kWh) before grid-awareness is triggered. Default: 400.
+
+You can see how this can be implemented in the example snippet below.
+
+```js
+const zone = "TW"; // Set Taiwan (TW) as the zone we want to check for.
+const apiKey = "you_api_key"; // Set your own Electricity Maps API key here.
+
+
+const options = {
+  mode: 'limit',
+  minimumIntensity: 250
+}
+
+// Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
+const gridData = await gridAwarePower(zone, apiKey, options);
+```
+
+#### Understanding the difference between `"average"` and `"limit"` modes
+
+When using the `gridAwareCO2e` function, the default mode is set to `average`. In this case, the function will:
+
+1. Get the current grid intensity for the provided zone.
+2. Compare the current grid intensity to the average grid intensity for that zone (if available). This comparison is done by using the average annual grid intensity data from the [CO2.js library](/co2js/data).
+3. If the current grid intensity is **greater than** the average, it will return `gridAware: true`. Otherwise, it will return `gridAware: false`.
+
+Alternately, when the mode is set to `limit`, the function will:
+
+1. Get the current grid intensity for the provided zone.
+2. Compare that value to the limit set by the developer.
+3. If the current grid intensity is **greater than** the set limit, it will return `gridAware: true`. Otherwise, it will return `gridAware: false`.
 
 <!-- ## Using this on a real website
 
