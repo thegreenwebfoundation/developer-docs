@@ -6,7 +6,7 @@ eleventyNavigation:
   title: "Cloudflare Workers"
   #     parent: overview
   sectionTitle: Plugins
-  order: 4
+  order: 20
 ---
 
 # Grid-aware Websites - Cloudflare Workers Plugin

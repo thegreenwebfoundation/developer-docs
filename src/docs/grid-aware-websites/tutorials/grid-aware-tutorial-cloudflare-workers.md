@@ -6,7 +6,7 @@ eleventyNavigation:
   title: "Add Grid-aware Websites to an existing site with Cloudflare Workers"
   #     parent: overview
   sectionTitle: Tutorials
-  order: 13
+  order: 10
 ---
 
 # {{ title }}
