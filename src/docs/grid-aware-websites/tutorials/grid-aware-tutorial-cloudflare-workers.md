@@ -387,3 +387,5 @@ npx wrangler secret put EMAPS_API_KEY
 You'll then be prompted to select the Cloudflare account to add this to - it must be the same account as the domain or zone you are doing to deploy this Worker too eventually. You'll then be asked to add your API key value. Do that, and press enter. If you're deploying the Worker code for the first time, you will also be asked if you want to create a new Worker to assign this secret to. Select `Yes (Y)`. With that done, you should soon see a message confirming that the secret was successfully added.
 
 Now, you can run `npx wrangler deploy` in your terminal to deploy your Worker to production.
+
+TODO: Add an advanced section talking about caching Electricity Maps API data & caching page responses
