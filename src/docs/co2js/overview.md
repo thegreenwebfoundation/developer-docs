@@ -54,7 +54,7 @@ The data from CO2.js can also be used as part of internal monitoring tools and d
 The above a just a few examples of the many and varied ways CO2.js can be applied to provide carbon estimates for data transfer. If you’re using CO2.js in production we’d love to hear how! [Contact us](https://www.thegreenwebfoundation.org/support-form/) via our website.
 
 <ul class="list-disc px-0 prose-lg flex gap-6 flex-wrap">
-{%- for post in caseStudies -%}
+{%- for post in caseStudies.co2js -%}
             <li class="card w-full md:w-96 bg-base-100 shadow-xl not-prose">
             <figure class="not-prose"><img src="{% postFeatureImage post.featured_media %}" alt="" class=" not-prose" loading="lazy"/></figure>
              <div class="card-body not-prose">
