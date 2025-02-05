@@ -1,6 +1,6 @@
 ---
 title: "Getting started: Impact Framework"
-description: "In this tutorial, you will install and use CO2.js within the [Impact Framework](https://if.greensoftware.foundation/). You learn how to estimate the carbon emssions of loading a webapge of your choosing."
+description: "In this tutorial, you will install and use CO2.js within the Green Software Foundation's Impact Framework to estimate the carbon emissions of loading a webpage."
 eleventyNavigation:
   key: getting-started-if
   title: "Getting started: Impact Framework"
@@ -15,34 +15,36 @@ eleventyNavigation:
 
 At its core, CO2.js takes an input of bytes and returns in carbon estimate in grams. In doing so, it provides a way for developers to estimate the carbon cost of data transfer.
 
-In this tutorial, you will use CO2.js within the [Impact Framework](https://if.greensoftware.foundation/) (IF) to estimate carbon footprint of loading a webpage of your choosing.
+In this tutorial, you will use CO2.js within the [Impact Framework (IF)](https://if.greensoftware.foundation/) to estimate carbon footprint of loading a webpage.
 
 ## Learning goals
 
-- Understand the basics of the impact framework
-- How to install the impact framework
-- How to use CO2.js within the impact framework
-- Estimate carbon emissions of a webpage of your choosing
+You will learn:
 
-## Impact Framework Basics
+- The fundamentals of the Impact Framework
+- How to install the Impact Framework
+- How to use CO2.js within the Impact Framework
+- How to estimate carbon emissions of a webpage of your choosing
 
-IF is an open source project driven by the [Green Software Foundation](https://greensoftware.foundation/). It aims to make environmental impacts of software simpler and more transparent to measure and share. IF works on a command line tool with a plugin ecosystem. These plugins are what make IF powerful. They provide the functionality for measuring impacts of various types of software and can be written by everyone. There is also a [plugin which makes CO2.js usable](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/co2js) within IF.
+## Impact Framework Fundamentals
+
+IF is an open source project driven by the [Green Software Foundation](https://greensoftware.foundation/). It aims to make the environmental impacts of software simpler and more transparent to measure and share. IF works on a command line tool with a plugin ecosystem. These plugins are what makes IF powerful. They provide the functionality for measuring impacts of various software types, and can be written by everyone. There is also a [plugin which makes CO2.js usable](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/co2js) within IF.
 
 IF plugins are like functions that take a set of input parameters and return a set of output parameters. Plugins can be chained, such that the outputs of one plugin is passed into a subsequent plugin as an input. Such a chain of plugins is called a pipeline. A pipeline is defined in a manifest file, which we will see below.
 
-A manifest file can be run with the IF cli tool if all the necessary plugins are preinstalled.
+A manifest file can be run with the IF command line (CLI) tool, if all the necessary plugins are preinstalled.
 
-### CO2.js plugin
+### The CO2.js IF plugin
 
-The CO2.js plugin can be used to estimate carbon emissions for a given number of transferred bytes. The plugin offers access to both the Sustainable Web Design (`SWD`) and the OneByte (`1byte`) models. If used with the `SWD` model, it calls the `perVisit` method to estimate the carbon emissions of the bytes transferred. If additional options are passed, the `perVisitTrace` method is called instead. With the `1byte` model the `perByte` method is used.
+The [CO2.js IF plugin](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/co2js/) can be used to estimate carbon emissions for a given number of transferred bytes. The plugin offers access to both the Sustainable Web Design (`SWD`) and the OneByte (`1byte`) models. If used with the `SWD` model, it calls the `perVisit` method to estimate the carbon emissions of the bytes transferred. If additional options are passed, the `perVisitTrace` method is called instead. With the `1byte` model the `perByte` method is used.
 
-You can check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about both models, and [_Methods_ page](/co2js/methods) for more information on the used methods. For additional information and usage instructions of the plugin, please refer to its [readme](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/co2js/README.md).
+You can check out the [_Methodologies for calculating website carbon_ page](/co2js/explainer/methodologies-for-calculating-website-carbon) to learn more about both models, and [_Methods_ page](/co2js/methods) for more information on the used methods. For additional information and usage instructions of the plugin, please refer to its [readme on GitHub](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/co2js/README.md).
 
 ### Green hosting plugin
 
-The green hosting plugin offers access to CO2.js's hosting check function. It takes a domain and checks whether it is hosted green or not. More details can be found in the plugin's [readme](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/green-hosting/README.md).
+The [green hosting plugin](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/green-hosting/) offers access to CO2.js's hosting check function. It takes a domain and checks whether it is hosted green or not. More details can be found in the plugin's [readme on GitHub](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/green-hosting/README.md).
 
-Next, we will install the impact framework and then use it to run a pipeline for estimating the carbon impact of loading a webpage of your choosing.
+Now that we've established an understanding of Impact Framework and the plugins we'll be using, we will install the Impact Framework and then use it to run a pipeline for estimating the carbon impact of loading a webpage of your choosing.
 
 ## Prerequisites
 
@@ -53,7 +55,7 @@ You will need to have the following setup on your machine:
 
 ## Setting up
 
-First, we install the impact framework (IF) globally on our system using NPM. To install the cli tool, run
+First, we install the Impact Framework (IF) globally on our system using NPM. To install the cli tool, run
 
 ```bash
 npm install -g @grnsft/if
@@ -62,12 +64,14 @@ npm install -g @grnsft/if
 To install the plugins necessary for this tutorial, run
 
 ```bash
-npm install -g @tngtech/if-webpage-impact
+npm install -g @tngtech/if-webpage-plugins
 ```
 
 This installs the CO2.js plugin, the Webpage Impact plugin and the Green Hosting plugin to measure the data we need.
 
-Please note: To make this tutorial easily accessible we included documentation on the installation process of the IF and plugins here. Since the IF is still an evolving project this may be subject to change and the above commands may get outdated. If you experience difficulties, please check the [original documentation by the IF team](https://if.greensoftware.foundation/users/quick-start) on how to install IF.
+<aside class="alert bg-base-200 text-base-content">
+<p><strong>Please note:</strong> To make this tutorial easily accessible we included documentation on the installation process of the IF and plugins here. Since the IF is still an evolving project this may be subject to change and the above commands may get outdated. If you experience difficulties, please check the <a href="https://if.greensoftware.foundation/users/quick-start">original documentation by the IF team</a> on how to install IF.</p>
+</aside>
 
 ## Manifest file
 
@@ -79,15 +83,15 @@ Let us first look at the pipeline part of the manifest together with its inputs 
 - The Green Hosting plugin ([plugin readme](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/green-hosting/README.md))
 - The CO2.js plugin ([plugin readme](https://github.com/TNG/if-webpage-plugins/blob/main/src/lib/co2js/README.md))
 
-The Webpage Impact plugin essentially takes in a url and measures how many bytes need to be transferred to load the webpage in a browser. It comes with a couple of config options that are described in detail [here](https://github.com/TNG/if-webpage-plugins/tree/main/src/lib/webpage-impact).
+The Webpage Impact plugin essentially takes in a url and measures how many bytes need to be transferred to load the webpage in a browser. It comes with a couple of config options that are described in detail [in the GitHub repository](https://github.com/TNG/if-webpage-plugins/tree/main/src/lib/webpage-impact).
 
 The plugins are executed in the order defined in the pipeline. The inputs are passed to the first plugin which potentially modifies them or adds additional parameters. The set of updated inputs is then returned. IF takes care of passing them on to the next plugin. This repeats until the last plugin of the pipeline is executed and produces the final output.
 
 ### Our pipeline
 
-Our pipeline does the following:
+The pipeline we want to build should do the following:
 
-1. The Webpage Impact plugin is executed first. It gets the inputs defined below, returns them and adds the number of bytes that were transferred to load the webpage (plus some additional parameters)
+1. The Webpage Impact plugin is executed first. It takes a URL as an inputs, and returns it along with the number of bytes that were transferred to load the webpage (plus some additional parameters)
 2. These outputs are passed to the Green Hosting plugin, which returns them and adds the result of the green hosting check.
 3. Finally, all values are passed to the CO2.js plugin, which estimates the carbon emissions based on the model specified.
 
@@ -106,7 +110,7 @@ The first two plugins make observations (gather data). The CO2.js plugin compute
 
 ## Measuring the carbon footprint of a webpage
 
-Using this pipeline inside of a IF manifest file will allow us to set up an IF run which loads a web page, scrolls to the bottom, checks for green hosting, and then estimates the carbon emissions of that test using the Sustainable Web Design Model.
+Using this pipeline inside of an IF manifest file will allow us to set up an IF run which loads a web page, scrolls to the bottom, checks for green hosting, and then estimates the carbon emissions of that test using the Sustainable Web Design Model.
 
 First, let's create a folder in which we'll keep our manifest file as well as the output for this project.
 
@@ -117,11 +121,13 @@ cd if-measure-webpage-tutorial
 
 Inside of this folder, create a YAML file which will contain our IF manifest. You can name this whatever you want, but for this tutorial we'll call it `manifest.yml`.
 
-The manifest file we'll create includes additional information on top of the pipeline we specified earlier. The `plugins` section specifies the plugins that are used in the pipeline. The `tree` section contains the information about our pipeline. It can potentially include multiple children and thus multiple pipelines, but we do not need this for our use case.
+The manifest file we'll create will need to include additional information on top of the pipeline we specified earlier.
+
+The `plugins` section specifies the plugins that are used in the pipeline. The `tree` section contains the information about our pipeline. It can potentially include multiple children and thus multiple pipelines, but we do not need this for our use case.
 
 Plugins can have config options. Please note, that we use them to tell the CO2.js plugin to use the `SWD` model in version 4. The Webpage Impact plugin is told to load the url `www.thegreenwebfoundation.org` and scroll the page to the bottom, such that all lazy loaded contents are also loaded and included in the measurement.
 
-The pipeline gets inputs, potentially multiple. We only need one input, that consists of multiple values, the options for the `SWD` model that the CO2.js plugin needs as inputs. We tell the model to assume that 10% of visitors are returning visitors, while 90% are visiting just once.
+The pipeline can take inputs, potentially multiple. We only need one input, that consists of multiple values - that is the options for the `SWD` model that the CO2.js plugin needs as inputs. We tell the model to assume that 10% of visitors are returning visitors, while 90% are visiting just once.
 
 Our final `manifest.yml` file looks like this:
 
@@ -163,7 +169,9 @@ tree:
             returnVisitPercentage: 0.1
 ```
 
-Please note: this manifest was tested with version 1.0.0 of IF. Future versions may introduce changes, that require updates to the manifest.
+<aside class="alert bg-base-200 text-base-content">
+<p><strong>Please note:</strong> this manifest was tested with version 1.0.0 of IF. Future versions may introduce changes, that require updates to the manifest.</p>
+</aside>
 
 Now, you can run it by executing the following command from inside the `if-measure-webpage-tutorial` folder we created earlier.
 
