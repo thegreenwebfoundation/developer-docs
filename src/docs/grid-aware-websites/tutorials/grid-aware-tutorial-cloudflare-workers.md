@@ -372,7 +372,12 @@ export default {
 
 Now, when you run `npx wrangler dev` and visit [http://localhost:8787](http://localhost:8787), you should see the web page showing the domain you configured at the start of this tutorial. You can then use the address bar to navigate to the path on which you configured the Worker code to execute. For us, that is `http://localhost:8787/tools/grid-aware-websites/`.
 
-<!-- TODO: Missing something here about how to actually test if the changes worked. -->
+In order to test that the changes you have made are working, you'll need some way to test your Worker from different locations around the World. At the time of writing, there is no way to change the geolocation of a request within the Wrangler API. You can, instead, resort to one or more of the following workarounds:
+
+1. Use a VPN service to test a few locations
+2. Manually set a fixed value for the `country` variable, and adjust that to test different locations
+3. Share your code with a colleague in another location and have them test it
+4. Test in production. YOLO. (this suggestion is made in jest, we do not recommend it.)
 
 ## Deploying to production
 
