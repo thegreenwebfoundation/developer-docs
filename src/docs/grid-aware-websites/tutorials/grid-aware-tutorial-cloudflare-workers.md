@@ -372,7 +372,7 @@ export default {
 
 Now, when you run `npx wrangler dev` and visit [http://localhost:8787](http://localhost:8787), you should see the web page showing the domain you configured at the start of this tutorial. You can then use the address bar to navigate to the path on which you configured the Worker code to execute. For us, that is `http://localhost:8787/tools/grid-aware-websites/`.
 
-TODO: Missing something here about how to actually test if the changes worked.
+<!-- TODO: Missing something here about how to actually test if the changes worked. -->
 
 ## Deploying to production
 
@@ -447,9 +447,7 @@ Now, we are ready to start modifying our Workers code to put data in the `GAW_DA
 + await saveDataToKv(env, country, JSON.stringify(gridData))
 ```
 
-Here, we import the two functions we'll need into our project. Then further down in our code, we use the `saveDataToKv` function to store the `gridData` JSON which we've got from the API. The key we use to store this is the `country` constant. By default, this data will be stored for one (1) hour before it expires. This duration can be shortened or extended by passing in an additional options parameter into the `saveDataToKv` function. Learn more about how to do that in the docs.
-
-<!-- TODO: Write those docs ...! -->
+Here, we import the two functions we'll need into our project. Then further down in our code, we use the `saveDataToKv` function to store the `gridData` JSON which we've got from the API. The key we use to store this is the `country` constant. By default, this data will be stored for one (1) hour before it expires. This duration can be shortened or extended by passing in an additional options parameter into the `saveDataToKv` function. [Learn more about how to do that in the plugin docs](/grid-aware-websites/plugins/cloudflare-workers/#store-grid-data).
 
 #### Fetching data in Workers KV
 
@@ -538,9 +536,7 @@ Now, we are ready to start modifying our Workers code to put data in the `GAW_PA
   }
 ```
 
-Here, we import the two functions we'll need into our project. Then further down in our code, we use the `savePageToKv` function to store a clone of the modified response. The key we use to store this is the `request.url` value. By default, this data will be stored for 24 hours before it expires. This duration can be shortened or extended by passing in an additional options parameter into the `savePageToKv` function. Learn more about how to do that in the docs.
-
-<!-- TODO: Write those docs ...! -->
+Here, we import the two functions we'll need into our project. Then further down in our code, we use the `savePageToKv` function to store a clone of the modified response. The key we use to store this is the `request.url` value. By default, this data will be stored for 24 hours before it expires. This duration can be shortened or extended by passing in an additional options parameter into the `savePageToKv` function. [Learn more about how to do that in the plugin docs](/grid-aware-websites/plugins/cloudflare-workers/#store-modified-pages-in-workers-kv).
 
 #### Fetching and returning a modified page from KV
 
