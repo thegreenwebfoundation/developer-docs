@@ -53,7 +53,7 @@ cd grid-aware-worker
 
 Your project will have a folder structure like this:
 
-```
+```text
 grid-aware-worker/
 ├── src/
 │   └── index.js          
