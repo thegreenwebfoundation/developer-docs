@@ -13,7 +13,7 @@ eleventyNavigation:
 
 ## Overview
 
-Using Grid-aware Websites with Cloudflare Workers allows you to add grid awareness to an existing website that is hosted on or proxied through Cloudflare's network.
+Using Grid-aware Websites with Cloudflare Workers allows you to add grid awareness to an existing website that is hosted on, or proxied through, Cloudflare's network.
 
 In this tutorial, you will learn how to:
 
@@ -33,7 +33,9 @@ You should have:
 
 You should also be aware of the limits and pricing of Cloudflare Workers, available on the [Cloudflare website](https://developers.cloudflare.com/workers/platform/).
 
-For the purposes of this tutorial, we will demonstrate deploying a Cloudflare Worker to run on our own Green Web Foundation domain (`greenwebfoundation.org`). When following along with this tutorial, you should use your own domain.
+<aside class="alert alert-info text-base-content">
+<p>For the purposes of this tutorial, we will demonstrate deploying a Cloudflare Worker to run on our own Green Web Foundation domain (`thegreenwebfoundation.org`). <strong>When following along with this tutorial, you should use your own domain</strong>.</p>
+</aside>
 
 ## Creating a new Cloudflare Workers project
 
@@ -69,7 +71,7 @@ The `src/index.js` file contains the Worker code that we will modify to add grid
 
 ### Setting routes
 
-Before we start writing code, we'll first configure our worker to run on the route we want it to apply to. We want to apply this Worker to the `/tools/grid-aware-websites/` path on the `greenwebfoundation.org` domain. To do that, we include the following configuration inside of the `wrangler.json` file. You should replace the pattern, and zone_name with your own desired route.
+Before we start writing code, we'll first configure our worker to run on the route we want it to apply to. We want to apply this Worker to the `/tools/grid-aware-websites/` path on the `thegreenwebfoundation.org` domain. To do that, we include the following configuration inside of the `wrangler.json` file. You should replace the `pattern`, and `zone_name` with your own desired route.
 
 ```json
 "routes": [
@@ -84,7 +86,7 @@ For more information about routes, and how to configure them for Cloudflare Work
 
 ### Adding the Electricity Maps API for development
 
-Later in the project, we'll use the Electricity Maps API to get information about the power breakdown of a country's energy grid. For this, you'll need an Electricity Maps API key added to your project. We'll first set this up for our development environment, and later in this tutorial we'll set it up for production. To do this securely, we'll create a `.dev.vars` file in the root directory of our project. Inside that file you can add your Electricity Maps API key as a variable- here, we've named the variable `EMAPS_API_KEY`.
+Later in the project, we'll use the Electricity Maps API to get information about the power breakdown of a country's energy grid. For this, you'll need an Electricity Maps API key added to your project. We'll first set this up for our development environment, and later in this tutorial we'll set it up for production. To do this securely, we'll create a `.dev.vars` file in the root directory of our project. Inside that file you can add your Electricity Maps API key as a variable - here we've named the variable `EMAPS_API_KEY`.
 
 ```txt
 EMAPS_API_KEY="<your_api_key>"
@@ -108,8 +110,8 @@ Now that we have the main dependencies for this project installed, we can write 
 1. Get the location (country) of a website request
 2. Run grid-awareness checks of that country's energy grid
 3. Based on the result of that check:
-  3.1 Return the website as usual
-  3.2 Modify the website before returning it to the user
+    1. Return the website as usual
+    1. Modify the website before returning it to the user
 
 ### Importing our dependencies
 
@@ -146,7 +148,7 @@ We'll now add some code into that `fetch` function to:
 - Get the country of the visitor making the request
 - Return that data in a response
 
-Your Workers fetch function should look like this:
+Your Workers `fetch` function should look like this:
 
 ```js
 export default {
@@ -184,13 +186,13 @@ Let's step through this code.
 
 **Fetch the requested URL and check if it is a HTML page**
 
-We start by fetching the requested URL and checking its mime-type. We do this because, for this tutorial, we are only worried about modifying the content of the web page the user has requested. We _could_ apply this Cloudflare Worker to an API response instead - in which case we would check if the content type is `application/json`.
+We start by fetching the requested URL and checking its mime-type. We do this because, for this tutorial, we are only worried about modifying the content of the web page the user has requested. We _could_ apply this Cloudflare Worker to an API response instead, in which case we might check if the content type is `application/json`.
 
 We do these steps first because if the response is not a HTML page, then we want to return it back to the browser as soon as possible without running any other code.
 
 **Get the request's country**
 
-We then use the `gaw-plugin-cloudflare-workers` to fetch the location from the Cloudflare `request` object that we have access to via the `fetch` function.
+We then use the `gaw-plugin-cloudflare-workers` to get the location from the Cloudflare `request` object that we have access to via the `fetch` function.
 
 ### Testing the code
 
@@ -202,7 +204,7 @@ npx wrangler dev
 
 This command will download and run Cloudflare's Wrangler tool from NPM. If you have never used Wrangler before, it will open your web browser so you can login to your Cloudflare account.
 
-Go to [http://localhost:8787](http://localhost:8787) to view your Worker. If everything works, you should see the `Request from country code ...` output in the browser.
+Go to [http://localhost:8787](http://localhost:8787) to view your Worker. If everything works, you should see the `Request from country code <SOME_COUNTRY_CODE>` output in the browser.
 
 ### Checking if grid-awareness should be applied
 
@@ -247,7 +249,7 @@ In this case, we will want to make some changes to our web page to make it less 
 
 If you're not familiar with the HTMLRewriter, you should check out the docs linked to above. In our Cloudflare Worker, we will write some code to remove an `iframe` that we have on the `/tools/grid-aware-websites` page of our website at the time of writing.
 
-Remove the `Grid data:` response at the end of the Worker.
+Remove the `Grid data` response at the end of the Worker.
 
 ```diff
 - return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`)
