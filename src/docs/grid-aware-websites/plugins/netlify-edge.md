@@ -6,7 +6,7 @@ eleventyNavigation:
   title: "Netlify Edge Functions"
   #     parent: overview
   sectionTitle: Plugins
-  order: 4
+  order: 21
 ---
 
 # Grid-aware Websites - Netlify Edge Plugin
