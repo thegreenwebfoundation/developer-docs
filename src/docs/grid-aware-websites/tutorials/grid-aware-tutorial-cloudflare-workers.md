@@ -118,7 +118,7 @@ Now that we have the main dependencies for this project installed, we can write 
 At the top of the `src/index.js` file, we will first import the Grid-aware Websites library and Cloudflare Workers plugin.
 
 ```js
-import { gridAwarePower } from '@greenweb/grid-aware-websites';
+import { PowerBreakdown } from '@greenweb/grid-aware-websites';
 import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
 
 const powerBreakdown = new PowerBreakdown({
@@ -447,9 +447,7 @@ Now, we are ready to start modifying our Workers code to put data in the `GAW_DA
 ```
 
 ```diff
-  const gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
-    mode: 'low-carbon'
-  });
+  const gridData = await powerBreakdown.check(country);
 
   // If there's an error getting data, return the web page without any modifications
   if (gridData.status === 'error') {
@@ -476,7 +474,7 @@ Now that we are storing data for one hour, we can start to use it in our Worker 
 + // First check if the there's data for the country saved to KV
 + let gridData = await fetchDataFromKv(env, country);
 
-+ // If no cached data, fetch it using the `gridAwarePower` function
++ // If no cached data, fetch it from the API
 + if (!gridData) {
 +   gridData = await powerBreakdown.check(country);
 + }
