@@ -179,7 +179,7 @@ Now, you can run it by executing the following command from inside the `if-measu
 if-run --manifest ./manifest.yml --output ./output.yml
 ```
 
-This will create an output file in the root of the current folder. You can change this to a different file path if you wish. Open the `output.yml` file and check the values reported in the `outputs` section. The field `carbon-operational` holds the estimated carbon impact of loading the specified webpage in grams.
+This will create an output file in the root of the current folder. You can change this to a different file path if you wish. Open the `output.yml` file and check the values reported in the `outputs` section. The field `estimated-carbon` holds the estimated carbon impact of loading the specified webpage in grams.
 
 Your `inputs` and `outputs` should look similar to the example below.
 
@@ -218,9 +218,9 @@ outputs:
       Other: 2040
       XHR: 821
     green-web-host: true
-    carbon-operational: 0.055 # final result: estimated co2 emissions in grams
+    estimated-carbon: 0.055 # final result: estimated co2 emissions in grams
 ```
 
 We see that, that the two observational plugins added new input values, like `network/data/bytes` from the Webpage Impact plugin and `green-web-host` from the Green Hosting plugin. A timestamp was also added.
 
-These inputs are then passed to the CO2.js plugin, which computes the final result `carbon-operational`, which is in grams of CO2e emissions.
+These inputs are then passed to the CO2.js plugin, which computes the final result `estimated-carbon`, which is in grams of CO2e emissions.
