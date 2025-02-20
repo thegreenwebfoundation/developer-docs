@@ -81,10 +81,12 @@ In the code example below, we set the zone we want to get data for (Taiwan - `"T
 import { PowerBreakdown } from "@greenweb/grid-aware-websites";
 
 const zone = "DE"; // The zone ID string or lat-lon object of the region you'd like to get grid intensity data for
-const apiKey = "you_api_key";
 
-const powerBreakdown = new PowerBreakdown();
-const gridData = await powerBreakdown.check(zone, apiKey);
+const powerBreakdown = new PowerBreakdown({
+  apiKey:  "you_api_key";
+});
+
+const gridData = await powerBreakdown.check(zone);
 
 // If we get an error, we can check for that and return nothing.
 if (gridData.status === "error") {
@@ -119,12 +121,15 @@ In the example above, we have used the `PowerBreakdown` function with the defaul
 - **mode** `string` <div class="badge gap-2 align-middle my-0">Optional</div>: The energy data we want to use - either "renewable" or "low-carbon". Default: "renewable".
 - **minimumPercentage** `number` <div class="badge gap-2 align-middle my-0">Optional</div>: The minimum percentage of the chosen fuel mix before grid-awareness should be triggered. Default: 50.
 
+You must also set the `apiKey` property to your Electricity Maps API Key.
+
 You can set options when creating a new instance of `PowerBreakdown`, or by using the `.setOptions` function that it exposes. You can see how this can be implemented in the example snippet below.
 
 ```js
 const options = {
   mode: 'low-carbon',
   minimumPercentage: 75 // The minimum percentage of the chosen fuel mix before grid-awareness should be triggered.
+  apiKey:  "you_api_key";
 }
 
 // Create a new instance of PowerBreakdown using the options above
@@ -149,10 +154,14 @@ const zone = "TW"; // Set Taiwan (TW) as the zone we want to check for.
 const apiKey = "you_api_key"; // Set your own Electricity Maps API key here.
 
 // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
-- const powerBreakdown = new PowerBreakdown();
-- const gridData = await powerBreakdown.check(zone, apiKey);
-+ const gridIntensity = new GridIntensity();
-+ const gridData = await gridIntensity.check(zone, apiKey);
+- const powerBreakdown = new PowerBreakdown({
+-   apiKey:  "you_api_key"; 
+- });
+- const gridData = await powerBreakdown.check(zone);
++ const gridIntensity = new GridIntensity({
++   apiKey:  "you_api_key";
++ });
++ const gridData = await gridIntensity.check(zone);
 
 // If we get an error, we can check for that and return nothing.
 if (gridData.status === "error") {
@@ -187,12 +196,15 @@ In the example above, we have used the `GridIntensity` function with the default
 - **mode** `string` <div class="badge gap-2 align-middle my-0">Optional</div>: The type of comparison used to determine grid-awareness - either "average" or "limit". Default: "average".
 - **minimumIntensity** `number` <div class="badge gap-2 align-middle my-0">Optional</div>: Only used if `mode === "limit"`. The minimum grid intensity value (grams CO2e/kWh) before grid-awareness is triggered. Default: 400.
 
+You must also set the `apiKey` property to your Electricity Maps API Key.
+
 You can set options when creating a new instance of `GridIntensity`, or by using the `.setOptions` function that it exposes. You can see how this can be implemented in the example snippet below.
 
 ```js
 const options = {
   mode: 'limit',
   minimumIntensity: 250
+  apiKey:  "you_api_key";
 }
 
 // Create a new instance of GridIntensity using the options above

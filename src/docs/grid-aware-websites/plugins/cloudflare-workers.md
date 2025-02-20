@@ -62,8 +62,9 @@ The code below shows a simple implementation of this plugin alongside the Grid-a
 import { PowerBreakdown } from "@greenweb/grid-aware-websites";
 import { getLocation } from "@greenweb/gaw-plugin-cloudflare-workers";
 
-const apiKey = "you_api_key"; // Set your own Electricity Maps API key here.
-const powerBreakdown = new PowerBreakdown();
+const powerBreakdown = new PowerBreakdown({
+  apiKey:  "you_api_key";
+});
 
 export default {
   async fetch(request, env, ctx) {
@@ -81,7 +82,7 @@ export default {
     const { country } = location;
     
     // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
-    const gridData = await powerBreakdown.check(country, apiKey);
+    const gridData = await powerBreakdown.check(country);
 
     // If we get an error, we can check for that and return nothing.
     if (gridData.status === "error") {
@@ -118,15 +119,16 @@ Now, we are ready to start modifying our Workers code to put data in the `GAW_DA
 import { PowerBreakdown } from "@greenweb/grid-aware-websites";
 import { saveDataToKv } from "@greenweb/gaw-plugin-cloudflare-workers";
 
-const apiKey = "you_api_key"; // Set your own Electricity Maps API key here.
 const country = "TW" // Set the country variable to Taiwan
-const powerBreakdown = new PowerBreakdown();
+const powerBreakdown = new PowerBreakdown({
+  apiKey:  "you_api_key";
+});
 
 export default {
   async fetch(request, env, ctx) {
     
     // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
-    const gridData = await powerBreakdown.check(country, apiKey);
+    const gridData = await powerBreakdown.check(country);
 
     // If we get an error, we can check for that and return nothing.
     if (gridData.status === "error") {
@@ -162,9 +164,10 @@ In the code below, we first check if there is data stored in the `GAW_DATA_KV` u
 import { PowerBreakdown } from "@greenweb/grid-aware-websites";
 import { saveDataToKv, fetchDataFromKv } from "@greenweb/gaw-plugin-cloudflare-workers";
 
-const apiKey = "you_api_key"; // Set your own Electricity Maps API key here.
 const country = "TW" // Set the country variable to Taiwan
-const powerBreakdown = new PowerBreakdown();
+const powerBreakdown = new PowerBreakdown({
+  apiKey:  "you_api_key";
+});
 
 export default {
   async fetch(request, env, ctx) {
@@ -177,7 +180,7 @@ export default {
     }
     
     // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
-    const gridData = await powerBreakdown.check(country, apiKey)
+    const gridData = await powerBreakdown.check(country)
 
     // If we get an error, we can check for that and return nothing.
     if (gridData.status === "error") {
