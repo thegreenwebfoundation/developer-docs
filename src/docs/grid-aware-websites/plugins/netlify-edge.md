@@ -56,10 +56,12 @@ export default async (request, context) => {
 The code below shows a simple implementation of this plugin alongside the Grid-aware Websites core library in a Netlify Edge Function.
 
 ```js
-import { gridAwarePower } from "https://esm.sh/@greenweb/grid-aware-websites@latest";
+import { PowerBreakdown } from "https://esm.sh/@greenweb/grid-aware-websites@latest";
 import { getLocation } from "https://esm.sh/@greenweb/gaw-plugin-netlify-edge@latest";
 
-const apiKey = "you_api_key"; // Set your own Electricity Maps API key here.
+const powerBreakdown = new PowerBreakdown({
+  apiKey:  "you_api_key";
+});
 
 export default async (request, context) => {
   // Use the getLocation function to check for the user's country in the request object
@@ -74,7 +76,7 @@ export default async (request, context) => {
   const { country } = location;
 
   // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
-    const gridData = await gridAwarePower(country, apiKey);
+    const gridData = await powerBreakdown.check(country);
 
     // If we get an error, we can check for that and return nothing.
     if (gridData.status === "error") {

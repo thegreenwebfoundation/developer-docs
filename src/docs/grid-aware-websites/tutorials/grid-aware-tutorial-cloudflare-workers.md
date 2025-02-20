@@ -118,19 +118,29 @@ Now that we have the main dependencies for this project installed, we can write 
 At the top of the `src/index.js` file, we will first import the Grid-aware Websites library and Cloudflare Workers plugin.
 
 ```js
-import { gridAwarePower } from '@greenweb/grid-aware-websites';
+import { PowerBreakdown } from '@greenweb/grid-aware-websites';
 import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
+
+const powerBreakdown = new PowerBreakdown({
+  mode: 'low-carbon',
+  apiKey: env.EMAPS_API_KEY
+});
 ```
 
-Here, we are importing the `gridAwarePower` function from the main library. This function allows us to fetch data about the fuel-mix of a country's electricity grid from the Electricity Maps API. Fuel-mix is a term used to describe the balance of renewable, low-carbon, and fossil fuel energy used to generate the electricity of a particular region or electricity grid.
+Here, we are importing the `PowerBreakdown` class from the main library. This class allows us set specific conditions for running grid-aware checks and also gives us functions to fetch data about the fuel-mix of a country's electricity grid from the Electricity Maps API. Fuel-mix is a term used to describe the balance of renewable, low-carbon, and fossil fuel energy used to generate the electricity of a particular region or electricity grid. We then create a new instance of that class and specify that we want to use the 'low-carbon' data as the basis for our grid-aware checks, set our API key as well.
 
 The `getLocation` function that we import from the Cloudflare Workers plugin will be used to return the country code of the incoming website request. We'll use this country code to fetch the fuel-mix data mentioned above.
 
 Further down in the `src/index.js` file, you should see some boilerplate for a Cloudflare Worker. Delete everything that is inside the `async fetch(request, env, ctx)` function. You should end up with a file that looks like this:
 
 ```js
-import { gridAwarePower } from '@greenweb/grid-aware-websites';
+import { PowerBreakdown } from '@greenweb/grid-aware-websites';
 import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
+
+const powerBreakdown = new PowerBreakdown({
+  mode: 'low-carbon',
+  apiKey: env.EMAPS_API_KEY
+});
 
 export default {
  async fetch(request, env, ctx) {
@@ -219,9 +229,7 @@ Let's start by removing the response that returns the country code.
 Replace it with the code below, which:
 
 ```js
-const gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
-  mode: 'low-carbon'
-});
+const gridData = await powerBreakdown.check(country);
 
 // If there's an error getting data, return the web page without any modifications
 if (gridData.status === 'error') {
@@ -237,7 +245,7 @@ if (gridData.status === 'error') {
 return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`)
 ```
 
-In the code above, we pass the request country and the Electricity Maps API key into the `gridAwarePower` function. This function will return information about the energy grid we have requested data for, as well as a `gridAware` flag - a boolean value indicating whether grid-aware changes should be made to the website. You might have also noticed that we have specified a `mode` property which we passed into the function via an object. This `mode` property tells the `gridAwarePower` function that we want to use data from Electricity Maps that shows "low-carbon" energy (that is renewables + nuclear). You can learn more about the modes available, and other options, on the [Getting Starting page](/grid-aware-websites/getting-started/#using-the-gridawarepower-function).
+In the code above, we pass the request country into the `powerBreakdown.check` function. This function will return information about the energy grid we have requested data for, as well as a `gridAware` flag - a boolean value indicating whether grid-aware changes should be made to the website. Earlier in our code, we created a new instance of `PowerBreakdown` and specified that it use the "low-carbon" `mode`. This means that when the function runs a check against data from Electricity Maps it will refer to "low-carbon" energy data (that is renewables + nuclear). You can learn more about the modes available, and other options, on the [Getting Starting page](/grid-aware-websites/getting-started/#using-the-gridawarepower-function).
 
 Again, we can test that everything works so far by running the `npx wrangler dev` command in our project. Now, when you go to [http://localhost:8787](http://localhost:8787), you should see the contents `gridData` object in the browser.
 
@@ -298,8 +306,13 @@ Otherwise, if the `gridData.gridAware` flag is returned as `false`, we just retu
 The final code in your Cloudflare Worker should look like this:
 
 ```js
-import { gridAwarePower } from '@greenweb/grid-aware-websites';
+import { PowerBreakdown } from '@greenweb/grid-aware-websites';
 import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
+
+const powerBreakdown = new PowerBreakdown({
+  mode: 'low-carbon',
+  apiKey: env.EMAPS_API_KEY
+});
 
 export default {
  async fetch(request, env, ctx) {
@@ -326,9 +339,7 @@ export default {
    });
   }
 
-  const gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
-    mode: 'low-carbon'
-  });
+  const gridData = await powerBreakdown.check(country);
 
   // If there's an error getting data, return the web page without any modifications
   if (gridData.status === 'error') {
@@ -436,9 +447,7 @@ Now, we are ready to start modifying our Workers code to put data in the `GAW_DA
 ```
 
 ```diff
-  const gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
-    mode: 'low-carbon'
-  });
+  const gridData = await powerBreakdown.check(country);
 
   // If there's an error getting data, return the web page without any modifications
   if (gridData.status === 'error') {
@@ -461,17 +470,13 @@ Here, we import the two functions we'll need into our project. Then further down
 Now that we are storing data for one hour, we can start to use it in our Worker to avoid making repeated outbound API calls. To do this, make the following changes to your code:
 
 ```diff
-- const gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
--    mode: 'low-carbon'
--  });
+- const gridData = await powerBreakdown.check(country);
 + // First check if the there's data for the country saved to KV
 + let gridData = await fetchDataFromKv(env, country);
 
-+ // If no cached data, fetch it using the `gridAwarePower` function
++ // If no cached data, fetch it from the API
 + if (!gridData) {
-+   gridData = await gridAwarePower(country, env.EMAPS_API_KEY, {
-+     "mode": "low-carbon"  
-+   });
++   gridData = await powerBreakdown.check(country);
 + }
 
   // If there's an error getting data, return the web page without any modifications
