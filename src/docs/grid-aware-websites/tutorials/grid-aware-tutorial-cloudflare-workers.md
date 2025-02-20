@@ -120,14 +120,9 @@ At the top of the `src/index.js` file, we will first import the Grid-aware Websi
 ```js
 import { PowerBreakdown } from '@greenweb/grid-aware-websites';
 import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
-
-const powerBreakdown = new PowerBreakdown({
-  mode: 'low-carbon',
-  apiKey: env.EMAPS_API_KEY
-});
 ```
 
-Here, we are importing the `PowerBreakdown` class from the main library. This class allows us set specific conditions for running grid-aware checks and also gives us functions to fetch data about the fuel-mix of a country's electricity grid from the Electricity Maps API. Fuel-mix is a term used to describe the balance of renewable, low-carbon, and fossil fuel energy used to generate the electricity of a particular region or electricity grid. We then create a new instance of that class and specify that we want to use the 'low-carbon' data as the basis for our grid-aware checks, set our API key as well.
+Here, we are importing the `PowerBreakdown` class from the main library. This class allows us set specific conditions for running grid-aware checks and also gives us functions to fetch data about the fuel-mix of a country's electricity grid from the Electricity Maps API. Fuel-mix is a term used to describe the balance of renewable, low-carbon, and fossil fuel energy used to generate the electricity of a particular region or electricity grid.
 
 The `getLocation` function that we import from the Cloudflare Workers plugin will be used to return the country code of the incoming website request. We'll use this country code to fetch the fuel-mix data mentioned above.
 
@@ -136,11 +131,6 @@ Further down in the `src/index.js` file, you should see some boilerplate for a C
 ```js
 import { PowerBreakdown } from '@greenweb/grid-aware-websites';
 import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
-
-const powerBreakdown = new PowerBreakdown({
-  mode: 'low-carbon',
-  apiKey: env.EMAPS_API_KEY
-});
 
 export default {
  async fetch(request, env, ctx) {
@@ -163,6 +153,12 @@ Your Workers `fetch` function should look like this:
 ```js
 export default {
  async fetch(request, env, ctx) {
+
+  const powerBreakdown = new PowerBreakdown({
+    mode: 'low-carbon',
+    apiKey: env.EMAPS_API_KEY
+  });
+
   // First fetch the request
   const response = await fetch(request.url);
   // Then check if the request content type is HTML.
@@ -193,6 +189,10 @@ export default {
 ```
 
 Let's step through this code.
+
+**Create a new instance of PowerBreakdown**
+
+We first create a new instance of that class and specify that we want to use the 'low-carbon' data as the basis for our grid-aware checks, and set our API key as well.
 
 **Fetch the requested URL and check if it is a HTML page**
 
@@ -309,13 +309,15 @@ The final code in your Cloudflare Worker should look like this:
 import { PowerBreakdown } from '@greenweb/grid-aware-websites';
 import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
 
-const powerBreakdown = new PowerBreakdown({
-  mode: 'low-carbon',
-  apiKey: env.EMAPS_API_KEY
-});
 
 export default {
- async fetch(request, env, ctx) {
+  async fetch(request, env, ctx) {
+
+  const powerBreakdown = new PowerBreakdown({
+    mode: 'low-carbon',
+    apiKey: env.EMAPS_API_KEY
+  });
+   
     // First fetch the request
   const response = await fetch(request.url);
   // Then check if the request content type is HTML.
