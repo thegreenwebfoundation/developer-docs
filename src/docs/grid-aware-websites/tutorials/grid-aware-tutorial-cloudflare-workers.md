@@ -19,7 +19,7 @@ In this tutorial, you will learn how to:
 
 - Create a new Cloudflare Workers project
 - Add Grid-aware Websites to the Cloudflare Worker
-- Use the Grid-aware Websites library with the Electricity Maps API to determine if grid-aware view
+- Use the Grid-aware Websites library with the Electricity Maps API to determine if grid-aware view is recommended
 - Use the HTMLRewriter API to remove content from the page when a grid-aware view is recommended
 - Publish the Cloudflare Worker to target a specific route on your website
 
@@ -39,7 +39,7 @@ You should also be aware of the limits and pricing of Cloudflare Workers, availa
 
 ## Creating a new Cloudflare Workers project
 
-To begin using Grid-aware Websites on an existing website through Cloudflare Workers, we will first create a new Cloudflare Workers project on our development machine. You can do that by fellowing the steps below, or by visiting the [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/get-started/guide/).
+To begin using Grid-aware Websites on an existing website through Cloudflare Workers, we will first create a new Cloudflare Workers project on our development machine. You can do that by following the steps below, or by visiting the [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/get-started/guide/).
 
 In a new terminal window, run the command below. We've called our project `grid-aware-worker`, but you can give it whatever name you like.
 
@@ -71,7 +71,7 @@ The `src/index.js` file contains the Worker code that we will modify to add grid
 
 ### Setting routes
 
-Before we start writing code, we'll first configure our worker to run on the route we want it to apply to. We want to apply this Worker to the `/tools/grid-aware-websites/` path on the `thegreenwebfoundation.org` domain. To do that, we include the following configuration inside of the `wrangler.json` file. You should replace the `pattern`, and `zone_name` with your own desired route.
+Before we start writing code, we'll first configure our worker to run on the route we want it to apply to. We want to apply this Worker to the `/tools/grid-aware-websites/` path on the `thegreenwebfoundation.org` domain. To do that, we include the following configuration inside of the `wrangler.jsonc` file. You should replace the `pattern`, and `zone_name` with your own desired route.
 
 ```json
 "routes": [
@@ -111,7 +111,7 @@ Now that we have the main dependencies for this project installed, we can write 
 2. Run grid-awareness checks of that country's energy grid
 3. Based on the result of that check:
     1. Return the website as usual
-    1. Modify the website before returning it to the user
+    2. Modify the website before returning it to the user
 
 ### Importing our dependencies
 
@@ -226,7 +226,7 @@ Let's start by removing the response that returns the country code.
 - return new Response(`Request from country code ${country}.`)
 ```
 
-Replace it with the code below, which:
+Replace it with the code below:
 
 ```js
 const gridData = await powerBreakdown.check(country);
@@ -245,9 +245,9 @@ if (gridData.status === 'error') {
 return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`)
 ```
 
-In the code above, we pass the request country into the `powerBreakdown.check` function. This function will return information about the energy grid we have requested data for, as well as a `gridAware` flag - a boolean value indicating whether grid-aware changes should be made to the website. Earlier in our code, we created a new instance of `PowerBreakdown` and specified that it use the "low-carbon" `mode`. This means that when the function runs a check against data from Electricity Maps it will refer to "low-carbon" energy data (that is renewables + nuclear). You can learn more about the modes available, and other options, on the [Getting Starting page](/grid-aware-websites/getting-started/#using-the-gridawarepower-function).
+In the code above, we pass the request country into the `powerBreakdown.check` function. This function will return information about the energy grid we have requested data for, as well as a `gridAware` flag - a boolean value indicating whether grid-aware changes should be made to the website. Earlier in our code, we created a new instance of `PowerBreakdown` and specified that it use the "low-carbon" `mode`. This means that when the function runs a check against data from Electricity Maps it will refer to "low-carbon" energy data (that is renewables + nuclear). You can learn more about the modes available, and other options, on the [Getting started page](/grid-aware-websites/getting-started/#using-the-gridawarepower-function).
 
-Again, we can test that everything works so far by running the `npx wrangler dev` command in our project. Now, when you go to [http://localhost:8787](http://localhost:8787), you should see the contents `gridData` object in the browser.
+Again, we can test that everything works so far by running the `npx wrangler dev` command in our project. Now, when you go to [http://localhost:8787](http://localhost:8787), you should see the contents of the `gridData` object in the browser.
 
 ### Making changes to the web page if grid-aware changes are recommended
 
@@ -297,7 +297,7 @@ return new Response(response.body, {
 
 The code above creates a new instance of the HTMLRewriter API that looks for and removes all `iframe` elements. You can chain these steps to make other changes to a web page, even adding content.
 
-Then, pass the response into the instance of the HTMLRewriter that we've just created, and return the modified response alongside addition headers.
+Then, pass the response into the instance of the HTMLRewriter that we've just created, and return the modified response alongside additional headers.
 
 Otherwise, if the `gridData.gridAware` flag is returned as `false`, we just return the initial response without any modifications.
 
@@ -417,7 +417,7 @@ In this next section, we will cover some more advanced functionality which can b
 - How to store and use data from Electricity Maps API to avoid making multiple requests for the same data.
 - How to store and retrieve the modified version of the web page to avoid running HTMLRewriter each time.
 
-These are quality of life improvements to our code but while the are not critical, they may have performance and usage benefits especially for websites that received a lot of traffic. You can implement none, one, or both of these additional bits of functionality in your project. As such, each section below is written as individual components, so apologies in advance for any duplicated content.
+These are quality of life improvements to our code but while they are not critical, they may have performance and usage benefits especially for websites that received a lot of traffic. You can implement none, one, or both of these additional bits of functionality in your project. As such, each section below is written as individual components, so apologies in advance for any duplicated content.
 
 ### Storing and reusing live grid data
 
