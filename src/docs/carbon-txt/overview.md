@@ -11,7 +11,7 @@ eleventyNavigation:
 
 # Carbon.txt - Overview
 
-Carbon.txt is a single place to look on any domain – */carbon.txt* – for public, machine-readable, sustainability data relating to that company.
+Carbon.txt makes sustainability data easier to discover and use on the web. Carbon.txt is a single, discoverable location on any web domain for public, machine-readable, sustainability data relating to that company.
 
 It’s a web-first, *connect not collect* style approach, of most benefit to those interested in scraping the structured data companies have to publish according to national laws. Designed to be extended by default, we see carbon.txt becoming essential infrastructure for sustainability data services crunching available numbers and sharing the stories it can tell.
 
