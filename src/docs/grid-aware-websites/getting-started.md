@@ -23,6 +23,8 @@ You can check whether or not you have Node installed by running `node --version`
 
 You will also require an API key to access the [Electricity Maps API](https://api-portal.electricitymaps.com/).
 
+{% include 'partials/gaw-emaps-note.njk' %}
+
 ## Installation
 
 Make a directory for your project, and then inside of that directory setup your project using NPM.

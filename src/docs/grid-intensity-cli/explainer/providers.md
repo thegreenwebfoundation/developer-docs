@@ -31,7 +31,7 @@ When no provider is set, the CLI will use Ember as the default.
 
 <aside class="alert  alert-warning"><div>
 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-	<p>Please note that some providers require user account and/or API tokens to be set as well.</p>
+ <p>Please note that some providers require user account and/or API tokens to be set as well.</p>
 </div></aside>
 
 ## Ember <span class="badge align-middle badge-secondary badge-lg">Default</span>
@@ -81,7 +81,7 @@ WattTime is a nonprofit that offers technology solutions that make it easy for a
 
 When using WattTime, you will need to pass a location that is supported by the WattTime API. WattTime's API documentation details how you can [get a list of locations](https://www.watttime.org/api-documentation/#list-of-grid-regions), or [use latitude & longitude](https://www.watttime.org/api-documentation/#determine-grid-region) to find a specific location.
 
-For example, running the command below returns an array data for California Independent System Operator (North). 
+For example, running the command below returns an array data for California Independent System Operator (North).
 
 ```bash
 grid-intensity --provider WattTime --location CAISO_NORTH
@@ -118,7 +118,6 @@ Each location will return a `percent` field. This value represents the relative 
 
 If you require absolute Marginal Operating Emissions Rate (MOER) data, this is available for free when querying the `CAISO_NORTH` location as shown above. However, you will require a [_WattTime Pro subscription_](https://www.watttime.org/get-the-data/data-plans/) to obtain this data for other locations.
 
-
 ***
 
 ## Electricity Maps <div class="badge badge-warning gap-2 align-middle">API token required</div>
@@ -150,16 +149,16 @@ grid-intensity --provider ElectricityMaps --location PT
 # Returns
 
 [
-	{
-		"emissions_type": "average",
-		"metric_type": "absolute",
-		"provider": "ElectricityMaps",
-		"location": "PT",
-		"units": "gCO2e per kWh",
-		"valid_from": "2023-07-14T10:00:00Z",
-		"valid_to": "2023-07-14T11:00:00Z",
-		"value": 155
-	}
+ {
+  "emissions_type": "average",
+  "metric_type": "absolute",
+  "provider": "ElectricityMaps",
+  "location": "PT",
+  "units": "gCO2e per kWh",
+  "valid_from": "2023-07-14T10:00:00Z",
+  "valid_to": "2023-07-14T11:00:00Z",
+  "value": 155
+ }
 ]
 ```
 

@@ -33,6 +33,8 @@ You should have:
 
 You should also be aware of the limits and pricing of Cloudflare Workers, available on the [Cloudflare website](https://developers.cloudflare.com/workers/platform/).
 
+{% include 'partials/gaw-emaps-note.njk' %}
+
 <aside class="alert alert-info text-base-content">
 <p>For the purposes of this tutorial, we will demonstrate deploying a Cloudflare Worker to run on our own Green Web Foundation domain (`thegreenwebfoundation.org`). <strong>When following along with this tutorial, you should use your own domain</strong>.</p>
 </aside>
