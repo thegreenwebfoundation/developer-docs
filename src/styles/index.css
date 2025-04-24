@@ -352,3 +352,7 @@ seven-minute-tabs [role="tabpanel"] pre:last-child {
 .language-toml .table {
   display: initial;
 }
+
+aside + aside {
+  margin-top: 1rem;
+}
