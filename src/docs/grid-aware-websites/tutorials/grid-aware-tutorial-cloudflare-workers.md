@@ -19,7 +19,6 @@ In this tutorial, you will learn how to:
 
 - Create a new Cloudflare Workers project
 - Add Grid-aware Websites to the Cloudflare Worker
-- Use the Grid-aware Websites library with the Electricity Maps API to determine if grid-aware view is recommended
 - Use the HTMLRewriter API to remove content from the page when a grid-aware view is recommended
 - Publish the Cloudflare Worker to target a specific route on your website
 
@@ -41,30 +40,25 @@ You should also be aware of the limits and pricing of Cloudflare Workers, availa
 
 ## Creating a new Cloudflare Workers project
 
-To begin using Grid-aware Websites on an existing website through Cloudflare Workers, we will first create a new Cloudflare Workers project on our development machine. You can do that by following the steps below, or by visiting the [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/get-started/guide/).
-
-In a new terminal window, run the command below. We've called our project `grid-aware-worker`, but you can give it whatever name you like.
+To begin using Grid-aware Websites on an existing website through Cloudflare Workers, we will first create a new Cloudflare Workers project on our development machine. You can do this by using the Cloudflare Wrangler CLI to setup a project using a template which we have prepared.
 
 ```bash
-npm create cloudflare@latest -- grid-aware-worker
+npm create cloudflare@latest -- --template thegreenwebfoundation/gaw-cloudflare-template <DESTINATION_FOLDER_NAME>
 ```
 
-Running this command will present you with a series of prompts to setup your Cloudflare Worker project. Once you have completed the prompts, you can move into the project folder.
+This will clone the template onto your computer. You can replace `<DESTINATION_FOLDER_NAME>` with the name of your project. During the setup process you will be asked `Do you want to use git for version control?`, select `yes` and `Do you want to deploy your application?`, select `no`.
 
-```bash
-cd grid-aware-worker
-```
-
-Your project will have a folder structure like this:
+After the project is cloned, you can navigate to the destination folder. Your project will have a folder structure like this:
 
 ```text
 grid-aware-worker/
 ├── src/
-│   └── index.js          
-├── wrangler.json         
-├── package.json          
-├── package-lock.json     
-└── node_modules/         
+│   └── index.js
+├── wrangler.json
+├── package.json
+├── package-lock.json
+├── .dev.vars
+└── node_modules/
 ```
 
 The `src/index.js` file contains the Worker code that we will modify to add grid awareness to our website.
@@ -112,16 +106,16 @@ Now that we have the main dependencies for this project installed, we can write 
 1. Get the location (country) of a website request
 2. Run grid-awareness checks of that country's energy grid
 3. Based on the result of that check:
-    1. Return the website as usual
-    2. Modify the website before returning it to the user
+   1. Return the website as usual
+   2. Modify the website before returning it to the user
 
 ### Importing our dependencies
 
 At the top of the `src/index.js` file, we will first import the Grid-aware Websites library and Cloudflare Workers plugin.
 
 ```js
-import { PowerBreakdown } from '@greenweb/grid-aware-websites';
-import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
+import { PowerBreakdown } from "@greenweb/grid-aware-websites";
+import { getLocation } from "@greenweb/gaw-plugin-cloudflare-workers";
 ```
 
 Here, we are importing the `PowerBreakdown` class from the main library. This class allows us set specific conditions for running grid-aware checks and also gives us functions to fetch data about the fuel-mix of a country's electricity grid from the Electricity Maps API. Fuel-mix is a term used to describe the balance of renewable, low-carbon, and fossil fuel energy used to generate the electricity of a particular region or electricity grid.
@@ -131,14 +125,12 @@ The `getLocation` function that we import from the Cloudflare Workers plugin wil
 Further down in the `src/index.js` file, you should see some boilerplate for a Cloudflare Worker. Delete everything that is inside the `async fetch(request, env, ctx)` function. You should end up with a file that looks like this:
 
 ```js
-import { PowerBreakdown } from '@greenweb/grid-aware-websites';
-import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
+import { PowerBreakdown } from "@greenweb/grid-aware-websites";
+import { getLocation } from "@greenweb/gaw-plugin-cloudflare-workers";
 
 export default {
- async fetch(request, env, ctx) {
-    
- }
-}
+  async fetch(request, env, ctx) {},
+};
 ```
 
 ### Getting a website visitor's country
@@ -154,40 +146,39 @@ Your Workers `fetch` function should look like this:
 
 ```js
 export default {
- async fetch(request, env, ctx) {
+  async fetch(request, env, ctx) {
+    const powerBreakdown = new PowerBreakdown({
+      mode: "low-carbon",
+      apiKey: env.EMAPS_API_KEY,
+    });
 
-  const powerBreakdown = new PowerBreakdown({
-    mode: 'low-carbon',
-    apiKey: env.EMAPS_API_KEY
-  });
+    // First fetch the request
+    const response = await fetch(request.url);
+    // Then check if the request content type is HTML.
+    const contentType = response.headers.get("content-type");
 
-  // First fetch the request
-  const response = await fetch(request.url);
-  // Then check if the request content type is HTML.
-  const contentType = response.headers.get('content-type');
+    // If the content is not HTML, then return the response without any changes.
+    if (!contentType || !contentType.includes("text/html")) {
+      return new Response(response.body, {
+        ...response,
+      });
+    }
 
-  // If the content is not HTML, then return the response without any changes.
-  if (!contentType || !contentType.includes('text/html')) {
-   return new Response(response.body, {
-    ...response,
-   });
-  }
+    // If the content type is HTML, we get the country the request came from
+    const location = await getLocation(request);
+    const { country } = location;
 
-  // If the content type is HTML, we get the country the request came from
-  const location = await getLocation(request);
-  const { country } = location;
+    // If the country data does not exist, then return the response without any changes.
+    if (!country) {
+      return new Response(response.body, {
+        ...response,
+      });
+    }
 
-  // If the country data does not exist, then return the response without any changes.
-  if (!country) {
-   return new Response(response.body, {
-    ...response,
-   });
-  }
-
-  // We return a response - this is just to check that it works. We'll remove it soon.
-  return new Response(`Request from country code ${country}.`)
- }
-}
+    // We return a response - this is just to check that it works. We'll remove it soon.
+    return new Response(`Request from country code ${country}.`);
+  },
+};
 ```
 
 Let's step through this code.
@@ -234,17 +225,17 @@ Replace it with the code below:
 const gridData = await powerBreakdown.check(country);
 
 // If there's an error getting data, return the web page without any modifications
-if (gridData.status === 'error') {
- return new Response(response.body, {
-  ...response,
-  headers: {
-   ...response.headers,
-  },
- });
+if (gridData.status === "error") {
+  return new Response(response.body, {
+    ...response,
+    headers: {
+      ...response.headers,
+    },
+  });
 }
 
 // Otherwise, return the grid data in the response
-return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`)
+return new Response(`Grid data: ${JSON.stringify(gridData, null, 2)}`);
 ```
 
 In the code above, we pass the request country into the `powerBreakdown.check` function. This function will return information about the energy grid we have requested data for, as well as a `gridAware` flag - a boolean value indicating whether grid-aware changes should be made to the website. Earlier in our code, we created a new instance of `PowerBreakdown` and specified that it use the "low-carbon" `mode`. This means that when the function runs a check against data from Electricity Maps it will refer to "low-carbon" energy data (that is renewables + nuclear). You can learn more about the modes available, and other options, on the [Getting started page](/grid-aware-websites/getting-started/#using-the-gridawarepower-function).
@@ -270,31 +261,30 @@ Replace it with the HTMLRewriter code below:
 ```js
 // If the grid aware flag is triggered (gridAware === true), then we'll return a modified HTML page to the user.
 if (gridData.gridAware) {
-  const modifyHTML = new HTMLRewriter()
-  .on('iframe', {
-   element(element) {
-    element.remove();
-   },
-  })
+  const modifyHTML = new HTMLRewriter().on("iframe", {
+    element(element) {
+      element.remove();
+    },
+  });
 
- // Transform the response using the HTMLRewriter API, and set appropriate headers.
- let modifiedResponse = new Response(modifyHTML.transform(response).body, {
-  ...response,
-  headers: {
-   ...response.headers,
-   'Content-Type': 'text/html;charset=UTF-8'
-  },
- });
+  // Transform the response using the HTMLRewriter API, and set appropriate headers.
+  let modifiedResponse = new Response(modifyHTML.transform(response).body, {
+    ...response,
+    headers: {
+      ...response.headers,
+      "Content-Type": "text/html;charset=UTF-8",
+    },
+  });
 
- return modifiedResponse
+  return modifiedResponse;
 }
 
 return new Response(response.body, {
   ...response,
   headers: {
-   ...response.headers,
+    ...response.headers,
   },
- }); 
+});
 ```
 
 The code above creates a new instance of the HTMLRewriter API that looks for and removes all `iframe` elements. You can chain these steps to make other changes to a web page, even adding content.
@@ -308,81 +298,79 @@ Otherwise, if the `gridData.gridAware` flag is returned as `false`, we just retu
 The final code in your Cloudflare Worker should look like this:
 
 ```js
-import { PowerBreakdown } from '@greenweb/grid-aware-websites';
-import { getLocation } from '@greenweb/gaw-plugin-cloudflare-workers';
-
+import { PowerBreakdown } from "@greenweb/grid-aware-websites";
+import { getLocation } from "@greenweb/gaw-plugin-cloudflare-workers";
 
 export default {
   async fetch(request, env, ctx) {
-
-  const powerBreakdown = new PowerBreakdown({
-    mode: 'low-carbon',
-    apiKey: env.EMAPS_API_KEY
-  });
-   
-    // First fetch the request
-  const response = await fetch(request.url);
-  // Then check if the request content type is HTML.
-  const contentType = response.headers.get('content-type');
-
-  // If the content is not HTML, then return the response without any changes.
-  if (!contentType || !contentType.includes('text/html')) {
-   return new Response(response.body, {
-    ...response,
-   });
-  }
-
-  // If the content type is HTML, we get the country the request came from
-  const location = await getLocation(request);
-  const { country } = location;
-
-  // If the country data does not exist, then return the response without any changes.
-  if (!country) {
-   return new Response(response.body, {
-    ...response,
-   });
-  }
-
-  const gridData = await powerBreakdown.check(country);
-
-  // If there's an error getting data, return the web page without any modifications
-  if (gridData.status === 'error') {
-  return new Response(response.body, {
-    ...response,
-    headers: {
-    ...response.headers,
-    },
-  });
-  }
-
-  // If the grid aware flag is triggered (gridAware === true), then we'll return a modified HTML page to the user.
-  if (gridData.gridAware) {
-    const modifyHTML = new HTMLRewriter().on('iframe', {
-      element(element) {
-        element.remove();
-      },
-    })
-
-    // Transform the response using the HTMLRewriter API, and set appropriate headers.
-    let modifiedResponse = new Response(modifyHTML.transform(response).body, {
-      ...response,
-      headers: {
-      ...response.headers,
-      'Content-Type': 'text/html;charset=UTF-8'
-      },
+    const powerBreakdown = new PowerBreakdown({
+      mode: "low-carbon",
+      apiKey: env.EMAPS_API_KEY,
     });
 
-    return modifiedResponse
-  }
+    // First fetch the request
+    const response = await fetch(request.url);
+    // Then check if the request content type is HTML.
+    const contentType = response.headers.get("content-type");
 
-  return new Response(response.body, {
-    ...response,
-    headers: {
-    ...response.headers,
-    },
-  }); 
- }
-}
+    // If the content is not HTML, then return the response without any changes.
+    if (!contentType || !contentType.includes("text/html")) {
+      return new Response(response.body, {
+        ...response,
+      });
+    }
+
+    // If the content type is HTML, we get the country the request came from
+    const location = await getLocation(request);
+    const { country } = location;
+
+    // If the country data does not exist, then return the response without any changes.
+    if (!country) {
+      return new Response(response.body, {
+        ...response,
+      });
+    }
+
+    const gridData = await powerBreakdown.check(country);
+
+    // If there's an error getting data, return the web page without any modifications
+    if (gridData.status === "error") {
+      return new Response(response.body, {
+        ...response,
+        headers: {
+          ...response.headers,
+        },
+      });
+    }
+
+    // If the grid aware flag is triggered (gridAware === true), then we'll return a modified HTML page to the user.
+    if (gridData.gridAware) {
+      const modifyHTML = new HTMLRewriter().on("iframe", {
+        element(element) {
+          element.remove();
+        },
+      });
+
+      // Transform the response using the HTMLRewriter API, and set appropriate headers.
+      let modifiedResponse = new Response(modifyHTML.transform(response).body, {
+        ...response,
+        headers: {
+          ...response.headers,
+          "Content-Type": "text/html;charset=UTF-8",
+        },
+      });
+
+      return modifiedResponse;
+    }
+
+    return new Response(response.body, {
+      ...response,
+      headers: {
+        ...response.headers,
+      },
+    });
+  },
+};
 ```
 
 ### Testing the completed worker
