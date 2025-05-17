@@ -179,6 +179,11 @@ In order to test that the changes you have made are working, you'll need some wa
 3. Share your code with a colleague in another location and have them test it
 4. Test in production. YOLO. (this suggestion is made in jest, we do not recommend it.)
 
+<aside class="alert alert-info text-base-content">
+    <h4>Handling errors</h4>
+    <p>The <code>gridAwareAuto</code> is configure to handle errors. In the case that any errors occur when running the function, it will default to returning the regular web page without any changes applied.</p>
+</aside>
+
 ## Deploying to production
 
 When you're ready, you can deploy your worker to run on your website for the actual path you've configured.
