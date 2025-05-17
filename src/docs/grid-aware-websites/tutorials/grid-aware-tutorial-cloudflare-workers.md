@@ -67,12 +67,12 @@ The `src/index.js` file contains the Worker code that we will modify to add grid
 
 ### Setting routes
 
-Before we start writing code, we'll first configure our worker to run on the route we want it to apply to. In our case, we want to apply this Worker to the `/tools/grid-aware-websites/` path on the `thegreenwebfoundation.org` domain. To do that, we include the following configuration inside of the `wrangler.json` file. _Note: You should replace the `pattern`, and `zone_name` with your own desired route._
+Before we start writing code, we'll first configure our worker to run on the route we want it to apply to. For demonstration purposes, we will show this grid-aware code being applied to our entire Green Web Foundation website. To do that, we include the following configuration inside of the `wrangler.json` file. _Note: You should replace the `pattern`, and `zone_name` with your own desired route._
 
 ```json
 "routes": [
   {
-   "pattern": "www.thegreenwebfoundation.org/tools/grid-aware-websites/",
+   "pattern": "www.thegreenwebfoundation.org/*",
    "zone_name": "thegreenwebfoundation.org"
   }
  ]
@@ -151,16 +151,12 @@ export default {
           element.setAttribute("data-grid-aware", "true");
         },
       }),
-    }).on("h1", {
-      element(element) {
-        element.setInnerContent("Grid-aware changes applied");
-      },
     });
   },
 };
 ```
 
-In the example above, we use the `htmlChanges` option to pass a new instance of the HTMLRewriter to the function. We use the HTMLRewriter to add a data attribute (`data-grid-aware="true"`) to the HTML tag of the page, and to also change the content of the H1 element on the page. You can learn more about [Cloudflare's HTMLRewriter](https://developers.cloudflare.com/workers/runtime-apis/html-rewriter/) on their documentation site.
+In the example above, we use the `htmlChanges` option to pass a new instance of the HTMLRewriter to the function. We use the HTMLRewriter to add a data attribute (`data-grid-aware="true"`) to the HTML tag of the page. You can learn more about [Cloudflare's HTMLRewriter](https://developers.cloudflare.com/workers/runtime-apis/html-rewriter/) on their documentation site.
 
 We have also set the `debug: "full"` option for visibility during testing.
 
