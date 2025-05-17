@@ -201,3 +201,7 @@ We use this function on our own Green Web Foundation Grid-aware Websites project
 
 - View [the page](https://www.thegreenwebfoundation.org/tools/grid-aware-websites/)
 - View [Cloudflare Workers source code](https://github.com/thegreenwebfoundation/gwf-gaw-cloudflare-worker/blob/main/src/index.js)
+
+### Share your grid-aware website
+
+If you've deployed Grid-aware Websites to your own site we'd love to hear from you! Share your experience with us using the [contact form](https://www.thegreenwebfoundation.org/support-form/?wpf2192_9=Another%20subject) via our website.
