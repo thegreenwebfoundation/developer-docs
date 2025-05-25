@@ -46,7 +46,10 @@ To begin using Grid-aware Websites on an existing website through Cloudflare Wor
 npm create cloudflare@latest -- --template thegreenwebfoundation/gaw-cloudflare-template <DESTINATION_FOLDER_NAME>
 ```
 
-This will clone the template onto your computer. You can replace `<DESTINATION_FOLDER_NAME>` with the name of your project. During the setup process you will be asked `Do you want to use git for version control?`, select `yes` and `Do you want to deploy your application?`, select `no`.
+This will clone the template onto your computer. You can replace `<DESTINATION_FOLDER_NAME>` with the name of your project. During the setup process you will be asked:
+
+- `Do you want to use git for version control?`, select `yes`
+- `Do you want to deploy your application?`, select `no`
 
 After the project is cloned, you can navigate to the destination folder. Your project will have a folder structure like this:
 
