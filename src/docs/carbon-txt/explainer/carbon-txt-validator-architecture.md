@@ -29,7 +29,7 @@ The following diagrams use the [C4 model](https://c4model.com/) for describing s
 
 ![Context - a user sends a domain to lookup to the carbon.txt validator, which then fetches the carbon.txt file from that domain. The validator sends back validation results to the user.](https://carbon-txt-validator.readthedocs.io/en/latest/_images/1-a-context.jpg)
 
-The context view demonstrate how we expect the the validator to be used by end-users.
+The context view demonstrate how we expect the validator to be used by end-users.
 
 These might be people using the validator via the [carbon.txt website](https://carbontxt.org/tools/validator), as command line tool, or in a data pipeline,
 
@@ -86,4 +86,4 @@ So, for a CSRD report that is written to fit pre-agreed standards, like being wr
 
 The In our CSRD Processor uses [Arelle](https://arelle.readthedocs.io/), an open source library for working with XBRL documents, to turn XBRL-formatted CSRD reports into datastructures that can be manipulated in Python, and that can be checked for the existence of specific data points.
 
-The validation results are returned in API respones, or the output in CLI commands.
+The validation results are returned in API responses, or the output in CLI commands.
