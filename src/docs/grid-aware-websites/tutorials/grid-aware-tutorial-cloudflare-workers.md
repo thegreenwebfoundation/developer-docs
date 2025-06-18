@@ -123,19 +123,99 @@ export default {
 
 The worker we have setup will run on our assigned route, but it will just return the original page regardless of the results of the grid-aware checks that it runs. The `gridAwareAuto` function accepts an options object as the fourth parameter. This allows for some configuration to be made to the implementation. Accepted options values are:
 
-| Option            | Type         | Default              | Possible values                      | Description                                                                                                                                                                    |
-| ----------------- | ------------ | -------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `contentType`     | String[]     | `['text/html']`      | Example: ['text/html', 'text/css']   | Defines the content types that should be processed                                                                                                                             |
-| `ignoreRoutes`    | String[]     | `[]`                 | Example: ['/wp-admin', '/assets/js'] | A list of routes where grid-aware code should not be applied                                                                                                                   |
-| `ignoreGawCookie` | String       | `'gaw-ignore'`       | "gaw-ignore"                         | A cookie that when present will result in grid-aware code being skipped                                                                                                        |
-| `locationType`    | String       | `'country'`          | "country", "latlon"                  | Indicates the geolocation data to use for grid-aware checks.                                                                                                                   |
-| `htmlChanges`     | HTMLRewriter | `null`               | See code example below               | HTMLRewriter functions which can be used to make adjustments to the page when grid-aware changes need to be appplied.                                                          |
-| `gawDataSource`   | String       | `'electricity maps'` | "electricity maps"                   | The data source to use from the core [Grid-aware Websites](https://github.com/thegreenwebfoundation/grid-aware-websites?tab=readme-ov-file#working-with-this-library) library. |
-| `gawDataApiKey`   | String       | `''`                 | "xyz123"                             | The API key (if any) for the chosen data source.                                                                                                                               |
-| `gawDataType`     | String       | `'power'`            | "power", "carbon"                    | The data type to use from the core Grid-aware Websites library.                                                                                                                |
-| `kvCacheData`     | Boolean      | `false`              | true, false                          | Indicate if grid data from the API should be cached in Cloudflare Workers KV for one hour. Read [setup instructions](#cache-grid-data-in-cloudflare-workers-kv).               |
-| `kvCachePage`     | Boolean      | `false`              | true, false                          | Indicates if the modified grid-aware page should be cached in Cloudflare Workers KV for 24 hours. Read [setup instructions](#cache-grid-data-in-cloudflare-workers-kv)         |
-| `debug`           | String       | "none"               | "none", "full", "headers", "logs"    | Activates debug mode which outputs logs and returns additional response headers.                                                                                               |
+<div class="table-wrapper">
+<table class="table-auto">
+  <caption>Configuration options for the gridAwareAuto function</caption>
+  <thead>
+    <tr>
+      <th scope="col">Option</th>
+      <th scope="col">Type</th>
+      <th scope="col">Default</th>
+      <th scope="col">Possible values</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>contentType</code></td>
+      <td>String[]</td>
+      <td><code>['text/html']</code></td>
+      <td>Example: ['text/html', 'text/css']</td>
+      <td>Defines the content types that should be processed</td>
+    </tr>
+    <tr>
+      <td><code>ignoreRoutes</code></td>
+      <td>String[]</td>
+      <td><code>[]</code></td>
+      <td>Example: ['/wp-admin', '/assets/js']</td>
+      <td>A list of routes where grid-aware code should not be applied</td>
+    </tr>
+    <tr>
+      <td><code>ignoreGawCookie</code></td>
+      <td>String</td>
+      <td><code>'gaw-ignore'</code></td>
+      <td>"gaw-ignore"</td>
+      <td>A cookie that when present will result in grid-aware code being skipped</td>
+    </tr>
+    <tr>
+      <td><code>locationType</code></td>
+      <td>String</td>
+      <td><code>'country'</code></td>
+      <td>"country", "latlon"</td>
+      <td>Indicates the geolocation data to use for grid-aware checks.</td>
+    </tr>
+    <tr>
+      <td><code>htmlChanges</code></td>
+      <td>HTMLRewriter</td>
+      <td><code>null</code></td>
+      <td>See code example below</td>
+      <td>HTMLRewriter functions which can be used to make adjustments to the page when grid-aware changes need to be appplied.</td>
+    </tr>
+    <tr>
+      <td><code>gawDataSource</code></td>
+      <td>String</td>
+      <td><code>'electricity maps'</code></td>
+      <td>"electricity maps"</td>
+      <td>The data source to use from the core Grid-aware Websites library.</td>
+    </tr>
+    <tr>
+      <td><code>gawDataApiKey</code></td>
+      <td>String</td>
+      <td><code>''</code></td>
+      <td>"xyz123"</td>
+      <td>The API key (if any) for the chosen data source.</td>
+    </tr>
+    <tr>
+      <td><code>gawDataType</code></td>
+      <td>String</td>
+      <td><code>'power'</code></td>
+      <td>"power", "carbon"</td>
+      <td>The data type to use from the core Grid-aware Websites library.</td>
+    </tr>
+    <tr>
+      <td><code>kvCacheData</code></td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+      <td>true, false</td>
+      <td>Indicate if grid data from the API should be cached in Cloudflare Workers KV for one hour.</td>
+    </tr>
+    <tr>
+      <td><code>kvCachePage</code></td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+      <td>true, false</td>
+      <td>Indicates if the modified grid-aware page should be cached in Cloudflare Workers KV for 24 hours.</td>
+    </tr>
+    <tr>
+      <td><code>debug</code></td>
+      <td>String</td>
+      <td>"none"</td>
+      <td>"none", "full", "headers", "logs"</td>
+      <td>Activates debug mode which outputs logs and returns additional response headers.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 In this tutorial, we want to make a change to the page which will be applied when the grid-aware checks return a result that indicate the grid is dirtier than normal. The `gridAwareAuto` function will perform these checks for us, so we can use the `htmlChanges` option to pass it the changes we want applied.
 
