@@ -213,6 +213,27 @@ The worker we have setup will run on our assigned route, but it will just return
       <td>"none", "full", "headers", "logs"</td>
       <td>Activates debug mode which outputs logs and returns additional response headers.</td>
     </tr>
+    <tr>
+        <td><code>dev</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>true, false</td>
+        <td>Enables development mode, which redirects requests to a local development server.  </td>
+    </tr>
+    <tr>
+        <td><code>devConfig</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td><code>{hostname: "localhost", port: "8080", protocol: "http"}</code></td>
+        <td>Configuration options for the development mode, including hostname, port, and protocol.</td>
+    </tr>
+    <tr>
+        <td><code>infoBarTarget</code></td>
+        <td>String</td>
+        <td>''</td>
+        <td>Example: "header", "#info-container"</td>
+        <td>CSS selector for the element where the <a href="https://github.com/thegreenwebfoundation/gaw-web-component">grid-aware info bar</a> will be inserted.</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -227,6 +248,8 @@ export default {
     return gridAwareAuto(request, env, ctx, {
       // Use this API key that has been saved as a secret
       gawDataApiKey: env.EMAPS_API_KEY,
+      // A CSS selector for the element where the grid-aware info bar will be inserted.
+      infoBarTarget: "#gaw-info-bar",
       debug: "full",
       // Make these changes to the web page using HTMLRewriter
       htmlChanges: new HTMLRewriter().on("html", {
