@@ -136,105 +136,154 @@ The worker we have setup will run on our assigned route, but it will just return
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><code>contentType</code></td>
-      <td>String[]</td>
-      <td><code>['text/html']</code></td>
-      <td>Example: ['text/html', 'text/css']</td>
-      <td>Defines the content types that should be processed</td>
-    </tr>
-    <tr>
-      <td><code>ignoreRoutes</code></td>
-      <td>String[]</td>
-      <td><code>[]</code></td>
-      <td>Example: ['/wp-admin', '/assets/js']</td>
-      <td>A list of routes where grid-aware code should not be applied</td>
-    </tr>
-    <tr>
-      <td><code>ignoreGawCookie</code></td>
-      <td>String</td>
-      <td><code>'gaw-ignore'</code></td>
-      <td>"gaw-ignore"</td>
-      <td>A cookie that when present will result in grid-aware code being skipped</td>
-    </tr>
-    <tr>
-      <td><code>locationType</code></td>
-      <td>String</td>
-      <td><code>'country'</code></td>
-      <td>"country", "latlon"</td>
-      <td>Indicates the geolocation data to use for grid-aware checks.</td>
-    </tr>
-    <tr>
-      <td><code>htmlChanges</code></td>
-      <td>HTMLRewriter</td>
-      <td><code>null</code></td>
-      <td>See code example below</td>
-      <td>HTMLRewriter functions which can be used to make adjustments to the page when grid-aware changes need to be appplied.</td>
-    </tr>
-    <tr>
-      <td><code>gawDataSource</code></td>
-      <td>String</td>
-      <td><code>'electricity maps'</code></td>
-      <td>"electricity maps"</td>
-      <td>The data source to use from the core Grid-aware Websites library.</td>
-    </tr>
-    <tr>
-      <td><code>gawDataApiKey</code></td>
-      <td>String</td>
-      <td><code>''</code></td>
-      <td>"xyz123"</td>
-      <td>The API key (if any) for the chosen data source.</td>
-    </tr>
-    <tr>
-      <td><code>gawDataType</code></td>
-      <td>String</td>
-      <td><code>'power'</code></td>
-      <td>"power", "carbon"</td>
-      <td>The data type to use from the core Grid-aware Websites library.</td>
-    </tr>
-    <tr>
-      <td><code>kvCacheData</code></td>
-      <td>Boolean</td>
-      <td><code>false</code></td>
-      <td>true, false</td>
-      <td>Indicate if grid data from the API should be cached in Cloudflare Workers KV for one hour.</td>
-    </tr>
-    <tr>
-      <td><code>kvCachePage</code></td>
-      <td>Boolean</td>
-      <td><code>false</code></td>
-      <td>true, false</td>
-      <td>Indicates if the modified grid-aware page should be cached in Cloudflare Workers KV for 24 hours.</td>
-    </tr>
-    <tr>
-      <td><code>debug</code></td>
-      <td>String</td>
-      <td>"none"</td>
-      <td>"none", "full", "headers", "logs"</td>
-      <td>Activates debug mode which outputs logs and returns additional response headers.</td>
-    </tr>
-    <tr>
-        <td><code>dev</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>true, false</td>
-        <td>Enables development mode, which redirects requests to a local development server.  </td>
-    </tr>
-    <tr>
-        <td><code>devConfig</code></td>
-        <td>Object</td>
-        <td><code>{}</code></td>
-        <td><code>{hostname: "localhost", port: "8080", protocol: "http"}</code></td>
-        <td>Configuration options for the development mode, including hostname, port, and protocol.</td>
-    </tr>
-    <tr>
-        <td><code>infoBarTarget</code></td>
-        <td>String</td>
-        <td>''</td>
-        <td>Example: "header", "#info-container"</td>
-        <td>CSS selector for the element where the <a href="https://github.com/thegreenwebfoundation/gaw-web-component">grid-aware info bar</a> will be inserted.</td>
-    </tr>
-  </tbody>
+     <tr>
+       <td><code>contentType</code></td>
+       <td>String[]</td>
+       <td><code>['text/html']</code></td>
+       <td>Example: ['text/html', 'text/css']</td>
+       <td>Defines the content types that should be processed</td>
+     </tr>
+     <tr>
+       <td><code>ignoreRoutes</code></td>
+       <td>String[]</td>
+       <td><code>[]</code></td>
+       <td>Example: ['/wp-admin', '/assets/js']</td>
+       <td>A list of routes where grid-aware code should not be applied</td>
+     </tr>
+     <tr>
+       <td><code>ignoreGawCookie</code></td>
+       <td>String</td>
+       <td><code>'gaw-ignore'</code></td>
+       <td>"gaw-ignore"</td>
+       <td>A cookie that when present will result in grid-aware code being skipped</td>
+     </tr>
+     <tr>
+       <td><code>userOptIn</code></td>
+       <td>Boolean</td>
+       <td><code>false</code></td>
+       <td>true, false</td>
+       <td>Allows developers to specify if users are required to opt-in to the grid-aware website experience</td>
+     </tr>
+     <tr>
+       <td><code>locationType</code></td>
+       <td>String</td>
+       <td><code>'latlon'</code></td>
+       <td>"latlon", "country"</td>
+       <td>Type of location data to use</td>
+     </tr>
+     <tr>
+       <td><code>htmlChanges</code></td>
+       <td>Object</td>
+       <td>{}</td>
+       <td>{"low": HTMLRewriter, "moderate": HTMLRewriter, "high": HTMLRewriter}</td>
+       <td>An object to capture the different HTML changes that are applied at each different grid intesity level</td>
+     </tr>
+     <tr>
+       <td><code>htmlChanges.low</code></td>
+       <td>HTMLRewriter</td>
+       <td>null</td>
+       <td>Custom HTMLRewriter for page modification at low grid intensity level</td>
+       <td></td>
+     </tr>
+     <tr>
+       <td><code>htmlChanges.moderate</code></td>
+       <td>HTMLRewriter</td>
+       <td>null</td>
+       <td>Custom HTMLRewriter for page modification at moderate grid intensity level</td>
+       <td></td>
+     </tr>
+     <tr>
+       <td><code>htmlChanges.high</code></td>
+       <td>HTMLRewriter</td>
+       <td>null</td>
+       <td>Custom HTMLRewriter for page modification at high grid intensity level</td>
+       <td></td>
+     </tr>
+     <tr>
+       <td><code>defaultView</code></td>
+       <td>String/null</td>
+       <td><code>null</code></td>
+       <td>null, "low", "moderate", "high"</td>
+       <td>Default view for the grid-aware website experience</td>
+     </tr>
+     <tr>
+       <td><code>gawDataApiKey</code></td>
+       <td>String</td>
+       <td><code>''</code></td>
+       <td>"xyz123"</td>
+       <td>API key for the data source</td>
+     </tr>
+     <tr>
+       <td><code>infoBar</code></td>
+       <td>Object</td>
+       <td><code>{}</code></td>
+       <td><code>{target: "", version: "latest", learnMoreLink: "#", popoverText: ""}</code></td>
+       <td>Configuration for the info bar element</td>
+     </tr>
+     <tr>
+       <td><code>infoBar.target</code></td>
+       <td>String</td>
+       <td><code>''</code></td>
+       <td>Example: "header", "#info-container"</td>
+       <td>Target element for the info bar</td>
+     </tr>
+     <tr>
+       <td><code>infoBar.version</code></td>
+       <td>String</td>
+       <td><code>'latest'</code></td>
+       <td>"latest", "1.0.0"</td>
+       <td>Version of the info bar to use</td>
+     </tr>
+     <tr>
+       <td><code>infoBar.learnMoreLink</code></td>
+       <td>String</td>
+       <td><code>'#'</code></td>
+       <td>Example: "https://example.com/learn-more"</td>
+       <td>Link to learn more about the info bar</td>
+     </tr>
+     <tr>
+       <td><code>infoBar.popoverText</code></td>
+       <td>String</td>
+       <td><code>''</code></td>
+       <td>Example: "This website adapts based on carbon intensity"</td>
+       <td>Provide a custom string of text to be used in the info bar popover element</td>
+     </tr>
+     <tr>
+       <td><code>kvCacheData</code></td>
+       <td>Boolean</td>
+       <td><code>false</code></td>
+       <td>true, false</td>
+       <td>Whether to cache grid data in KV store. Read <a href="#cache-grid-data-in-cloudflare-workers-kv">setup instructions</a></td>
+     </tr>
+     <tr>
+       <td><code>kvCachePage</code></td>
+       <td>Boolean</td>
+       <td><code>false</code></td>
+       <td>true, false</td>
+       <td>Whether to cache modified pages in KV store. Read <a href="#cache-grid-data-in-cloudflare-workers-kv">setup instructions</a></td>
+     </tr>
+     <tr>
+       <td><code>debug</code></td>
+       <td>String</td>
+       <td>"none"</td>
+       <td>"none", "full", "headers", "logs"</td>
+       <td>Activates debug mode which outputs logs and returns additional response headers</td>
+     </tr>
+     <tr>
+       <td><code>dev</code></td>
+       <td>Boolean</td>
+       <td><code>false</code></td>
+       <td>true, false</td>
+       <td>Whether to enable development mode</td>
+     </tr>
+     <tr>
+       <td><code>devConfig</code></td>
+       <td>Object</td>
+       <td><code>{}</code></td>
+       <td><code>{hostname: "localhost", port: "8080", protocol: "http"}</code></td>
+       <td>Configuration for development mode</td>
+     </tr>
+   </tbody>
 </table>
 </div>
 
@@ -249,7 +298,14 @@ export default {
       // Use this API key that has been saved as a secret
       gawDataApiKey: env.EMAPS_API_KEY,
       // A CSS selector for the element where the grid-aware info bar will be inserted.
-      infoBarTarget: "#gaw-info-bar",
+      infoBar: {
+        target: "#gaw-info-bar",
+        learnMoreLink:
+          "https://www.thegreenwebfoundation.org/tools/grid-aware-websites/",
+        version: "latest",
+        popoverText:
+          "This website adapts based on your local electricity grid's carbon intensity",
+      },
       debug: "full",
       // Make these changes to the web page using HTMLRewriter
       htmlChanges: new HTMLRewriter().on("html", {
