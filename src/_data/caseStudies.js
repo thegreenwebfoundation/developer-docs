@@ -21,7 +21,7 @@ const caseStudies = async () => {
   const gaw = [
     {
       featured_media:
-        "https://branch.climateaction.tech/wp-content/uploads/2025/07/Branch-in-grid-aware-high-intensity-mode.jpg",
+        "https://branch.climateaction.tech/wp-content/uploads/2025/07/Branch-medium-intensity-mode-2048x1206.jpg",
       title: {
         rendered: "Designing a Grid-Aware Branch",
       },
