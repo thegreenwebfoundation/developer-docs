@@ -134,7 +134,7 @@ The `perVisitTrace()` function accepts the following parameters:
 
 The `options` parameter can contain any of the following keys. These can be used to adjust the values used by the Sustainable Web Design Model's calculation.
 
-- `dataReloadRatio` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of data that is downloaded by return visitors.
+- `dataReloadRatio` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of data that is downloaded by return visitors. This is the complement of the data cache ratio from the Sustainable Web Design model, i.e. dataReloadRatio = 1 - dataCacheRatio.
 - `firstVisitPercentage` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of new visitors.
 - `returnVisitPercentage` <span class="badge align-middle badge-success my-0">Optional</span> – a `number` between 0 and 1 representing the percentage of returning visitors.
 - `greenHostingFactor` <div class="badge badge-warning gap-2 align-middle">Sustainable Web Design Model v4 only</div> - The portion of hosting services powered by renewable or zero-carbon energy, between 0 and 1. If the `green hosting` boolean above is set to `true` then the `greenHostingFactor` will always be `1`.
@@ -173,6 +173,6 @@ The `perVisitTrace()` function returns an object with the following keys:
     - `dataCenter` – A `number` representing the carbon intensity for this segment (in grams per kilowatt-hour) used in the calculation.
     - `networks` – A `number` representing the carbon intensity for this segment (in grams per kilowatt-hour) used in the calculation.
     - `production` - A `number` representing the carbon intensity for this segment (in grams per kilowatt-hour) used in the calculation.
-  - `dataReloadRatio` – a `number` between 0 and 1 representing the percentage of data that is downloaded by return visitors.
+  - `dataReloadRatio` – a `number` between 0 and 1 representing the percentage of data that is downloaded by return visitors. This is the complement of the data cache ratio from the Sustainable Web Design model, i.e. dataReloadRatio = 1 - dataCacheRatio.
   - `firstVisitPercentage` – a `number` between 0 and 1 representing the percentage of new visitors.
   - `returnVisitPercentage` – a `number` between 0 and 1 representing the percentage of returning visitors.
