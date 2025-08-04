@@ -25,7 +25,105 @@ In your Cloudflare Workers project, install this plugin by running the following
 npm install @greenweb/gaw-plugin-cloudflare-workers
 ```
 
-## Fetching location
+## Quickstart
+
+The easiest way to use this plugin is by utilising the `gridAwareAuto` functionality that it provides. As a minimum, you would need to have the below code in your Cloudflare Worker.
+
+Install this library in your project using `npm install @greenweb/gaw-plugin-cloudflare-workers`.
+
+> [!IMPORTANT]
+> To use this function you also need to have a valid [Electricity Maps API](https://portal.electricitymaps.com/) key with access to the [Carbon Aware Websites API](https://portal.electricitymaps.com/developer-hub/api/reference#latest-carbon-intensity-level). This function currently uses that API as the source of grid intensity data. The Carbon Aware Websites API is currently only available under a paid plan, but we are in conversation with Electricity Maps on ways to make this data available in some kind of free version. You can track the progress and express your interest in this API [in this issue](https://github.com/thegreenwebfoundation/grid-aware-websites/issues/21).
+
+Replace your Cloudflare Worker with the following code.
+
+```js
+import gridAwareAuto from "@greenweb/gaw-plugin-cloudflare-workers";
+
+export default {
+  async fetch(request, env, ctx) {
+    return gridAwareAuto(request, env, ctx);
+  },
+};
+```
+
+This code will:
+
+1. Get the request location.
+2. Fetch the current relative grid intensity using the [Electricity Maps API](https://portal.electricitymaps.com/).
+3. Return the page to the user.
+
+The `gridAwareAuto` function also accepts an options object as the fourth parameter. This allows for some configuration to be made to the implementation. Accepted options values are:
+
+| Option                  | Type         | Default         | Possible values                                                                         | Description                                                                                                           |
+| ----------------------- | ------------ | --------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `contentType`           | String[]     | `['text/html']` | Example: ['text/html', 'text/css']                                                      | Defines the content types that should be processed                                                                    |
+| `ignoreRoutes`          | String[]     | `[]`            | Example: ['/wp-admin', '/assets/js']                                                    | A list of routes where grid-aware code should not be applied                                                          |
+| `ignoreGawCookie`       | String       | `'gaw-ignore'`  | "gaw-ignore"                                                                            | A cookie that when present will result in grid-aware code being skipped                                               |
+| `userOptIn`             | Boolean      | `false`         | true, false                                                                             | Allows developers to specify if users are required to opt-in to the grid-aware website experience                     |
+| `locationType`          | String       | `'latlon'`      | "latlon", "country"                                                                     | Type of location data to use                                                                                          |
+| `htmlChanges`           | Object       | {}              | {"low": HTMLRewriter, "moderate": HTMLRewriter, "high": HTMLRewriter}                   | An object to capture the different HTML changes that are applied at each different grid intesity level                |
+| `htmlChanges.low`       | HTMLRewriter | null            | Custom HTMLRewriter for page modification at low grid intensity level                   |
+| `htmlChanges.moderate`  | HTMLRewriter | null            | Custom HTMLRewriter for page modification at moderate grid intensity level              |
+| `htmlChanges.high`      | HTMLRewriter | null            | Custom HTMLRewriter for page modification at high grid intensity level                  |
+| `defaultView`           | String/null  | `null`          | null, "low", "moderate", "high"                                                         | Default view for the grid-aware website experience                                                                    |
+| `gawDataApiKey`         | String       | `''`            | "xyz123"                                                                                | API key for the data source                                                                                           |
+| `infoBar`               | Object       | `{}`            | `{target: "", version: "latest", learnMoreLink: "#", popoverText: "", customViews: ""}` | Configuration for the info bar element                                                                                |
+| `infoBar.target`        | String       | `''`            | Example: "header", "#info-container"                                                    | Target element for the info bar                                                                                       |
+| `infoBar.version`       | String       | `'latest'`      | "latest", "1.0.0"                                                                       | Version of the info bar to use                                                                                        |
+| `infoBar.learnMoreLink` | String       | `'#'`           | Example: "https://example.com/learn-more"                                               | Link to learn more about the info bar                                                                                 |
+| `infoBar.popoverText`   | String       | `''`            | Example: "This website adapts based on carbon intensity"                                | Provide a custom string of text to be used in the info bar popover element                                            |
+| `infoBar.customViews`   | String       | `''`            | Example: "custom-low,custom-moderate,custom-high"                                       | Custom views for the grid-aware website experience                                                                    |
+| `kvCacheData`           | Boolean      | `false`         | true, false                                                                             | Whether to cache grid data in KV store. Read [setup instructions](#cache-grid-data-in-cloudflare-workers-kv)          |
+| `kvCachePage`           | Boolean      | `false`         | true, false                                                                             | Whether to cache modified pages in KV store. Read [setup instructions](#cache-page-response-in-cloudflare-workers-kv) |
+| `debug`                 | String       | `"none"`        | "none", "full", "headers", "logs"                                                       | Activates debug mode which outputs logs and returns additional response headers                                       |
+| `dev`                   | Boolean      | `false`         | true, false                                                                             | Whether to enable development mode                                                                                    |
+| `devConfig`             | Object       | `{}`            | `{hostname: "", port: "", protocol: ""}`                                                | Configuration for development mode                                                                                    |
+| `devConfig.hostname`    | String       | `''`            | Example: "localhost"                                                                    | Hostname for development mode                                                                                         |
+| `devConfig.port`        | String       | `''`            | Example: "8080"                                                                         | Port for development mode                                                                                             |
+| `devConfig.protocol`    | String       | `''`            | Example: "http"                                                                         | Protocol for development mode                                                                                         |
+
+The following example will run on all HTML pages, but will skip any routes (URLs) that include the `/company/` or `/profile/` strings. It will use Electricity Maps as the data source, and uses an API key which has been set as an environment secret. IF grid-aware changes need to be applied to the page, a `data-grid-aware=true` attribute will be set on the HTML element.
+
+```js
+import gridAwareAuto from "@greenweb/gaw-plugin-cloudflare-workers";
+
+export default {
+  async fetch(request, env, ctx) {
+    return gridAwareAuto(request, env, ctx, {
+      // Ignore these routes
+      ignoreRoutes: ["/company/", "/profile/"],
+      // Use this API key that has been saved as a secret
+      gawDataApiKey: env.EMAPS_API_KEY,
+      // Configure the grid-aware info bar
+      infoBar: {
+        target: "#gaw-info-bar",
+        learnMoreLink:
+          "https://www.thegreenwebfoundation.org/tools/grid-aware-websites/",
+        version: "latest",
+        popoverText:
+          "This website adapts based on your local electricity grid's carbon intensity",
+      },
+      // Require users to opt-in to grid-aware experience
+      userOptIn: false,
+      // Set a default view (null means it will be based on actual grid intensity)
+      defaultView: null,
+      // Make these changes to the web page using HTMLRewriter when the grid intensity is high.
+      // All other states (low, moderate) will return the page as normal - no changes applied.
+      htmlChanges: {
+        high: new HTMLRewriter().on("html", {
+          element(element) {
+            element.setAttribute("data-grid-aware", "true");
+          },
+        }),
+      },
+    });
+  },
+};
+```
+
+## Advanced - Fetching location
+
+If you want to have more control over how grid-awareness is applied to your site, you can use this plugin in conjunction with the core [Grid-aware Websites](https://github.com/thegreenwebfoundation/grid-aware-websites) library.
 
 You can use this plugin to fetch the country of a website visitor. This information can then be passed into the `@greenweb/grid-aware-websites` library to enable it to retrieve data about the user's energy grid and make a determination if grid-aware website changes should be applied.
 
@@ -38,18 +136,17 @@ import { getLocation } from "@greenweb/gaw-plugin-cloudflare-workers";
 
 export default {
   async fetch(request, env, ctx) {
-
     // Use the getLocation function to check for the user's country in the request object
     const location = getLocation(request);
 
     // If there's an error, process the request as normal
     if (location.status === "error") {
-        return new Response('There was an error');
+      return new Response("There was an error");
     }
 
-    // Otherwise we can get the "country" variable 
+    // Otherwise we can get the "country" variable
     const { country } = location;
-    return new Response(`The country is ${country}.`)
+    return new Response(`The country is ${country}.`);
   },
 };
 ```
@@ -78,9 +175,9 @@ export default {
         return new Response('There was an error');
     }
 
-    // Otherwise we can get the "country" variable 
+    // Otherwise we can get the "country" variable
     const { country } = location;
-    
+
     // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
     const gridData = await powerBreakdown.check(country);
 
@@ -126,7 +223,7 @@ const powerBreakdown = new PowerBreakdown({
 
 export default {
   async fetch(request, env, ctx) {
-    
+
     // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
     const gridData = await powerBreakdown.check(country);
 
@@ -147,7 +244,7 @@ This will save the `gridData` response in the `GAW_DATA_KV` using the `country` 
 
 ```diff
 + const options = {
-+   expirationTtl: 60 * 60 * 6 // Store the data for 6 hours  
++   expirationTtl: 60 * 60 * 6 // Store the data for 6 hours
 + }
 
 - await saveDataToKv(env, country, JSON.stringify(gridData))
@@ -178,7 +275,7 @@ export default {
     if (storeData) {
       return new Response(storedData)
     }
-    
+
     // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
     const gridData = await powerBreakdown.check(country)
 
@@ -220,7 +317,6 @@ import { savePageToKv } from "@greenweb/gaw-plugin-cloudflare-workers";
 
 export default {
   async fetch(request, env, ctx) {
-    
     const modifiedPage = `<!DOCTYPE html>
                           <html lang="en">
                           <head>
@@ -230,12 +326,12 @@ export default {
                           <body>
                               <h1>This page has changed.</h1>
                           </body>
-                          </html>`
+                          </html>`;
 
-    await saveDataToKv(env, request.url, modifiedPage)
+    await saveDataToKv(env, request.url, modifiedPage);
 
     // If we've got data back using the Grid-aware Websites library, let's return that to the browser
-    return new Response(modifiedPage)
+    return new Response(modifiedPage);
   },
 };
 ```
@@ -244,7 +340,7 @@ This will save the `modifiedPage` content in the `GAW_PAGE_KV` using the `reques
 
 ```diff
 + const options = {
-+   expirationTtl: 60 * 60 * 6 // Store the page for 6 hours  
++   expirationTtl: 60 * 60 * 6 // Store the page for 6 hours
 + }
 
 - await savePageToKv(env, request.url, modifiedPage)
@@ -258,17 +354,19 @@ Now that we are storing a modified version of the page for 24 hours, we can star
 In the code below, we first check if there is page stored in the `GAW_PAGE_KV` using the key of `country.url`. If there is, we return that, otherwise we generate a modified page, store it, and return it.
 
 ```js
-import { savePageToKv, fetchPageFromKv } from "@greenweb/gaw-plugin-cloudflare-workers";
+import {
+  savePageToKv,
+  fetchPageFromKv,
+} from "@greenweb/gaw-plugin-cloudflare-workers";
 
 export default {
   async fetch(request, env, ctx) {
-
-    const storedPage = await fetchPageFromKv(env, request.url)
+    const storedPage = await fetchPageFromKv(env, request.url);
 
     if (storedPage) {
-      return new Response(storedPage)
+      return new Response(storedPage);
     }
-    
+
     const modifiedPage = `<!DOCTYPE html>
                           <html lang="en">
                           <head>
@@ -278,12 +376,12 @@ export default {
                           <body>
                               <h1>This page has changed.</h1>
                           </body>
-                          </html>`
+                          </html>`;
 
-    await saveDataToKv(env, request.url, modifiedPage)
+    await saveDataToKv(env, request.url, modifiedPage);
 
     // If we've got data back using the Grid-aware Websites library, let's return that to the browser
-    return new Response(modifiedPage)
+    return new Response(modifiedPage);
   },
 };
 ```
