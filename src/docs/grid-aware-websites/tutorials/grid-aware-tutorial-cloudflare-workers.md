@@ -246,7 +246,7 @@ The worker we have setup will run on our assigned route, but it will just return
        <td>String</td>
        <td><code>'#'</code></td>
        <td>Example: "https://example.com/learn-more"</td>
-       <td>Link to learn more about the info bar</td>
+       <td>Link to learn more about grid-awareness on your site</td>
      </tr>
      <tr>
        <td><code>infoBar.popoverText</code></td>
@@ -260,14 +260,14 @@ The worker we have setup will run on our assigned route, but it will just return
        <td>Boolean</td>
        <td><code>false</code></td>
        <td>true, false</td>
-       <td>Whether to cache grid data in KV store. Read <a href="#cache-grid-data-in-cloudflare-workers-kv">setup instructions</a></td>
+       <td>Whether to cache grid data in KV store. Read <a href="https://developers.thegreenwebfoundation.org/grid-aware-websites/plugins/cloudflare-workers/#storing-grid-data">setup instructions</a></td>
      </tr>
      <tr>
        <td><code>kvCachePage</code></td>
        <td>Boolean</td>
        <td><code>false</code></td>
        <td>true, false</td>
-       <td>Whether to cache modified pages in KV store. Read <a href="#cache-grid-data-in-cloudflare-workers-kv">setup instructions</a></td>
+       <td>Whether to cache modified pages in KV store. Read <a href="https://developers.thegreenwebfoundation.org/grid-aware-websites/plugins/cloudflare-workers/#storing-modified-pages">setup instructions</a></td>
      </tr>
      <tr>
        <td><code>debug</code></td>
