@@ -13,10 +13,6 @@ eleventyNavigation:
 
 This plugin provides useful helper functions that can be used when setting up the [`@greenweb/grid-aware websites`](/grid-aware-websites/overview/) library using [Cloudflare Workers](https://workers.cloudflare.com/).
 
-After you have installed the `@greenweb/grid-aware-websites` package ([see steps](/grid-aware-websites/getting-started/)), you can use this plugin to:
-
-- Fetch the location of a user based from the Cloudflare request.
-
 ## Installation
 
 In your Cloudflare Workers project, install this plugin by running the following command:
@@ -130,6 +126,10 @@ export default {
 ## Advanced - Fetching location
 
 If you want to have more control over how grid-awareness is applied to your site, you can use this plugin in conjunction with the core [Grid-aware Websites](https://github.com/thegreenwebfoundation/grid-aware-websites) library.
+
+First, install the Grid-aware Websites library ([see steps](/thegreenwebfoundation/grid-aware-websites/README.md)). After you have installed the `@greenweb/grid-aware-websites` package, you can use this plugin to:
+
+- Fetch the location of a user based from the Cloudflare request.
 
 You can use this plugin to fetch the country of a website visitor. This information can then be passed into the `@greenweb/grid-aware-websites` library to enable it to retrieve data about the user's energy grid and make a determination if grid-aware website changes should be applied.
 
