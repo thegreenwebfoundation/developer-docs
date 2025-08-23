@@ -49,6 +49,8 @@ You should also be aware of the limits and pricing of Cloudflare Workers, availa
 
 To begin using Grid-aware Websites on an existing website through Cloudflare Workers, we will first create a new Cloudflare Workers project on our development machine. You can do this by using the Cloudflare Wrangler CLI to setup a project using a template which we have prepared.
 
+You can save the Cloudflare Worker anywhere, it _does not_ need to be in the same folder as your project.
+
 ```bash
 npm create cloudflare@latest -- --template thegreenwebfoundation/gaw-cloudflare-template <DESTINATION_FOLDER_NAME>
 ```
@@ -71,7 +73,7 @@ grid-aware-worker/
 └── node_modules/
 ```
 
-The `src/index.js` file contains the Worker code that we will modify to add grid awareness to our website.
+The `src/index.js` file contains the Worker code that we will modify to add grid awareness to our website. The `wrangler.json` file is where we can make any [configuration](https://developers.cloudflare.com/workers/wrangler/configuration/) changes for the Cloudflare Worker setup. And the `.dev.vars` file can be used to store secrets (like our Electricity Maps API key) for use in development.
 
 ## Configuring our worker
 
@@ -381,7 +383,7 @@ export default {
 
 In the example above, we use the `htmlChanges` option to pass a new instance of the HTMLRewriter to the function. We use the HTMLRewriter to add a data attribute (`data-grid-aware="true"`) to the HTML tag of the page. You can learn more about [Cloudflare's HTMLRewriter](https://developers.cloudflare.com/workers/runtime-apis/html-rewriter/) on their documentation site.
 
-We have also set the `debug: "full"` option for visibility during testing.
+We have also set the `debug: "full"` option for visibility during testing, and configure the [info bar](https://github.com/thegreenwebfoundation/gaw-web-component) to be added to the website inside the `#gaw-info-bar` wrapper element.
 
 ### Testing the code
 
