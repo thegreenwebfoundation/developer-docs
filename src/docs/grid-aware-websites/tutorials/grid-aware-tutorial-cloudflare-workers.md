@@ -131,167 +131,221 @@ export default {
 The worker we have setup will run on our assigned route, but it will just return the original page regardless of the results of the grid-aware checks that it runs. The `gridAwareAuto` function accepts an options object as the fourth parameter. This allows for some configuration to be made to the implementation. Accepted options values are:
 
 <div class="table-wrapper">
-<table class="table-auto">
-  <caption>Configuration options for the gridAwareAuto function</caption>
-  <thead>
-    <tr>
-      <th scope="col">Option</th>
-      <th scope="col">Type</th>
-      <th scope="col">Default</th>
-      <th scope="col">Possible values</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-     <tr>
-       <td><code>contentType</code></td>
-       <td>String[]</td>
-       <td><code>['text/html']</code></td>
-       <td>Example: ['text/html', 'text/css']</td>
-       <td>Defines the content types that should be processed</td>
-     </tr>
-     <tr>
-       <td><code>ignoreRoutes</code></td>
-       <td>String[]</td>
-       <td><code>[]</code></td>
-       <td>Example: ['/wp-admin', '/assets/js']</td>
-       <td>A list of routes where grid-aware code should not be applied</td>
-     </tr>
-     <tr>
-       <td><code>ignoreGawCookie</code></td>
-       <td>String</td>
-       <td><code>'gaw-ignore'</code></td>
-       <td>"gaw-ignore"</td>
-       <td>A cookie that when present will result in grid-aware code being skipped</td>
-     </tr>
-     <tr>
-       <td><code>userOptIn</code></td>
-       <td>Boolean</td>
-       <td><code>false</code></td>
-       <td>true, false</td>
-       <td>Allows developers to specify if users are required to opt-in to the grid-aware website experience</td>
-     </tr>
-     <tr>
-       <td><code>locationType</code></td>
-       <td>String</td>
-       <td><code>'latlon'</code></td>
-       <td>"latlon", "country"</td>
-       <td>Type of location data to use</td>
-     </tr>
-     <tr>
-       <td><code>htmlChanges</code></td>
-       <td>Object</td>
-       <td>{}</td>
-       <td>{"low": HTMLRewriter, "moderate": HTMLRewriter, "high": HTMLRewriter}</td>
-       <td>An object to capture the different HTML changes that are applied at each different grid intesity level</td>
-     </tr>
-     <tr>
-       <td><code>htmlChanges.low</code></td>
-       <td>HTMLRewriter</td>
-       <td>null</td>
-       <td>Custom HTMLRewriter for page modification at low grid intensity level</td>
-       <td></td>
-     </tr>
-     <tr>
-       <td><code>htmlChanges.moderate</code></td>
-       <td>HTMLRewriter</td>
-       <td>null</td>
-       <td>Custom HTMLRewriter for page modification at moderate grid intensity level</td>
-       <td></td>
-     </tr>
-     <tr>
-       <td><code>htmlChanges.high</code></td>
-       <td>HTMLRewriter</td>
-       <td>null</td>
-       <td>Custom HTMLRewriter for page modification at high grid intensity level</td>
-       <td></td>
-     </tr>
-     <tr>
-       <td><code>defaultView</code></td>
-       <td>String/null</td>
-       <td><code>null</code></td>
-       <td>null, "low", "moderate", "high"</td>
-       <td>Default view for the grid-aware website experience</td>
-     </tr>
-     <tr>
-       <td><code>gawDataApiKey</code></td>
-       <td>String</td>
-       <td><code>''</code></td>
-       <td>"xyz123"</td>
-       <td>API key for the data source</td>
-     </tr>
-     <tr>
-       <td><code>infoBar</code></td>
-       <td>Object</td>
-       <td><code>{}</code></td>
-       <td><code>{target: "", version: "latest", learnMoreLink: "#", popoverText: ""}</code></td>
-       <td>Configuration for the info bar element</td>
-     </tr>
-     <tr>
-       <td><code>infoBar.target</code></td>
-       <td>String</td>
-       <td><code>''</code></td>
-       <td>Example: "header", "#info-container"</td>
-       <td>Target element for the info bar</td>
-     </tr>
-     <tr>
-       <td><code>infoBar.version</code></td>
-       <td>String</td>
-       <td><code>'latest'</code></td>
-       <td>"latest", "1.0.0"</td>
-       <td>Version of the info bar to use</td>
-     </tr>
-     <tr>
-       <td><code>infoBar.learnMoreLink</code></td>
-       <td>String</td>
-       <td><code>'#'</code></td>
-       <td>Example: "https://example.com/learn-more"</td>
-       <td>Link to learn more about grid-awareness on your site</td>
-     </tr>
-     <tr>
-       <td><code>infoBar.popoverText</code></td>
-       <td>String</td>
-       <td><code>''</code></td>
-       <td>Example: "This website adapts based on carbon intensity"</td>
-       <td>Provide a custom string of text to be used in the info bar popover element</td>
-     </tr>
-     <tr>
-       <td><code>kvCacheData</code></td>
-       <td>Boolean</td>
-       <td><code>false</code></td>
-       <td>true, false</td>
-       <td>Whether to cache grid data in KV store. Read <a href="https://developers.thegreenwebfoundation.org/grid-aware-websites/plugins/cloudflare-workers/#storing-grid-data">setup instructions</a></td>
-     </tr>
-     <tr>
-       <td><code>kvCachePage</code></td>
-       <td>Boolean</td>
-       <td><code>false</code></td>
-       <td>true, false</td>
-       <td>Whether to cache modified pages in KV store. Read <a href="https://developers.thegreenwebfoundation.org/grid-aware-websites/plugins/cloudflare-workers/#storing-modified-pages">setup instructions</a></td>
-     </tr>
-     <tr>
-       <td><code>debug</code></td>
-       <td>String</td>
-       <td>"none"</td>
-       <td>"none", "full", "headers", "logs"</td>
-       <td>Activates debug mode which outputs logs and returns additional response headers</td>
-     </tr>
-     <tr>
-       <td><code>dev</code></td>
-       <td>Boolean</td>
-       <td><code>false</code></td>
-       <td>true, false</td>
-       <td>Whether to enable development mode</td>
-     </tr>
-     <tr>
-       <td><code>devConfig</code></td>
-       <td>Object</td>
-       <td><code>{}</code></td>
-       <td><code>{hostname: "localhost", port: "8080", protocol: "http"}</code></td>
-       <td>Configuration for development mode</td>
-     </tr>
-   </tbody>
-</table>
+    <table class="table-auto">
+      <caption>Configuration Options for Grid-Aware Websites</caption>
+      <thead>
+        <tr>
+          <th scope="col">Option</th>
+          <th scope="col">Type</th>
+          <th scope="col">Required</th>
+          <th scope="col">Default</th>
+          <th scope="col">Possible values</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>gawDataApiKey</code></td>
+          <td>String</td>
+          <td>Required</td>
+          <td><code>''</code></td>
+          <td>"xyz123"</td>
+          <td>API key for the Electricity Maps</td>
+        </tr>
+        <tr>
+          <td><code>locationType</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>'latlon'</code></td>
+          <td>"latlon", "country"</td>
+          <td>Type of location data to use</td>
+        </tr>
+        <tr>
+          <td><code>contentType</code></td>
+          <td>String[]</td>
+          <td>Optional</td>
+          <td><code>['text/html']</code></td>
+          <td>Example: ['text/html', 'text/css']</td>
+          <td>Defines the content types that should be processed</td>
+        </tr>
+        <tr>
+          <td><code>ignoreRoutes</code></td>
+          <td>String[]</td>
+          <td>Optional</td>
+          <td><code>[]</code></td>
+          <td>Example: ['/wp-admin', '/assets/js']</td>
+          <td>A list of routes where grid-aware code should not be applied</td>
+        </tr>
+        <tr>
+          <td><code>ignoreGawCookie</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>'gaw-ignore'</code></td>
+          <td>"gaw-ignore"</td>
+          <td>A cookie that when present will result in grid-aware code being skipped</td>
+        </tr>
+        <tr>
+          <td><code>userOptIn</code></td>
+          <td>Boolean</td>
+          <td>Optional</td>
+          <td><code>false</code></td>
+          <td>true, false</td>
+          <td>Allows developers to specify if users are required to opt-in to the grid-aware website experience</td>
+        </tr>
+        <tr>
+          <td><code>htmlChanges</code></td>
+          <td>Object</td>
+          <td>Optional</td>
+          <td>{}</td>
+          <td>{"low": HTMLRewriter, "moderate": HTMLRewriter, "high": HTMLRewriter}</td>
+          <td>An object to capture the different HTML changes that are applied at each different grid intesity level</td>
+        </tr>
+        <tr>
+          <td><code>htmlChanges.low</code></td>
+          <td>HTMLRewriter</td>
+          <td>Optional</td>
+          <td>null</td>
+          <td>Custom HTMLRewriter for page modification at low grid intensity level</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><code>htmlChanges.moderate</code></td>
+          <td>HTMLRewriter</td>
+          <td>Optional</td>
+          <td>null</td>
+          <td>Custom HTMLRewriter for page modification at moderate grid intensity level</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><code>htmlChanges.high</code></td>
+          <td>HTMLRewriter</td>
+          <td>Optional</td>
+          <td>null</td>
+          <td>Custom HTMLRewriter for page modification at high grid intensity level</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><code>infoBar</code></td>
+          <td>Object</td>
+          <td>Optional</td>
+          <td><code>{}</code></td>
+          <td><code>{target: "", version: "latest", learnMoreLink: "#", popoverText: "", customViews: ""}</code></td>
+          <td>Configuration for the info bar element</td>
+        </tr>
+        <tr>
+          <td><code>infoBar.target</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>''</code></td>
+          <td>Example: "header", "#info-container"</td>
+          <td>Target element for the info bar</td>
+        </tr>
+        <tr>
+          <td><code>infoBar.version</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>'latest'</code></td>
+          <td>"latest", "1.0.0"</td>
+          <td>Version of the info bar to use</td>
+        </tr>
+        <tr>
+          <td><code>infoBar.learnMoreLink</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>'#'</code></td>
+          <td>Example: "https://example.com/learn-more"</td>
+          <td>Link to learn more about the info bar</td>
+        </tr>
+        <tr>
+          <td><code>infoBar.popoverText</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>''</code></td>
+          <td>Example: "This website adapts based on carbon intensity"</td>
+          <td>Provide a custom string of text to be used in the info bar popover element</td>
+        </tr>
+        <tr>
+          <td><code>infoBar.customViews</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>''</code></td>
+          <td>Example: "custom-low,custom-moderate,custom-high"</td>
+          <td>Custom views for the grid-aware website experience</td>
+        </tr>
+        <tr>
+          <td><code>defaultView</code></td>
+          <td>String/null</td>
+          <td>Optional</td>
+          <td><code>null</code></td>
+          <td>null, "low", "moderate", "high"</td>
+          <td>Default view for the grid-aware website experience</td>
+        </tr>
+        <tr>
+          <td><code>kvCacheData</code></td>
+          <td>Boolean</td>
+          <td>Optional</td>
+          <td><code>false</code></td>
+          <td>true, false</td>
+          <td>Whether to cache grid data in KV store. Read <a href="https://developers.thegreenwebfoundation.org/grid-aware-websites/plugins/cloudflare-workers/#storing-grid-data">setup instructions</a></td>
+        </tr>
+        <tr>
+          <td><code>kvCachePage</code></td>
+          <td>Boolean</td>
+          <td>Optional</td>
+          <td><code>false</code></td>
+          <td>true, false</td>
+          <td>Whether to cache modified pages in KV store. Read <a href="https://developers.thegreenwebfoundation.org/grid-aware-websites/plugins/cloudflare-workers/#storing-modified-pages">setup instructions</a></td>
+        </tr>
+        <tr>
+          <td><code>dev</code></td>
+          <td>Boolean</td>
+          <td>Optional</td>
+          <td><code>false</code></td>
+          <td>true, false</td>
+          <td>Whether to enable development mode</td>
+        </tr>
+        <tr>
+          <td><code>devConfig</code></td>
+          <td>Object</td>
+          <td>Optional</td>
+          <td><code>{}</code></td>
+          <td><code>{hostname: "", port: "", protocol: ""}</code></td>
+          <td>Configuration for development mode</td>
+        </tr>
+        <tr>
+          <td><code>devConfig.hostname</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>''</code></td>
+          <td>Example: "localhost"</td>
+          <td>Hostname for development mode</td>
+        </tr>
+        <tr>
+          <td><code>devConfig.port</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>''</code></td>
+          <td>Example: "8080"</td>
+          <td>Port for development mode</td>
+        </tr>
+        <tr>
+          <td><code>devConfig.protocol</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>''</code></td>
+          <td>Example: "http"</td>
+          <td>Protocol for development mode</td>
+        </tr>
+        <tr>
+          <td><code>debug</code></td>
+          <td>String</td>
+          <td>Optional</td>
+          <td><code>"none"</code></td>
+          <td>"none", "full", "headers", "logs"</td>
+          <td>Activates debug mode which outputs logs and returns additional response headers</td>
+        </tr>
+      </tbody>
+    </table>
 </div>
 
 In this tutorial, we want to make a change to the page which will be applied when the grid-aware checks return a result that indicate the grid is dirtier than normal. The `gridAwareAuto` function will perform these checks for us, so we can use the `htmlChanges` option to pass it the changes we want applied.
