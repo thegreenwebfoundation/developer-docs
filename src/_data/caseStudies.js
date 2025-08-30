@@ -67,6 +67,18 @@ const caseStudies = async () => {
       },
       link: "https://www.thegreenwebfoundation.org/news/a-web-component-for-grid-aware-websites/",
     },
+    {
+      featured_media:
+        "https://branch.climateaction.tech/wp-content/uploads/2025/07/en-grid-aware_wpplugin_mainsettings.jpg",
+      title: {
+        rendered: "Adapting WordPress to Grid-Aware Web Experiences",
+      },
+      excerpt: {
+        rendered:
+          "Nahuai Badiola and Nora Ferreirós introduce a grid-aware websites plugin for WordPress which they have been developing as part of their time with on the project's advisory group.",
+      },
+      link: "https://branch.climateaction.tech/issues/issue-9/adapting-wordpress-to-grid-aware-web-experiences/",
+    },
   ];
 
   return { co2js, gaw };
