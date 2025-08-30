@@ -43,6 +43,30 @@ const caseStudies = async () => {
       },
       link: "https://fershad.com/writing/making-this-website-grid-aware/",
     },
+    {
+      featured_media:
+        "https://res.cloudinary.com/nicchan/image/upload/w_3120,h_3744,c_lfill,f_auto/v1755822151/grid-aware-after",
+      title: {
+        rendered: "Exploring grid-aware websites",
+      },
+      excerpt: {
+        rendered:
+          "Nic Chan explores the ideas of grid-aware websites and demonstrates examples with both Astro and Eleventy.",
+      },
+      link: "https://nicchan.me/blog/exploring-grid-aware-websites/",
+    },
+    {
+      featured_media:
+        "https://www.thegreenwebfoundation.org/wp-content/uploads/Frame-1-4.jpg",
+      title: {
+        rendered: "A web component for grid-aware websites",
+      },
+      excerpt: {
+        rendered:
+          "This post introduces the Grid-aware Status Bar web component which we built to complement a recent redesign of our Branch magazine website.",
+      },
+      link: "https://www.thegreenwebfoundation.org/news/a-web-component-for-grid-aware-websites/",
+    },
   ];
 
   return { co2js, gaw };
