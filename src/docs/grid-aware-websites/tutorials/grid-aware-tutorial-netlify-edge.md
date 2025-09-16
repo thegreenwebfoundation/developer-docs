@@ -13,7 +13,7 @@ eleventyNavigation:
 
 ## Overview
 
-Using Grid-aware Websites with Netlify Edge Functions allows you to add grid awareness to an existing website that is hosted on, or proxied through, Cloudflare's network.
+Using Grid-aware Websites with Netlify Edge Functions allows you to add grid awareness to an existing website that is hosted on Netlifyh network.
 
 In this tutorial, you will learn how to:
 
@@ -30,7 +30,7 @@ You should have:
 - [Node.js installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) on your development machine
 - An [Electricity Maps API key](https://www.electricitymaps.com/free-tier-api)
 
-You should also be aware of the limits and pricing of Netlify Edge Functions, available on the [Cloudflare website](https://developers.cloudflare.com/workers/platform/).
+You should also be aware of the limits and pricing of Netlify Edge Functions, available on the [Netlify website](https://www.netlify.com/platform/core/functions/).
 
 <aside class="alert alert-info text-base-content">
     <p>
