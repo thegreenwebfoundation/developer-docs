@@ -6,7 +6,7 @@ eleventyNavigation:
   title: "Add Grid-aware Websites to an existing site with Netlify Edge Functions"
   #     parent: overview
   sectionTitle: Tutorials
-  order: 20
+  order: 11
 ---
 
 # {{ title }}
