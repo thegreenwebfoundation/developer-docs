@@ -21,7 +21,7 @@ The toolkit, which is currently under development, will consist of:
 - Technical documentation including explainer guides, tutorials and case studies.
 - A UX/UI catalogue of design ideas.
 
-## What's a grid-aware website? How impactful are they?  
+## What's a grid-aware website? How impactful are they?
 
 We've got answers to these questions, and many more, in the FAQ section of [this project's homepage on our website](https://www.thegreenwebfoundation.org/tools/grid-aware-websites/#whats-a-gaw).
 
@@ -44,6 +44,16 @@ Below are some public case studies from people who've used the Grid-aware Websit
                 </li>
           {%- endfor -%}
 </ul>
+
+## Using Grid-aware Websites
+
+<p>This toolkit is open-source and free for you to use. The code library and plugins are licensed <a href="https://github.com/thegreenwebfoundation/co2.js/blob/main/LICENSE" target="_blank" rel="noreferrer noopener">Apache 2.0</a> (<a href="https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)" target="_blank" rel="noreferrer noopener">What does this mean?</a>).</p>
+
+<p>We welcome <a href="https://www.thegreenwebfoundation.org/tools/contribute/">contributions</a> and <a href="https://www.thegreenwebfoundation.org/contact/">info on how this tool helped you solve a problem.</a></p>
+
+<p>We work as a non-profit entity to further the mission of a fossil-free internet, using a small amount of funding carefully for the public benefit. Our work is made possible by the generous donations of grant funders, and also those that use our tools. If you find our work helpful, either as an individual or an organisation, <a href="https://www.thegreenwebfoundation.org/donate/">please consider a donation</a> to help us maintain and progress our work.</p>
+
+<p>You can also enquire about retainers for accessing technical advice or funding specific features via our <a href="https://www.thegreenwebfoundation.org/services/">services page</a>.</p>
 
 ## Keep updated
 
