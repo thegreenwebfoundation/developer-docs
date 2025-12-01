@@ -24,6 +24,15 @@ const swd = new co2();
 // You can also explicitly declare the model
 const declaredSwd = new co2({ model: "swd" });
 ```
+### Using Sustainable Web Design Model version 3
+
+You can explicitly set the Sustainable Web Design Model version 3  when initiating the a new instance of the `co2()` object.
+
+```js
+import { co2 } from "@tgwf/co2";
+
+const swdmV3 = new co2({ model: "swd", version: 3 });
+```
 
 ### Using Sustainable Web Design Model version 4 <span class="badge align-middle badge-secondary badge-lg">Since v0.16.0</span>
 
