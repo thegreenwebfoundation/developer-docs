@@ -48,7 +48,7 @@ import { co2 } from "@tgwf/co2";
 const swdmV4 = new co2({ model: "swd", version: 4 });
 const bytes = 1000;
 
-const estimate = version4.perByte(1000);
+const estimate = swdmV4.perByte(1000);
 ```
 
 Learn more about the [different methods available when using the Sustainable Web Design Model](/co2js/methods/), including how to adjust variables used within the model.
