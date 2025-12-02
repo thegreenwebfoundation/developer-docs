@@ -28,7 +28,7 @@ The raw data files (in CSV) format, can be found in the `data` folder in the [CO
 You can also import annual, country-level marginal or average grid intensity data into your projects directly from CO2.js. For example, if you wanted to use the average grid intensity for Australia in a project, then you can do so by using the code below:
 
 ```js
-import { averageIntensity } from '@tgwf/co2';
+import { averageIntensity } from '@tgwf/co2/data';
 const { data, type, year } = averageIntensity;
 
 const { AUS } = data;
@@ -38,7 +38,7 @@ console.log({ AUS })
 Likewise, if you want to use annual marginal intensity for Australia:
 
 ```js
-import { marginalIntensity } from '@tgwf/co2';
+import { marginalIntensity } from '@tgwf/co2/data';
 const { data, type, year } = marginalIntensity;
 
 const { AUS } = data;
@@ -46,3 +46,13 @@ console.log({ AUS })
 ```
 
 All countries are represented by their respective [Alpha-3 ISO country code](https://www.iso.org/obp/ui/#search).
+
+### Using CO2.js v0.16 and older
+
+If you are using CO2.js v0.16 or older in your code, then you can import data using the code sample below:
+
+```js
+// Import data from CO2.js
+import { averageIntensity } from "@tgwf/co2"
+import { marginalIntensity } from "@tgwf/co2"
+```

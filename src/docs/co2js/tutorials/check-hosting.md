@@ -60,13 +60,11 @@ npm install @tgwf/co2
 
 ## Initialise CO2.js
 
-In your project’s `hosting.js` file, add the following code to include the CO2.js hosting module in your code.
+In your project’s `hosting.js` file, add the following code to include the CO2.js hosting module's `check()` function in your code.
 
 ```js
-const { hosting } = require("@tgwf/co2");
+const { check } = require("@tgwf/co2/hosting");
 ```
-
-The hosting module includes a `check()` function. We will be using this to perform our green hosting checks.
 
 ## Check one domain for green hosting
 
@@ -95,7 +93,7 @@ const options = {
   verbose: false,
   userAgentIdentifier: "myGreenApp",
 };
-hosting.check("google.com", options).then((result) => {
+check("google.com", options).then((result) => {
   console.log(result);
 });
 ```
@@ -120,7 +118,7 @@ const options = {
   verbose: true,
   userAgentIdentifier: "myGreenApp",
 };
-hosting.check("google.com", options).then((result) => {
+check("google.com", options).then((result) => {
   console.log(result);
 });
 ```
@@ -182,7 +180,7 @@ const options = {
   verbose: false,
   userAgentIdentifier: "myGreenApp",
 };
-hosting.check(["google.com", "pchome.com"], options).then((result) => {
+check(["google.com", "pchome.com"], options).then((result) => {
   console.log(result);
 });
 ```
@@ -207,7 +205,7 @@ const options = {
   verbose: true,
   userAgentIdentifier: "myGreenApp",
 };
-hosting.check(["google.com", "pchome.com"], options).then((result) => {
+check(["google.com", "pchome.com"], options).then((result) => {
   console.log(result);
 });
 ```
