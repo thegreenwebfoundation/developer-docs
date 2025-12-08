@@ -11,6 +11,8 @@ eleventyNavigation:
 
 CO2.js exposes two functions that developers can use to return CO2 estimates. This guide will show you how to use the different methods to calculate carbon emissions, and give a brief explanation for each.
 
+{% include 'partials/swdmv4-update.njk' %}
+
 ## perByte()
 
 The `perByte()` function can be used with both the [OneByte and Sustainable Web Design Models](/co2js/models/). We recommend using this function, as it will return a CO2 value (in grams) for raw data transfer using a given model. It can be used for calculating emissions from websites, file uploads, streaming etc.
