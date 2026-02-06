@@ -13,7 +13,7 @@ eleventyNavigation:
 You can import annual, country-level average grid intensity data from [Electricity Maps](https://www.electricitymaps.com) into your projects directly from CO2.js. For example, if you wanted to use the average grid intensity for **Australia for all available years** in a project, then you can do so by using the code below:
 
 ```js
-import { yearly2025, yearly2024, yearl2023, yearly2022, yearly2021 } from '@tgwf/co2/data/electricity-maps';
+import { yearly2025, yearly2024, yearly2023, yearly2022, yearly2021 } from '@tgwf/co2/data/electricity-maps';
 
 const data2025 = yearly2025.data["AU"]
 const data2024 = yearly2024.data["AU"]
