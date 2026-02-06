@@ -10,14 +10,18 @@ eleventyNavigation:
 
 # Data - Electricity Maps
 
-You can import annual, country-level average grid intensity data from [Electricity Maps](https://www.electricitymaps.com) into your projects directly from CO2.js. For example, if you wanted to use the average grid intensity for Australia for the year 2025 in a project, then you can do so by using the code below:
+You can import annual, country-level average grid intensity data from [Electricity Maps](https://www.electricitymaps.com) into your projects directly from CO2.js. For example, if you wanted to use the average grid intensity for **Australia for all available years** in a project, then you can do so by using the code below:
 
 ```js
-import { yearly2025 } from '@tgwf/co2/data/electricity-maps';
-const { data, methodology } = averageIntensity;
+import { yearly2025, yearly2024, yearl2023, yearly2022, yearly2021 } from '@tgwf/co2/data/electricity-maps';
 
-const { AU } = data;
-console.log({ AU })
+const data2025 = yearly2025.data["AU"]
+const data2024 = yearly2024.data["AU"]
+const data2023 = yearly2023.data["AU"]
+const data2022 = yearly2022.data["AU"]
+const data2021 = yearly2021.data["AU"]
+
+console.log({ data2025, data2024, data2023, data2022, data2021 })
 ```
 
 Electricity Maps also provides information for some grid regions (for example CAISO in the United States, or Northern India). To access these regions, developers should use the appropriate zone ID for the region they wish to access.
