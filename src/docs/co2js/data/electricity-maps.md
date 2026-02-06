@@ -10,10 +10,25 @@ eleventyNavigation:
 
 # Data - Electricity Maps
 
+You can import annual, country-level average grid intensity data from [Electricity Maps](https://www.electricitymaps.com) into your projects directly from CO2.js. For example, if you wanted to use the average grid intensity for Australia for the year 2025 in a project, then you can do so by using the code below:
+
+```js
+import { yearly2025 } from '@tgwf/co2/data/electricity-maps';
+const { data, methodology } = averageIntensity;
+
+const { AU } = data;
+console.log({ AU })
+```
+
+Data is available for:
+
+- All Electricity Maps zones (see the [full list of available zones](https://github.com/thegreenwebfoundation/co2.js/blob/main/data/fixtures/electricity-maps-zones.js))
+- The calendar years 2021, 2022, 2023, 2024, and 2025
+
 
 ## Licenses
 
-Electricity Maps Grid Intensity Data - The annual grid intensity data is republished from Electricity Maps under the [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/summary/). Users of this data through CO2.js must:
+The annual grid intensity data is republished from Electricity Maps under the [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/summary/). Users of this data through CO2.js must:
 
 - Attribute: Credit Electricity Maps as the source
 - Share-Alike: Keep derivative works under the same license
