@@ -4,7 +4,7 @@ description: This page contains links to different Github issues that track the 
 eleventyNavigation:
   key: roadmap
   title: Roadmap
-  order: 6
+  order: 3
 ---
 
 # CO2.js - Roadmap
