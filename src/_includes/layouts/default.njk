@@ -107,7 +107,7 @@
                       {%- for entry in navPages %}
                         {% if sectionTitle != entry.sectionTitle %}
                           {% set sectionTitle = entry.sectionTitle %}
-                          <li class="menu-title">
+                          <li class="menu-title border-b-2 border-primary">
                             <p class="divider text-sm font-bold font-mono">{{ sectionTitle }}</p>
                           </li>
                         {% endif %}
