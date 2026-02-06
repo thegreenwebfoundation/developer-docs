@@ -40,5 +40,5 @@ The annual grid intensity data is republished from Electricity Maps under the [O
 - Share-Alike: Keep derivative works under the same license
 - Keep open: Provide unrestricted versions if using DRM
 
-For full details on Electricity Maps methodology see: https://www.electricitymaps.com/data/methodology
-For full detail on the ODbL see: https://opendatacommons.org/licenses/odbl/summary/
+For full details on Electricity Maps methodology see: [https://www.electricitymaps.com/data/methodology](https://www.electricitymaps.com/data/methodology)
+For full detail on the ODbL see: [https://opendatacommons.org/licenses/odbl/summary/](https://opendatacommons.org/licenses/odbl/summary/)
