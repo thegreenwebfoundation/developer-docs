@@ -20,10 +20,16 @@ const { AU } = data;
 console.log({ AU })
 ```
 
+Electricity Maps also provides information for some grid regions (for example CAISO in the United States, or Northern India). To access these regions, developers should use the appropriate zone ID for the region they wish to access.
+
 Data is available for:
 
 - All Electricity Maps zones (see the [full list of available zones](https://github.com/thegreenwebfoundation/co2.js/blob/main/data/fixtures/electricity-maps-zones.js))
 - The calendar years 2021, 2022, 2023, 2024, and 2025
+
+### Accessing other Electricity Maps data
+
+While we are able to provide annual grid data from Electricity Maps in CO2.js, users wishing to utilise data at higher-than-yearly resolution (e.g monthly, hourly etc.), or [other historical and forecasted datapoints](https://www.electricitymaps.com/data) should contact Electricity Maps to access this data via their paid API. To do so, visit the Electricity Maps website for [pricing and details](https://www.electricitymaps.com/pricing).
 
 
 ## Licenses
@@ -36,5 +42,3 @@ The annual grid intensity data is republished from Electricity Maps under the [O
 
 For full details on Electricity Maps methodology see: https://www.electricitymaps.com/data/methodology
 For full detail on the ODbL see: https://opendatacommons.org/licenses/odbl/summary/
-
-Data at higher-than-yearly resolution (e.g monthly, hourly etc.), or [other historical and forecasted datapoints](https://www.electricitymaps.com/data) are available through Electricity Maps as a paid service. Users requiring this data should visit the Electricity Maps website for [pricing and details](https://www.electricitymaps.com/pricing).
