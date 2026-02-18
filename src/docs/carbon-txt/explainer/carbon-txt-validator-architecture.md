@@ -27,7 +27,7 @@ The following diagrams use the [C4 model](https://c4model.com/) for describing s
 
 ### Context View
 
-![Context - a user sends a domain to lookup to the carbon.txt validator, which then fetches the carbon.txt file from that domain. The validator sends back validation results to the user.](https://carbon-txt-validator.readthedocs.io/en/latest/_images/1-a-context.jpg)
+![Context - a user sends a domain to lookup to the carbon.txt validator, which then fetches the carbon.txt file from that domain. The validator sends back validation results to the user.](/img/carbon-txt-architecture/1-a-context.png)
 
 The context view demonstrate how we expect the validator to be used by end-users.
 
@@ -37,13 +37,13 @@ In all cases the key idea is that the validator is designed to run lookups again
 
 ### Containers
 
-![Containers - a user sends a domain to lookup via a HTTP request. The carbon.txt validator fetches the carbon.txt file from that domain, and also fetches any linked CSRD documents that are references inside that file. The validator sends back results to the user in JSON format.](https://carbon-txt-validator.readthedocs.io/en/latest/_images/1-b-containers.jpg)
+![Containers - a user sends a domain to lookup via a HTTP request. The carbon.txt validator fetches the carbon.txt file from that domain, and also fetches any linked CSRD documents that are references inside that file. The validator sends back results to the user in JSON format.](/img/carbon-txt-architecture/1-b-containers.png)
 
 The validator is designed to work as a single deployable unit. This might be as a server providing an API, or as part of a batch job, running on a periodically on an existing host.
 
 ### Components
 
-![Components - there are multiple components that make up the carbon.txt validator. They are the API & CLI; Carbon.txt Finder; Carbon.txt Parser; CSRD Processor](https://carbon-txt-validator.readthedocs.io/en/latest/_images/1-c-components.jpg)
+![Components - there are multiple components that make up the carbon.txt validator. They are the API & CLI; Carbon.txt Finder; Carbon.txt Parser; CSRD Processor](/img/carbon-txt-architecture/1-c-components.png)
 
 The carbon.txt validator is split into a series of components, with clear
 divisions of responsibility
@@ -82,7 +82,7 @@ So, for a CSRD report that is written to fit pre-agreed standards, like being wr
 
 ### Classes
 
-![Classes - The CSRD Processor uses the Arelle third-party library to parse and validate XBRL documents. There can be additional validation rules added to the processor which are run before returning results.](https://carbon-txt-validator.readthedocs.io/en/latest/_images/1-d-classes.jpg)
+![Classes - The CSRD Processor uses the Arelle third-party library to parse and validate XBRL documents. There can be additional validation rules added to the processor which are run before returning results.](/img/carbon-txt-architecture/1-d-classes.png)
 
 The In our CSRD Processor uses [Arelle](https://arelle.readthedocs.io/), an open source library for working with XBRL documents, to turn XBRL-formatted CSRD reports into datastructures that can be manipulated in Python, and that can be checked for the existence of specific data points.
 
