@@ -14,13 +14,17 @@ You can import annual, country-level marginal grid intensity data from the [UNFC
 
 ```js
 import { marginalIntensity } from '@tgwf/co2/data';
-const { data, type, year } = marginalIntensity;
+const { data } = marginalIntensity;
 
 const { AUS } = data;
-console.log({ AUS })
+console.log( AUS )
 ```
 
 All countries are represented by their respective [Alpha-3 ISO country code](https://www.iso.org/obp/ui/#search).
+
+## Returns
+
+The code above will return a `number` representing the grid carbon intensity in grams of CO2e per kilowatt-hour.
 
 ### Using CO2.js v0.16 and older
 

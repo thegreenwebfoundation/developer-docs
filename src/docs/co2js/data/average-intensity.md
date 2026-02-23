@@ -14,15 +14,19 @@ You can import annual, country-level average grid intensity data from [Ember Cli
 
 ```js
 import { averageIntensity } from '@tgwf/co2/data';
-const { data, type, year } = averageIntensity;
+const { data } = averageIntensity;
 
 const { AUS } = data;
-console.log({ AUS })
+console.log(AUS)
 ```
 
 All countries are represented by their respective [Alpha-3 ISO country code](https://www.iso.org/obp/ui/#search).
 
-### Using CO2.js v0.16 and older
+## Returns
+
+The code above will return a `number` representing the grid carbon intensity in grams of CO2e per kilowatt-hour.
+
+## Using CO2.js v0.16 and older
 
 If you are using CO2.js v0.16 or older in your code, then you should import data using the code sample below:
 
