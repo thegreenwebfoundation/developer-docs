@@ -26,7 +26,7 @@ It’s a web-first, *connect not collect* style approach, of most benefit to tho
 
 The documentation on this website is aimed at developers looking to build additional tooling that extends carbon.txt - primarily through plugins and other extensions to the [carbon.txt validator](https://github.com/thegreenwebfoundation/carbon-txt-validator). General information about carbon.txt for a non-technical audience is available on the <a hreF="htts://carbontxt.org" target="_blank">carbon.txt website</a>.
 
-## Other Carbon.txt Tools
+## Other carbon.txt Tools
 
 Below are a collection of tools that you can use to get started creating a carbon.txt file for your organisation, or to check the contents of an existing carbon.txt file.
 
@@ -89,11 +89,11 @@ Below are a collection of tools that you can use to get started creating a carbo
 
 ## Keep updated
 
-To follow the Grid-aware Websites project, you can:
+To follow the carbon.txt project, you can:
 
 <a href="https://www.linkedin.com/company/9184998" class="btn btn-primary">Follow us on LinkedIn</a>
 <a href="https://www.thegreenwebfoundation.org/newsletter/" class="btn btn-neutral">Subscribe to our montlhy newsletter</a>
 
 ## Licenses
 
-The code for Grid-aware Websites core library and plugins are licensed [Apache 2.0](https://github.com/thegreenwebfoundation/grid-aware-websites/blob/main/LICENSE). ([What does this mean?](<https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)>))
+The code for carbon.txt validator library is licensed [Apache 2.0](https://github.com/thegreenwebfoundation/grid-aware-websites/blob/main/LICENSE). ([What does this mean?](<https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)>))
