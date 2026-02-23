@@ -31,6 +31,23 @@ Data is available for:
 - All Electricity Maps zones (see the [full list of available zones](https://github.com/thegreenwebfoundation/co2.js/blob/main/data/fixtures/electricity-maps-zones.js))
 - The calendar years 2021, 2022, 2023, 2024, and 2025
 
+## Returns
+
+For any given Electricity Maps zone, the following data is returned:
+
+- `zone` - An `object` that details information about the zone. This object will include:
+  - `zoneName` - A `string` with the full zone name.
+  - `countryName` - <span class="badge align-middle badge-success my-0">Optional</span> When the zone represents a region within a country, the country name is also included.
+- `carbonIntensity` - An `object` returning the carbon intensity for the zone. This object will include:
+  - `value` - A `number` representing the carbon intensity for the zone.
+  - `unit` - A `string` representing the unit of measurement for the carbon intensity value.
+- `renewableEnergy` - An `object` returning the portion of renewable energy used by the zone. This object will include:
+  - `value` - A `number` representing the renewanable energy usage of the zone.
+  - `unit` - A `string` representing the unit of measurement for the renewable energy value.
+- `carbonFreeEnergy` - An `object` returning the portion of carbon free energy used by the zone. This object will include:
+  - `value` - A `number` representing the carbon free energy usage of the zone.
+  - `unit` - A `string` representing the unit of measurement for the carbon free energy value.
+
 ### Accessing other Electricity Maps data
 
 While we are able to provide annual grid data from Electricity Maps in CO2.js, users wishing to utilise data at higher-than-yearly resolution (e.g monthly, hourly etc.), or [other historical and forecasted datapoints](https://www.electricitymaps.com/data) should contact Electricity Maps to access this data via their paid API. To do so, visit the Electricity Maps website for [pricing and details](https://www.electricitymaps.com/pricing).

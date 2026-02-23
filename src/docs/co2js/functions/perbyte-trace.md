@@ -51,7 +51,7 @@ The `perByteTrace()` function returns an object with the following keys:
 
 - `co2` - A `number` representing the carbon emissions calculated in grams
 - `green` - A `boolean` indicating whether the calculation was based on data being hosted in a green data center
-- `variables` - An `object`` that details all the other variables used in the calculation. This object will include:
+- `variables` - An `object` that details all the other variables used in the calculation. This object will include:
   - `description` - A static `string` explaining what is being shown.
   - `bytes` - A `number` showing the bytes that were passed into the function.
   - `greenHostingFactor` <span class="badge badge-warning gap-2 align-middle">Sustainable Web Design Model v4 only</span> - A `number` representing the portion of hosting services powered by renewable or zero-carbon energy.
