@@ -1,29 +1,47 @@
 ---
-title: Methodologies for calculating website carbon
-description: CO2.js offers two models for understanding the environmental impact of compute - the OneByte model, and the Sustainable Web Design Model.
+title: Models
+description: This guide will show you how use the different carbon estimation models available in CO2.js.
 eleventyNavigation:
-  key: website-carbon-methodologies
+  key: models-overview
+  title: Overview
   # parent: overview
-  title: Methodologies for calculating website carbon
-  sectionTitle: Explanations
-  order: 30
+  sectionTitle: Estimation Models
+  order: 4
 ---
 
-# {{ title }}
+# Models
 
-CO2.js offers two models for understanding the environmental impact of compute - the OneByte model (`1byte.js`), and the Sustainable Web Design Model (`swd.js`).
+There are a few different models that can be used to measure digital carbon emissions. CO2.js includes two of these - the [OneByte][soberDigital] model, and the [Sustainable Web Design Model][swd]. This guide will show you how use the different carbon estimation models available in CO2.js.
 
-## Default
+## Default estimation model
 
-Since v0.11.0, CO2.js uses the Sustainable Web Design (SWDM) model as the default when calculating carbon emissions.
+CO2.js uses the **Sustainable Web Design (SWDM) Model version 4** as the default when calculating carbon emissions.
 
 ## Carbon estimation models
 
 ### The Sustainable Web Design Model
 
-By default, CO2.js uses the [Sustainable Web Design Model][swd] for calculating emissions from digital services. As the name suggests, this has been designed for helping understand the environmental impact of websites. Further details are available on the [Sustainable Web Design website explaining the model](https://sustainablewebdesign.org/calculating-digital-emissions/), but for convenience, a short summary is below.
+After importing CO2.js into your project, you can start using this model right away by initiating a `co2()` object. Alternately, you can pass in the `model: "swd"` option. This will use [version 4 of the Sustainable Web Design Model](https://sustainablewebdesign.org/estimating-digital-emissions) by default.
 
-#### How the SWDM works
+```js
+import { co2 } from "@tgwf/co2";
+
+const swd = new co2();
+// You can also explicitly declare the model
+const declaredSwd = new co2({ model: "swd" });
+```
+
+#### Using Sustainable Web Design Model version 3
+
+By default, CO2.js will use the Sustainable Web Design Model version 4 calculations. To use Sustainable Web Design Model version 3, you can explicitly set it as the model version when initiating the a new instance of the `co2()` object.
+
+```js
+import { co2 } from "@tgwf/co2";
+
+const swdmV3 = new co2({ model: "swd", version: 3 });
+```
+
+#### Explainer: How the SWDM works
 
 This model uses data transfer as an proxy indicator for total resource usage, and uses this number to extrapolate energy usage numbers for your application as a fraction of the energy used by the total system comprised of:
 
@@ -44,11 +62,18 @@ This follows the approach used by the IPCC 5th Assessment Report Annex 3 (2014),
 
 ### The OneByte model
 
-Additionally, CO2.js also allows developers to use the OneByte model as introduced by The Shift Project in their report on CO2 emissions from digital infrastructure, [Lean ICT: for a sober digital][soberDigital].
+
+Additionally, CO2.js also allows developers to use the OneByte model as introduced by The Shift Project in their report on CO2 emissions from digital infrastructure, [Lean ICT: for a sober digital][soberDigital].If you want to use the OneByte model, then you'll need to let CO2.js know. This can be done by passing in a `model` parameter with a value of `"1byte"` when you initiate a new `co2()` object.
+
+```js
+import { co2 } from "@tgwf/co2";
+
+const oneByte = new co2({ model: "1byte" });
+```
 
 This returns a number for the estimated CO2 emissions for the corresponding number of bytes sent over the wire, and has been used for video streaming, file downloads and websites.
 
-### How the models differ
+## How the models differ
 
 These models return slightly different results, since they apply different system boundaries as part of their calculations. Tom Greenwood has written [a terrific blog post](https://www.wholegraindigital.com/blog/website-energy-consumption/) explaining system boundaries and how they impact carbon estimates.
 
@@ -56,20 +81,21 @@ The OneByte model, as it has been implemented in CO2.js, applies narrow system b
 
 On the other hand, the Sustainable Web Design Model has a broader system boundary (explained above). It takes a more complex, but detailed, bottom up approach. By using a wider system boundary, the Sustainable Web Design Model provides a more comprehensive carbon estimate. This also means that segmented estimates can be produced for each part of the system, allowing for greater granularity and flexibility.
 
-As a result, the `perByte` carbon estimates returned when using the OneByte model will be lower than those from Sustainable Web Design for the same amount of data transfer.
-
 ## Switching between models
 
-To use the Sustainable Web Design Model in CO2.js, pass in the `{ model: 'swd' }` parameter when initiating a new CO2.js object.
+To use the Sustainable Web Design Model in CO2.js, pass in the `{ model: 'swd' }` or `{ model: '1byte' }` parameter when initiating a new CO2.js object.
 
 ```js
 import { co2 } from "@tgwf/co2";
 
-// Use the default Sustainable Web Design Model
+// Use the default Sustainable Web Design Model v4
 const swd = new co2();
 
 // Use the OneByte model
 const oneByte = new co2({ model: "1byte" });
+
+// Use the Sustainable Web Design Model v3
+const swdmV3 = new co2({ model: "swd", version: 3 });
 ```
 
 [ember-methodology]: https://ember-climate.org/app/uploads/2022/03/GER22-Methodology.pdf
