@@ -76,10 +76,21 @@ Below are a collection of tools that you can use to get started creating a carbo
             </div>
         </div>
     </li>
-    <li class="card g-base-100 shadow-xl not-prose">
+    <li class="card bg-base-100 shadow-xl not-prose">
         <div class="card-body not-prose">
-            <h3 class="card-title not-prose">Syntax reference</h3>
-            <span>Learn about all the details of the carbon.txt format from our syntax specification.</span>
+            <h3 class="card-title not-prose">Validation API</h3>
+            <span>Use our HTTP API to look up and validate carbon.txt files.</span>
+            <div class="card-actions justify-end not-prose">
+                <a href="/api/carbon-txt/overview/" class="btn btn-secondary" target="_blank">Go to the documentation</a>
+            </div>
+        </div>
+    </li>
+    <li class="card g-base-100 shadow-xl not-prose col-span-2">
+        <div class="card-body not-prose items-center flex flex-row">
+            <div>
+                <h3 class="card-title not-prose">Syntax reference</h3>
+                <span>Learn about all the details of the carbon.txt format from our syntax specification.</span>
+            </div>
             <div class="card-actions justify-end not-prose">
                 <a href="https://carbontxt.org/tools/syntax" class="btn btn-secondary" target="_blank">Go to the reference</a>
             </div>
