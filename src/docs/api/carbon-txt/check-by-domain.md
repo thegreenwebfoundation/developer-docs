@@ -20,17 +20,42 @@ To validate a carbon.txt file by hosted at a public domain, make a `POST` reques
 
 The request should include a JSON-encoded body with the carbon.txt file contents encoded as the `domain` parameter.
 
-An example with CURL:
+<seven-minute-tabs>
+   <ol role="tablist" aria-label="Select a programming language to preview">
+    <li><a href="#js" role="tab" aria-selected="true">JavaScript</a></li>
+    <li><a href="#curl" role="tab">cURL</a></li>
+   </ol>
 
-```bash
+   <div id="js" role="tabpanel">
+{% set code %}
+fetch("https://carbon-txt-api.greenweb.org/api/validate/domain", {
+  method: "POST",
+  headers: {
+    "X-Api-Key": gwf_xxxxxxx.xxxxxxxxxxxxxxxxx,
+  },
+  body: JSON.stringify({ domain: example.com })
+})
+{% endset %}
+
+{% codeSnippet code, 'js' %}
+
+   </div>
+
+   <div id="curl" role="tabpanel">
+{% set code %}
 curl -X POST \
     -H "Content-Type: application/json" \
     -H "X-Api-Key: gwf_xxxxxxx.xxxxxxxxxxxxxxxxx" \
-    --data "{\"domain\": \"https://example.com/carbon.txt\"  }" \
+    --data "{\"domain\": \"example.com/\"  }" \
     https://carbon-txt-api.greenweb.org/api/validate/domain
-```
+{% endset %}
 
-<div class="alert alert-info">
+{% codeSnippet code, 'curl' %}
+
+   </div>
+   </seven-minute-tabs>
+   
+<div class="alert alert-info my-3">
   <div class="items-start">
     <div>
       <h2 class="font-bold my-3 gap-2 flex items-center">Important</h2>

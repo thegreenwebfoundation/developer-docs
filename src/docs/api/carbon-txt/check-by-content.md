@@ -20,15 +20,48 @@ To validate a carbon.txt file by uploading contents directly, make a `POST` requ
 
 The request should include a JSON-encoded body with the carbon.txt file contents encoded as the `text_contents` parameter.
 
-An example with CURL:
+<seven-minute-tabs>
+   <ol role="tablist" aria-label="Select a programming language to preview">
+    <li><a href="#js" role="tab" aria-selected="true">JavaScript</a></li>
+    <li><a href="#curl" role="tab">cURL</a></li>
+   </ol>
 
-```bash
+   <div id="js" role="tabpanel">
+{% set code %}
+fetch("https://carbon-txt-api.greenweb.org/api/validate/file", {
+  method: "POST",
+  headers: {
+    "X-Api-Key": gwf_xxxxxxx.xxxxxxxxxxxxxxxxx,
+  },
+  body: JSON.stringify({ text_contents: version="0.5"
+    last_updated=2026-06-01
+    
+    [org]
+    disclosures = [
+        { doc_type="web-page", url="https://example.com" },
+    ] 
+  })
+})
+{% endset %}
+
+{% codeSnippet code, 'js' %}
+
+   </div>
+
+   <div id="curl" role="tabpanel">
+{% set code %}
 curl -X POST \
     -H "Content-Type: application/json" \
     -H "X-Api-Key: gwf_xxxxxxx.xxxxxxxxxxxxxxxxx" \
     --data "{\"text_contents\": \"version='0.5'\n[org]\ndisclosures=[{ doc_type='web-page', url='https://example.com'}]\"  }" \
     https://carbon-txt-api.greenweb.org/api/validate/file
-```
+{% endset %}
+
+{% codeSnippet code, 'curl' %}
+
+   </div>
+   </div>
+   </seven-minute-tabs>
 
 {% set successCodeBlock %}
 ```json
