@@ -1,12 +1,9 @@
-
 {
-	"tags": [
-		"carbon-txt"
-	],
-	"name": "Carbon.txt validation API",
-	"permalink": "{% if not overridePermalink %}{% generateDocsPath page.filePathStem %}/index.html{% else %}{{ overridePermalink }}{% endif %}",
-	"layout": "layouts/doc.njk",
-	"repoVersion": "1",
-	"repo": "carbon-txt-validator",
-	"repository": "https://github.com/thegreenwebfoundation/carbon.-txt-validatorl"
+  "tags": ["carbon-txt"],
+  "name": "Carbon.txt validator API",
+  "permalink": "{% if not overridePermalink %}{% generateDocsPath page.filePathStem %}/index.html{% else %}{{ overridePermalink }}{% endif %}",
+  "layout": "layouts/doc.njk",
+  "repoVersion": "1",
+  "repo": "carbon-txt-validator",
+  "repository": "https://github.com/thegreenwebfoundation/carbon.-txt-validator"
 }

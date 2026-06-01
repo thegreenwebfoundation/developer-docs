@@ -1,6 +1,6 @@
 ---
 tags: apiMain
-libraryName: Carbon.txt validation API
+libraryName: Carbon.txt validator API
 title: Overview
 description: Use this API to lookup and validate carbon.txt files.
 hasTabs: true
@@ -10,9 +10,9 @@ eleventyNavigation:
   order: 1
 ---
 
-# Carbon.txt validation API
+# Carbon.txt validator API
 
-The carbon.txt validation API allows you to validate the syntax and content of carbon.txt files, and to look up the carbon.txt file for a given domain.
+The carbon.txt validator API allows you to validate the syntax and content of carbon.txt files, and to look up the carbon.txt file for a given domain.
 
 # Authentication
 
@@ -122,4 +122,3 @@ The object has the following fields:
   - A `document_data` object, containing any data parsed from linked documents by installed [carbon.txt plugins](https://carbon-txt-validator.readthedocs.io/en/latest/plugins.html). Currently the API provides plugins to parse [CSRD reports](https://finance.ec.europa.eu/financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en) and [AI model cards](https://huggingface.co/docs/hub/model-cards).
   - If you validated a url or domain, a `url` field will be returned with the canonical url of the file found.
   - If you requested a domain which delegates its carbon.txt file to another domain using a DNS TXT record or HTTP header, the `delegation_method` field will indicate the delegation method followed.
-
