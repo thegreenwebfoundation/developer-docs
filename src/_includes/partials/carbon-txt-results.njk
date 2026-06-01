@@ -1,0 +1,46 @@
+## Understanding the validator response.
+
+The validator will return a JSON response with either success or failure results.
+
+### Success
+
+{{ successCodeBlock  |  safe}}
+
+
+### Failure
+
+Below is an example of an error returned due to incorrect `doc_type`.
+
+```json
+{
+    "success": false,
+    "errors": [
+        {
+            "type": "literal_error",
+            "loc": [
+                "org",
+                "disclosures",
+                0,
+                "doc_type"
+            ],
+            "msg": "Input should be 'web-page', 'annual-report', 'sustainability-page', 'certificate', 'csrd-report', 'ai-model-card' or 'other'",
+            "input": "report",
+            "ctx": {
+                "expected": "'web-page', 'annual-report', 'sustainability-page', 'certificate', 'csrd-report', 'ai-model-card' or 'other'"
+            },
+            "url": "https://errors.pydantic.dev/2.13/v/literal_error"
+        }
+    ],
+    "logs": [
+        "Attempting to validate contents of version=\"0.5\"\nlast_updated=2026-06-01\n\n[",
+        "Carbon.txt file parsed as valid TOML.",
+        "Validation failed.",
+        "Validation error: 1 validation error for CarbonTxtFile\norg.disclosures.0.doc_type\n  Input should be 'web-page', 'annual-report', 'sustainability-page', 'certificate', 'csrd-report', 'ai-model-card' or 'other' [type=literal_error, input_value='report', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+    ]
+}
+```
+
+The object has the following fields:
+ - The `success` field returns `false`, indicating carbon.txt content was not succesfully parsed.
+ - The detials of errors found are serialized inside the `errors` array.
+ - An array of `logs` which detail the carbon.txt lookup and validation process carried out, for debugging purposes.

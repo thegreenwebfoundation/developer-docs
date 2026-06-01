@@ -30,12 +30,7 @@ curl -X POST \
     https://carbon-txt-api.greenweb.org/api/validate/file
 ```
 
-## Understanding the validator response.
-
-The validator will return a JSON response with either success or failure results.
-
-### Success
-
+{% set successCodeBlock %}
 ```json
 {
   "success": true,
@@ -72,48 +67,12 @@ The validator will return a JSON response with either success or failure results
 }
 ```
 
+
 The object has the following fields:
  - The `success` field returns `true`, indicating carbon.txt content was succesfully parsed.
  - The contents of the carbon.txt file, serialized as JSON, inside the `data` field.
  - An array of `logs` which detail the carbon.txt lookup and validation process carried out, for debugging purposes.
  - A `document_data` object, containing any data parsed from linked documents by installed [carbon.txt plugins](https://carbon-txt-validator.readthedocs.io/en/latest/plugins.html). Currently the API provides plugins to parse [CSRD reports](https://finance.ec.europa.eu/financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en) and [AI model cards](https://huggingface.co/docs/hub/model-cards).
+{% endset %}
 
-
-
-### Failure
-
-Below is an example of an error returned due to incorrect `doc_type`.
-
-```json
-{
-    "success": false,
-    "errors": [
-        {
-            "type": "literal_error",
-            "loc": [
-                "org",
-                "disclosures",
-                0,
-                "doc_type"
-            ],
-            "msg": "Input should be 'web-page', 'annual-report', 'sustainability-page', 'certificate', 'csrd-report', 'ai-model-card' or 'other'",
-            "input": "report",
-            "ctx": {
-                "expected": "'web-page', 'annual-report', 'sustainability-page', 'certificate', 'csrd-report', 'ai-model-card' or 'other'"
-            },
-            "url": "https://errors.pydantic.dev/2.13/v/literal_error"
-        }
-    ],
-    "logs": [
-        "Attempting to validate contents of version=\"0.5\"\nlast_updated=2026-06-01\n\n[",
-        "Carbon.txt file parsed as valid TOML.",
-        "Validation failed.",
-        "Validation error: 1 validation error for CarbonTxtFile\norg.disclosures.0.doc_type\n  Input should be 'web-page', 'annual-report', 'sustainability-page', 'certificate', 'csrd-report', 'ai-model-card' or 'other' [type=literal_error, input_value='report', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
-    ]
-}
-```
-
-The object has the following fields:
- - The `success` field returns `false`, indicating carbon.txt content was not succesfully parsed.
- - The detials of errors found are serialized inside the `errors` array.
- - An array of `logs` which detail the carbon.txt lookup and validation process carried out, for debugging purposes.
+{% include 'partials/carbon-txt-results.njk' %}
