@@ -11,7 +11,7 @@ eleventyNavigation:
 
 # Authentication
 
-To use the carbon.txt validator API, you will need to authenticate using a Green Web Foundation API key, available by logging into the [Green Web Portal](https://admin.thegreenwebfoundation.org). Register or log into an existing account, then navigate to the API keys section in the main navigation - ou will be asked to provide some information on your planned use case, and to accept our privacy policy before creating your first key. You may create up to a maximum of 3 API keys by default.
+To use the carbon.txt validator API, you will need to authenticate using a Green Web Foundation API key, available by logging into the [Green Web Portal](https://admin.thegreenwebfoundation.org). Register or log into an existing account, then navigate to the API keys section in the main navigation - you will be asked to provide some information on your planned use case, and to accept our privacy policy before creating your first key. You may create a maximum of 3 API keys by default.
 
 Once you have created a key, you can use it to authenticate your requests to the carbon.txt validation API by passing the `X-Api-Key` header with your requests. By default, requests are rate limited to 2 per second per API key.
 
