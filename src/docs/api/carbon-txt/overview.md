@@ -14,111 +14,85 @@ eleventyNavigation:
 
 The carbon.txt validator API allows you to validate the syntax and content of carbon.txt files, and to look up the carbon.txt file for a given domain.
 
-# Authentication
+{% include 'partials/carbon-txt-overview.njk' %}
 
-To use the carbon.txt validation API, you will need to authenticate using a Green Web Foundation API key, available by logging into the [Green Web Portal](https://admin.thegreenwebfoundation.org). Register or log into an existing account, then navigate to the API keys section in the main navigation - ou will be asked to provide some information on your planned use case, and to accept our privacy policy before creating your first key. You may create up to a maximum of 3 API keys by default.
+## These docs
 
-Once you have created a key, you can use it to authenticate your requests to the carbon.txt validation API by passing the `X-Api-Key` header with your requests. By default, requests are rate limited to 2 per second per API key.
+The documentation in this section is aimed at developers looking to use the carbon.txt validator API provided by the Green Web Foundation to discover, validate, and parse carbon.txt files and their contents. General information about carbon.txt for a non-technical audience is available on the [carbon.txt website](https://carbontxt.org).
 
-If you need more keys, or a raised rate limit, please <a href="mailto:support@greenweb.org?subject=API%20key%20enquiry">get in touch</a> with our support team and we'll be happy to help.
+This documentation covers:
 
+- [Authenticating](/api/carbon-txt-/authentication) requests made to the carbon.txt validator API
+- Using the carbon.txt validator API to discover and parse carbon.txt files on a [given web domain](/api/carbon-txt-/check-by-domain)
+- Using the carbon.txt validator API to discover and parse carbon.txt files at a [specific public URL](/api/carbon-txt-/check-by-url)
+- Using the carbon.txt validator API to parse [carbon.txt content directly](/api/carbon-txt-/check-by-content)
 
-[Interactive OpenAPI documentation](https://carbon-txt-api.greenweb.org/api/docs) for the API is also available, and has full details of all request and response parameters.
+## Other carbon.txt Tools
 
-# Usage
+Below are a collection of tools that you can use to get started creating a carbon.txt file for your organisation, or to check the contents of an existing carbon.txt file.
 
-The carbon.txt validation API allows carbon.txt files to be validated by direct upload, provided at a specific URL, or a fully qualified domain name.
+<div class="alert bg-secondary text-white">
+  <div class="items-start">
+    <div>
+      <h2 class="text-white font-bold my-3 gap-2 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="text-white inline flex-shrink-0 w-6 h-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>Quickstart guide?</h2>
+      <p class="text-lg">Learn how to create a carbon.txt file for your organisation, upload it to your domain, and check that it is valid.</p>
+    </div>
+  </div>
+  <div class="flex-none">
+    <a href="https://carbontxt.org/quickstart" class="btn btn-lg btn-black hover:bg-primary">Go to guide</a>
+  </div>
+</div>
 
-All carbon.txt validation endpoints are available from the [carbon-txt-api.greenweb.org](https://carbon-txt-api.greenweb.org) domain.
+<ul class="list-disc px-0 prose-l gap-6 grid grid-cols-2 mt-8 w-100">
+            <li class="card bg-base-100 shadow-xl not-prose">
+             <div class="card-body not-prose">
+    <h3 class="card-title not-prose">File builder
+    </h3>
+    <span>Create a carbon.txt file for your organisation or website.</span>
+    <div class="card-actions justify-end not-prose">
+      <a href="https://carbontxt.org/tools/builder" class="btn btn-secondary" target="_blank">Use the builder</a>
+    </div>
+  </div>
+                </li>
+            <li class="card bg-base-100 shadow-xl not-prose">
+             <div class="card-body not-prose">
+    <h3 class="card-title not-prose">Validator
+    </h3>
+    <span>Check the syntax of a carbon.txt file and view its content.</span>
+    <div class="card-actions justify-end not-prose">
+      <a href="https://carbontxt.org/tools/validator" class="btn btn-secondary" target="_blank">Use the validator</a>
+    </div>
+  </div>
+                </li>
+    <li class="card bg-base-100 shadow-xl not-prose">
+        <div class="card-body not-prose">
+            <h3 class="card-title not-prose">Python package</h3>
+            <span>Create and validate carbon.txt files using our reference implementation in Python.</span>
+            <div class="card-actions justify-end not-prose">
+                <a href="https://carbon-txt-validator.readthedocs.io/en/latest/" class="btn btn-secondary" target="_blank">Go to the documentation</a>
+            </div>
+        </div>
+    </li>
+    <li class="card bg-base-100 shadow-xl not-prose">
+        <div class="card-body not-prose">
+            <div>
+                <h3 class="card-title not-prose">Syntax reference</h3>
+                <span>Learn about all the details of the carbon.txt format from our syntax specification.</span>
+            </div>
+            <div class="card-actions justify-end not-prose">
+                <a href="https://carbontxt.org/tools/syntax" class="btn btn-secondary" target="_blank">Go to the reference</a>
+            </div>
+        </div>
+    </li>
+</ul>
 
-## Validating a carbon.txt file by direct upload
+## Keep updated
 
-To validate a carbon.txt file by uploading contents directly, make a POST request to the `/api/validate/file` endpoint, passing a JSON-encoded body with the carbon.txt file contents encoded as the `text_contents` parameter. An example with CURL:
+To follow the carbon.txt project, you can:
 
-
-```bash
-curl -X POST \
-    -H "Content-Type: application/json" \
-    -H "X-Api-Key: gwf_xxxxxxx.xxxxxxxxxxxxxxxxx" \
-    --data "{\"text_contents\": \"version='0.5'\n[org]\ndisclosures=[{ doc_type='web-page', url='https://example.com'}]\"  }" \
-    https://carbon-txt-api.greenweb.org/api/validate/file
-```
-
-## Validating a carbon.txt file by url
-
-To validate a carbon.txt file already available at a public URL, make a POST request to the `/api/validate/url` endpoint, passing a JSON-encoded body with the carbon.txt file url passed as the `url` parameter. An example with CURL:
-
-
-```bash
-curl -X POST \
-    -H "Content-Type: application/json" \
-    -H "X-Api-Key: gwf_xxxxxxx.xxxxxxxxxxxxxxxxx" \
-    --data "{\"url\": \"https://thegreenwebfoundation.org/carbon.txt\"  }" \
-    https://carbon-txt-api.greenweb.org/api/validate/url
-```
-
-## Looking up the carbon.txt file for a domain
-
-To look up and validate the carbon.txt file for a given domain, make a POST request to the `/api/validate/domain` endpoint, passing a JSON-encoded body with the fully-qualified domain name passed as the `domain` parameter.
-
-
-This method will search for a carbon.txt at both the paths `/carbon.txt` and `/.well-known/carbon.txt`, and will follow any [delegation rules](https://carbontxt.org/faq) set up in DNS TXT records or HTTP headers on the queried domain.
-
-An example with CURL:
-
-
-```bash
-curl -X POST \
-    -H "Content-Type: application/json" \
-    -H "X-Api-Key: gwf_xxxxxxx.xxxxxxxxxxxxxxxxx" \
-    --data "{\"domain\": \"developers.thegreenwebfoundation.org\"  }" \
-    https://carbon-txt-api.greenweb.org/api/validate/domain
-```
-
-## Understanding the validator response.
-
-All three methods of validating a carbon.txt file return a response in the same format - a JSON object such as the following:
-
-```json
-{
-  "success": true,
-  "data": {
-    "version": "0.5",
-    "last_updated": null,
-    "upstream": null,
-    "org": {
-      "disclosures": [
-        {
-          "doc_type": "web-page",
-          "url": "https://example.com",
-          "domain": null,
-          "valid_until": null,
-          "title": null
-        }
-      ]
-    }
-  },
-  "logs": [
-    "Attempting to validate contents of version='0.5'\n[org]\ndisclosures=[{ doc_t",
-    "Carbon.txt file parsed as valid TOML.",
-    "Parsed TOML was recognised as valid Carbon.txt file with syntax version 0.5.\n",
-    "ai-model-card_greenweb: Processing supporting document: https://example.com for None",
-    "carbon_txt.process_ai_model_card: Document type web-page seen. Doing nothing",
-    "csrd_greenweb: Processing supporting document: https://example.com for None",
-    "carbon_txt.process_csrd_document: Document type web-page seen. Doing nothing",
-    "ai-model-card_greenweb: Processing supporting document: https://example.com for None",
-    "carbon_txt.process_ai_model_card: Document type web-page seen. Doing nothing",
-    "csrd_greenweb: Processing supporting document: https://example.com for None",
-    "carbon_txt.process_csrd_document: Document type web-page seen. Doing nothing"
-  ],
-  "document_data": {}
-}
-```
-
-The object has the following fields:
- - The `success` field returns a boolean indicating whether or not a carbon.txt file was succesfully found and parsed.
- - The contents of the carbon txt file, serialized as JSON, inside the `data` field, if the validation was succesful.
-  - An array of `logs` which detail the carbon.txt lookup and validation process carried out, for debugging purposes.
-  - A `document_data` object, containing any data parsed from linked documents by installed [carbon.txt plugins](https://carbon-txt-validator.readthedocs.io/en/latest/plugins.html). Currently the API provides plugins to parse [CSRD reports](https://finance.ec.europa.eu/financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en) and [AI model cards](https://huggingface.co/docs/hub/model-cards).
-  - If you validated a url or domain, a `url` field will be returned with the canonical url of the file found.
-  - If you requested a domain which delegates its carbon.txt file to another domain using a DNS TXT record or HTTP header, the `delegation_method` field will indicate the delegation method followed.
+<a href="https://www.linkedin.com/company/9184998" class="btn btn-primary">Follow us on LinkedIn</a>
+<a href="https://www.thegreenwebfoundation.org/newsletter/" class="btn btn-neutral">Subscribe to our montlhy newsletter</a>
