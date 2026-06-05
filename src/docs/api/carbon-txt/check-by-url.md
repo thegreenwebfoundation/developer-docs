@@ -33,7 +33,7 @@ fetch("https://carbon-txt-api.greenweb.org/api/validate/url", {
   headers: {
     "X-Api-Key": gwf_xxxxxxx.xxxxxxxxxxxxxxxxx,
   },
-  body: JSON.stringify({ url: https://example.com/carbon.txt })
+  body: JSON.stringify({ url: "https://example.com/carbon.txt" })
 })
 {% endset %}
 
@@ -52,7 +52,6 @@ curl -X POST \
 
 {% codeSnippet code, 'curl' %}
 
-   </div>
    </div>
    </seven-minute-tabs>
    

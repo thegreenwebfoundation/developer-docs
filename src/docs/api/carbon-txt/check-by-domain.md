@@ -33,7 +33,7 @@ fetch("https://carbon-txt-api.greenweb.org/api/validate/domain", {
   headers: {
     "X-Api-Key": gwf_xxxxxxx.xxxxxxxxxxxxxxxxx,
   },
-  body: JSON.stringify({ domain: example.com })
+  body: JSON.stringify({ domain: "example.com" })
 })
 {% endset %}
 
