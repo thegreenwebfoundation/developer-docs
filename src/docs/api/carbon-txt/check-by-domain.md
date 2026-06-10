@@ -1,5 +1,5 @@
 ---
-libraryName: Carbon.txt validator API
+libraryName: Carbon.txt API
 title: Check by website domain
 description: Use this API to validate the contents of a carbon.txt file hosted at a website domain.
 hasTabs: true
@@ -11,7 +11,7 @@ eleventyNavigation:
 
 # Validating carbon.txt URL
 
-To validate a carbon.txt file by hosted at a public domain, make a `POST` request to the `/api/validate/domain` endpoint, passing a JSON-encoded body with the carbon.txt file contents encoded as the `domain` parameter. 
+To validate a carbon.txt file by hosted at a public domain, make a `POST` request to the `/api/validate/domain` endpoint, passing a JSON-encoded body with the carbon.txt file contents encoded as the `domain` parameter.
 
 {% set endpoint = 'domain' %}
 {% include 'partials/carbon-txt-endpoint.njk' %}
@@ -54,7 +54,7 @@ curl -X POST \
 
    </div>
    </seven-minute-tabs>
-   
+
 <div class="alert alert-info my-3">
   <div class="items-start">
     <div>

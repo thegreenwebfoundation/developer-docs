@@ -1,5 +1,5 @@
 ---
-libraryName: Carbon.txt validator API
+libraryName: Carbon.txt API
 title: Check by file content
 description: Use this API to validate the contents of a carbon.txt file.
 hasTabs: true
@@ -11,7 +11,7 @@ eleventyNavigation:
 
 # Validating carbon.txt file content
 
-To validate a carbon.txt file by uploading contents directly, make a `POST` request to the `/api/validate/file` endpoint, passing a JSON-encoded body with the carbon.txt file contents encoded as the `text_contents` parameter. 
+To validate a carbon.txt file by uploading contents directly, make a `POST` request to the `/api/validate/file` endpoint, passing a JSON-encoded body with the carbon.txt file contents encoded as the `text_contents` parameter.
 
 {% set endpoint = 'file' %}
 {% include 'partials/carbon-txt-endpoint.njk' %}
@@ -35,11 +35,11 @@ fetch("https://carbon-txt-api.greenweb.org/api/validate/file", {
   },
   body: JSON.stringify({ text_contents: `version="0.5"
     last_updated=2026-06-01
-    
+
     [org]
     disclosures = [
         { doc_type="web-page", url="https://example.com" },
-    ]` 
+    ]`
   })
 })
 {% endset %}
