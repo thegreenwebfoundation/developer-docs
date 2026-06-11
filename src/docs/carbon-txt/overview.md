@@ -44,7 +44,7 @@ Below are a collection of tools that you can use to get started creating a carbo
     </h3>
     <span>Create a carbon.txt file for your organisation or website.</span>
     <div class="card-actions justify-end not-prose">
-      <a href="https://carbontxt.org/tools/builder" class="btn btn-secondary" target="_blank">Use the builder</a>
+      <a href="https://carbontxt.org/tools/builder" class="btn btn-black" target="_blank">Use the builder</a>
     </div>
   </div>
                 </li>
@@ -54,7 +54,7 @@ Below are a collection of tools that you can use to get started creating a carbo
     </h3>
     <span>Check the syntax of a carbon.txt file and view its content.</span>
     <div class="card-actions justify-end not-prose">
-      <a href="https://carbontxt.org/tools/validator" class="btn btn-secondary" target="_blank">Use the validator</a>
+      <a href="https://carbontxt.org/tools/validator" class="btn btn-black" target="_blank">Use the validator</a>
     </div>
   </div>
                 </li>
@@ -63,7 +63,7 @@ Below are a collection of tools that you can use to get started creating a carbo
             <h3 class="card-title not-prose">Python package</h3>
             <span>Create and validate carbon.txt files using our reference implementation in Python.</span>
             <div class="card-actions justify-end not-prose">
-                <a href="https://carbon-txt-validator.readthedocs.io/en/latest/" class="btn btn-secondary" target="_blank">Go to the documentation</a>
+                <a href="https://carbon-txt-validator.readthedocs.io/en/latest/" class="btn btn-black" target="_blank">Go to the documentation</a>
             </div>
         </div>
     </li>
@@ -72,7 +72,7 @@ Below are a collection of tools that you can use to get started creating a carbo
             <h3 class="card-title not-prose">Validation API</h3>
             <span>Use our HTTP API to look up and validate carbon.txt files.</span>
             <div class="card-actions justify-end not-prose">
-                <a href="/api/carbon-txt/overview/" class="btn btn-secondary" target="_blank">Go to the documentation</a>
+                <a href="/api/carbon-txt/overview/" class="btn btn-black" target="_blank">Go to the documentation</a>
             </div>
         </div>
     </li>
@@ -83,7 +83,7 @@ Below are a collection of tools that you can use to get started creating a carbo
                 <span>Learn about all the details of the carbon.txt format from our syntax specification.</span>
             </div>
             <div class="card-actions justify-end not-prose">
-                <a href="https://carbontxt.org/tools/syntax" class="btn btn-secondary" target="_blank">Go to the reference</a>
+                <a href="https://carbontxt.org/tools/syntax" class="btn btn-black" target="_blank">Go to the reference</a>
             </div>
         </div>
     </li>
