@@ -53,8 +53,11 @@ Next, create an `check.js` file, and open it in your code editor of choice. We w
 
 Inside your project folder, run the following command to install CO2.js as a dependency.
 
+<aside class="alert alert-info">
+<p>This functionality is currently available in a preview build of CO2.js. You should ensure you install the correct version to complete this tutorial.</p></aside>
+
 ```bash
-npm install @tgwf/co2
+npm install @tgwf/co2@next
 ```
 
 ## Initialise CO2.js
