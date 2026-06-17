@@ -11,20 +11,11 @@ eleventyNavigation:
 
 # Carbon.txt - Overview
 
-<a href="https://carbontxt.org" target="_blank">carbon.txt</a> makes sustainability data easier to discover and use on the web. Carbon.txt is a single, discoverable location on any web domain for public, machine-readable, sustainability data relating to that company.
-
-It’s a web-first, *connect not collect* style approach, of most benefit to those interested in scraping the structured data companies have to publish according to national laws. Designed to be extended by default, we see carbon.txt becoming essential infrastructure for sustainability data services crunching available numbers and sharing the stories it can tell.
-
-## Why carbon.txt?
-
-1. **Discovery of sustainability data continues to be a problem.** Our research with Wikirate made it abundantly clear that without new, webby approaches, sustainability data will continue to be hard to find or out of date.
-1. **Changes in the law mean that lots of firms will need to publish all kinds of sustainability data that previously they didn’t have to.** The law literally says they need to publish this data online, free of charge for the public to see, and there are significant GDPR-scale fees for non-compliance.
-1. **New standards mean that this data will be comparable, machine-readable, and likely across different parts of the world.** This could make verifying claims and identifying greenwashing easier, if it’s done right.
-1. **Carbon.txt is our open-source project to make this sustainability information easier to discover.** Carbon.txt is a spec that defines predictable, consistent places on any website to publish sustainability data so that both humans and machines can find it.
+{% include 'partials/carbon-txt-overview.njk' %}
 
 ## These docs
 
-The documentation on this website is aimed at developers looking to build additional tooling that extends carbon.txt - primarily through plugins and other extensions to the [carbon.txt validator](https://github.com/thegreenwebfoundation/carbon-txt-validator). General information about carbon.txt for a non-technical audience is available on the <a hreF="htts://carbontxt.org" target="_blank">carbon.txt website</a>.
+The documentation in this section is aimed at developers looking to build additional tooling that extends carbon.txt - primarily through plugins and other extensions to the [carbon.txt validator](https://github.com/thegreenwebfoundation/carbon-txt-validator). General information about carbon.txt for a non-technical audience is available on the [carbon.txt website](https://carbontxt.org).
 
 ## Other carbon.txt Tools
 
@@ -53,7 +44,7 @@ Below are a collection of tools that you can use to get started creating a carbo
     </h3>
     <span>Create a carbon.txt file for your organisation or website.</span>
     <div class="card-actions justify-end not-prose">
-      <a href="https://carbontxt.org/tools/builder" class="btn btn-secondary" target="_blank">Use the builder</a>
+      <a href="https://carbontxt.org/tools/builder" class="btn btn-black" target="_blank">Use the builder</a>
     </div>
   </div>
                 </li>
@@ -63,7 +54,7 @@ Below are a collection of tools that you can use to get started creating a carbo
     </h3>
     <span>Check the syntax of a carbon.txt file and view its content.</span>
     <div class="card-actions justify-end not-prose">
-      <a href="https://carbontxt.org/tools/validator" class="btn btn-secondary" target="_blank">Use the validator</a>
+      <a href="https://carbontxt.org/tools/validator" class="btn btn-black" target="_blank">Use the validator</a>
     </div>
   </div>
                 </li>
@@ -72,16 +63,27 @@ Below are a collection of tools that you can use to get started creating a carbo
             <h3 class="card-title not-prose">Python package</h3>
             <span>Create and validate carbon.txt files using our reference implementation in Python.</span>
             <div class="card-actions justify-end not-prose">
-                <a href="https://carbon-txt-validator.readthedocs.io/en/latest/" class="btn btn-secondary" target="_blank">Go to the documentation</a>
+                <a href="https://carbon-txt-validator.readthedocs.io/en/latest/" class="btn btn-black" target="_blank">Go to the documentation</a>
             </div>
         </div>
     </li>
-    <li class="card g-base-100 shadow-xl not-prose">
+    <li class="card bg-base-100 shadow-xl not-prose">
         <div class="card-body not-prose">
-            <h3 class="card-title not-prose">Syntax reference</h3>
-            <span>Learn about all the details of the carbon.txt format from our syntax specification.</span>
+            <h3 class="card-title not-prose">Validation API</h3>
+            <span>Use our HTTP API to look up and validate carbon.txt files.</span>
             <div class="card-actions justify-end not-prose">
-                <a href="https://carbontxt.org/tools/syntax" class="btn btn-secondary" target="_blank">Go to the reference</a>
+                <a href="/api/carbon-txt/overview/" class="btn btn-black" target="_blank">Go to the documentation</a>
+            </div>
+        </div>
+    </li>
+    <li class="card g-base-100 shadow-xl not-prose col-span-2">
+        <div class="card-body not-prose items-center flex flex-row">
+            <div>
+                <h3 class="card-title not-prose">Syntax reference</h3>
+                <span>Learn about all the details of the carbon.txt format from our syntax specification.</span>
+            </div>
+            <div class="card-actions justify-end not-prose">
+                <a href="https://carbontxt.org/tools/syntax" class="btn btn-black" target="_blank">Go to the reference</a>
             </div>
         </div>
     </li>
