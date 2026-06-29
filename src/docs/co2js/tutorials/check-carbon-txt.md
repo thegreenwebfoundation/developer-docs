@@ -23,6 +23,9 @@ You can follow along with this tutorial in your local development environment, o
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/thegreenwebfoundation/gitpod-node-starter)
 
+<aside class="alert alert-info">
+    <p>To perform carbon.txt lookups in CO2.js, you will require a free carbon.txt API key. Get one by logging into the <a href="https://admin.thegreenwebfoundation.org/provider-portal/">Green Web Portal</a>.</p></aside>
+
 ### Local development
 
 If you are following along this tutorial locally, you will need to have the following setup on your machine:
@@ -53,11 +56,8 @@ Next, create an `check.js` file, and open it in your code editor of choice. We w
 
 Inside your project folder, run the following command to install CO2.js as a dependency.
 
-<aside class="alert alert-info">
-<p>This functionality is currently available in a preview build of CO2.js. You should ensure you install the correct version to complete this tutorial.</p></aside>
-
 ```bash
-npm install @tgwf/co2@next
+npm install @tgwf/co2
 ```
 
 ## Initialise CO2.js
