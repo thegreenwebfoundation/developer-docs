@@ -74,14 +74,14 @@ To check if a single domain is green hosted, you can pass the following paramete
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| domain | `string` | <span class="badge align-middle badge-success my-0">Required</span> | the website domain you want to check for green hosting. |
-| options | `object` | <span class="badge align-middle badge-success my-0">Required</span> | An object of domain check options. |
+| domain | `string` | <span class="badge align-middle badge-success my-0">Required</span> | the website domain you want to lookup. |
+| options | `object` | <span class="badge align-middle badge-success my-0">Required</span> | an object of domain check options. |
 
 The `options` object may contain the following keys:
 
 | Key | Type | Required | Description |
 | --- | --- | --- | --- |
-| apiKey | `string` | <span class="badge align-middle badge-success my-0">Required</span> | A valid Green Web Foundation API key. You can get one from the [Green Web Portal](http://admin.thegreenwebfoundation.org/provider-portal). |
+| apiKey | `string` | <span class="badge align-middle badge-success my-0">Required</span> | a valid Green Web Foundation API key. You can get one from the [Green Web Portal](http://admin.thegreenwebfoundation.org/provider-portal). |
 | verbose | `boolean` |  | indicate where you want to receive the full JSON payload from the API (including logs), or just the core data. Default: `false` |
 | userAgentIdentifier | `string` |  | representing the app, site, or organisation that is making the request. |
 | customValidator | `string` |  | representing the URL of the carbon.txt validator endpoint (if you do not want to use the Green Web Foundation carbon.txt API endpoint). |
