@@ -28,18 +28,11 @@ You should have:
 
 - An existing website that is hosted on Cloudflare or have domain DNS records that are proxied through Cloudflare's network
 - [Node.js installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) on your development machine
-- An [Electricity Maps API key](https://www.electricitymaps.com/free-tier-api)
+- An [Electricity Maps API key](https://www.thegreenwebfoundation.org/news/a-new-api-for-grid-aware-websites-and-beyond/)
 
 You should also be aware of the limits and pricing of Cloudflare Workers, available on the [Cloudflare website](https://developers.cloudflare.com/workers/platform/).
 
-<aside class="alert alert-info text-base-content">
-    <p>
-        <strong>Note:</strong>
-        This plugin currently uses the <a href="https://portal.electricitymaps.com/developer-hub/api/reference#latest-carbon-intensity-level">Electricity Maps Carbon Aware Websites API</a> as the source of grid intensity data. This API is currently only available under a paid plan, but we are in conversation with Electricity Maps on ways to make this data available in some kind of free version. You can
-        track the progress of this issue on
-        <a href="https://github.com/thegreenwebfoundation/grid-aware-websites/issues/21">GitHub</a>.
-    </p>
-</aside>
+{% include 'partials/gaw-emaps-note.njk' %}
 
 <aside class="alert alert-info text-base-content">
 <p>For the purposes of this tutorial, we will demonstrate deploying a Cloudflare Worker to run on our own Green Web Foundation domain (`thegreenwebfoundation.org`). <strong>When following along with this tutorial, you should use your own domain</strong>.</p>

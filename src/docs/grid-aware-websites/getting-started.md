@@ -21,7 +21,7 @@ You can check whether or not you have Node installed by running `node --version`
 
 ### Electricity Maps API
 
-You will also require an API key to access the [Electricity Maps API](https://api-portal.electricitymaps.com/).
+You will also require an API key to access the [Electricity Maps Carbon Intensity Level API](https://www.thegreenwebfoundation.org/news/a-new-api-for-grid-aware-websites-and-beyond/), which is free to use under the [Electricity Maps Terms of Service](https://electricitymaps.com/terms-of-service).
 
 {% include 'partials/gaw-emaps-note.njk' %}
 
@@ -69,7 +69,7 @@ Open the `index.js` file you just created in your code editor of choice. From he
 import { PowerBreakdown, GridIntensity } from '@greenweb/grid-aware-websites`
 ```
 
-For the purpose of this demonstration, we've imported *both* of the functions that the Grid-aware Websites library exposes.
+For the purpose of this demonstration, we've imported _both_ of the functions that the Grid-aware Websites library exposes.
 
 ### Using the `PowerBreakdown` function
 
@@ -103,13 +103,13 @@ Save the `index.js` file and run the file using the `node index.js` command in y
 
 ```json
 {
-  status: 'success',
-  region: 'TW',
-  gridAware: true,
-  data: { 
-    mode: 'renewable', 
-    minimumPercentage: 50, 
-    renewablePercentage: 24 
+  "status": "success",
+  "region": "TW",
+  "gridAware": true,
+  "data": {
+    "mode": "renewable",
+    "minimumPercentage": 50,
+    "renewablePercentage": 24
   }
 }
 ```
@@ -157,7 +157,7 @@ const apiKey = "you_api_key"; // Set your own Electricity Maps API key here.
 
 // Use the Grid-aware Websites library to fetch data for Taiwan, and check if grid-aware website changes should be applied.
 - const powerBreakdown = new PowerBreakdown({
--   apiKey:  "you_api_key"; 
+-   apiKey:  "you_api_key";
 - });
 - const gridData = await powerBreakdown.check(zone);
 + const gridIntensity = new GridIntensity({
@@ -178,13 +178,13 @@ Save the `index.js` file and run the file using the `node index.js` command in y
 
 ```json
 {
-  status: 'success',
-  region: 'TW',
-  gridAware: false,
-  data: { 
-    mode: 'average', 
-    carbonIntensity: 448, 
-    averageIntensity: 644.36 
+  "status": "success",
+  "region": "TW",
+  "gridAware": false,
+  "data": {
+    "mode": "average",
+    "carbonIntensity": 448,
+    "averageIntensity": 644.36
   }
 }
 ```
